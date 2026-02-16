@@ -9,7 +9,7 @@
 
 }
 
-#svg-edit-statusbar-button[state="active"] { 
+#svg-edit-statusbar-button[state="active"] {
   list-style-image: url("chrome://svg-edit/content/editor/images/logo.png");
   -moz-image-region: rect(32px, 16px, 48px, 0px);
 }

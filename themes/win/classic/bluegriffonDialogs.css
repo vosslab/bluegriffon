@@ -47,13 +47,13 @@ filepickerbutton {
 }
 
 .multibutton:last-child:-moz-locale-dir(ltr) {
-  border-top-right-radius: 5px; 
+  border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   margin-right: 1em;
 }
 
 .multibutton:last-child:-moz-locale-dir(rtl) {
-  border-top-left-radius: 5px; 
+  border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   margin-left: 1em;
 }

@@ -87,12 +87,12 @@ vruler {
 }
 
 #infoButton:hover {
-  list-style-image: url('chrome://bluegriffon/skin/icons/information-hover.png'); 
+  list-style-image: url('chrome://bluegriffon/skin/icons/information-hover.png');
 }
 
 #infoButton[disabled="true"],
 #infoButton[disabled="true"]:hover {
-  list-style-image: url('chrome://bluegriffon/skin/icons/information-disabled.png'); 
+  list-style-image: url('chrome://bluegriffon/skin/icons/information-disabled.png');
 }
 
 #viewSourceButton {

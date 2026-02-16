@@ -3,14 +3,14 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*
- * Muokkaa tätä tiedostoa ja kopioi nimellä userContent.css 
+ * Muokkaa tätä tiedostoa ja kopioi nimellä userContent.css
  * profiilikansiosi chrome-kansioon
  */
 
 /*
  * Tätä tiedostoa muokkaamalla on mahdollista muuttaa kaikkien ohjelmalla
  * avattujen WWW-sivujen ulkonäköä. Säännöt, joissa on !important-lisäys,
- * korvaavat sivun tekijän antamat samannimiset säännöt. Jos lisäystä ei 
+ * korvaavat sivun tekijän antamat samannimiset säännöt. Jos lisäystä ei
  * löydy, sivulle asetetut tyylit voivat korvata tässä tiedostossa annetut.
  */
 
@@ -33,9 +33,9 @@
  * marquee { -moz-binding: none; }
  *
  */
- 
-/* 
- * Lisää esimerkkejä säännöistä (englanniksi) osoitteesta 
+
+/*
+ * Lisää esimerkkejä säännöistä (englanniksi) osoitteesta
  * http://www.mozilla.org/unix/customizing.html
  */
 

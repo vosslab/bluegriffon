@@ -14,8 +14,8 @@
 
 $('a').click(function() {
 	var href = this.href;
-	
-	// Convert Non-SVG images to data URL first 
+
+	// Convert Non-SVG images to data URL first
 	// (this could also have been done server-side by the library)
 	if(this.href.indexOf('.svg') === -1) {
 
@@ -24,7 +24,7 @@ $('a').click(function() {
 			id: href
 		});
 		window.top.postMessage(meta_str, "*");
-	
+
 		var img = new Image();
 		img.onload = function() {
 			var canvas = document.createElement("canvas");
@@ -55,7 +55,7 @@ $('a').click(function() {
 			data = '|' + href + '|' + data;
 			// This is where the magic happens!
 			window.top.postMessage(data, "*");
-			
+
 		}, 'html'); // 'html' is necessary to keep returned data as a string
 	}
 	return false;

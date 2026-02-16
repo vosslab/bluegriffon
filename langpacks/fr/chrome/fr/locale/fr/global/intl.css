@@ -3,10 +3,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*
- *   Ce fichier contient tous les paramètres d’apparence localisables tels que 
- *   la police, l’affichage et la géométrie
+ *   Ce fichier contient tous les parametres d'apparence localisables tels que
+ *   la police, l'affichage et la geometrie
  */
-window { 
+window {
   font: 3mm tahoma,arial,helvetica,sans-serif;
 }
 

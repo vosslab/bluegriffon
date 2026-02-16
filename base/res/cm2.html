@@ -160,7 +160,7 @@
             if (n < anchor.line)
               gEditor.setSelections([{anchor: anchor, head: {line:n, ch:0}}]);
             else
-              gEditor.setSelections([{anchor: anchor, head: {line:n, ch:null}}]);              
+              gEditor.setSelections([{anchor: anchor, head: {line:n, ch:null}}]);
           }
           gEditor.setSelections(sel, 0);
         }
@@ -226,21 +226,21 @@
   function markSelection()
   {
     const kBGBGBG = "--BG--";
-  
+
     gEditor.setSelection( { line: 0, ch: 0 }, { line: 0, ch: 0 } );
-  
+
     var searchCursor = gEditor.getSearchCursor(kBGBGBG, { line: 0, ch: 0 }, true);
     searchCursor.findNext();
     var startRow    = searchCursor.from().line;
     var startColumn = searchCursor.from().ch;
     searchCursor.replace("");
-  
+
     searchCursor = gEditor.getSearchCursor(kBGBGBG, { line: 0, ch: 0 }, true);
     searchCursor.findNext();
     var endRow      = searchCursor.from().line;
     var endColumn   = searchCursor.from().ch;
     searchCursor.replace("");
-  
+
     gEditor.clearHistory();
     gEditor.setSelection( { line: startRow, ch: startColumn }, { line: endRow, ch: endColumn } );
     gEditor.scrollIntoView({ line: endRow, ch: endColumn }, 100);

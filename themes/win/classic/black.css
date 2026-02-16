@@ -275,7 +275,7 @@ tree {
 :root:not([cleartheme="true"]) treecolpicker {
   -moz-border-start: thin solid black;
 }
- 
+
 /* ::::: column picker :::::  */
 
 :root:not([cleartheme="true"]) .tree-columnpicker-icon {

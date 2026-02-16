@@ -17,8 +17,8 @@
     style_html(html_source, options);
 
   The options are:
-    indent_size (default 4)          — indentation size,
-    indent_char (default space)      — character to indent with,
+    indent_size (default 4)          - indentation size,
+    indent_char (default space)      - character to indent with,
     max_char (default 250)            -  maximum amount of characters per line (0 = disable)
     brace_style (default "collapse") - "collapse" | "expand" | "end-expand"
             put braces on the same line as control statements (default), or put braces on own line (Allman / ANSI style), or just put end braces on own line.

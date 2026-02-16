@@ -3,7 +3,7 @@
    - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
 
 <SearchPlugin xmlns="http://www.mozilla.org/2006/browser/search/">
-<ShortName>위키백과 (ko)</ShortName>
+<ShortName>위키백과 (ko)</ShortName>
 <Description>Wikipedia, the free encyclopedia</Description>
 <InputEncoding>UTF-8</InputEncoding>
 <Image width="16" height="16">resource://search-plugins/images/wikipedia.ico</Image>
@@ -11,7 +11,7 @@
   <Param name="action" value="opensearch"/>
   <Param name="search" value="{searchTerms}"/>
 </Url>
-<Url type="text/html" method="GET" template="https://ko.wikipedia.org/wiki/특수기능:찾기"
+<Url type="text/html" method="GET" template="https://ko.wikipedia.org/wiki/특수기능:찾기"
      resultdomain="wikipedia.org" rel="searchform">
   <Param name="search" value="{searchTerms}"/>
   <Param name="sourceid" value="Mozilla-search"/>

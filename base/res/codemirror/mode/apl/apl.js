@@ -23,9 +23,9 @@ CodeMirror.defineMode("apl", function() {
   };
   var builtInFuncs = {
     "+": ["conjugate", "add"],
-    "−": ["negate", "subtract"],
-    "×": ["signOf", "multiply"],
-    "÷": ["reciprocal", "divide"],
+    "-": ["negate", "subtract"],
+    "x": ["signOf", "multiply"],
+    "/": ["reciprocal", "divide"],
     "⌈": ["ceiling", "greaterOf"],
     "⌊": ["floor", "lesserOf"],
     "∣": ["absolute", "residue"],
@@ -37,13 +37,13 @@ CodeMirror.defineMode("apl", function() {
     "!": ["factorial", "binomial"],
     "⌹": ["matrixInverse", "matrixDivide"],
     "<": [null, "lessThan"],
-    "≤": [null, "lessThanOrEqual"],
+    "<=": [null, "lessThanOrEqual"],
     "=": [null, "equals"],
     ">": [null, "greaterThan"],
-    "≥": [null, "greaterThanOrEqual"],
-    "≠": [null, "notEqual"],
+    ">=": [null, "greaterThanOrEqual"],
+    "=": [null, "notEqual"],
     "≡": ["depth", "match"],
-    "≢": [null, "notMatch"],
+    "≡": [null, "notMatch"],
     "∈": ["enlist", "membership"],
     "⍷": [null, "find"],
     "∪": ["unique", "union"],
@@ -76,8 +76,8 @@ CodeMirror.defineMode("apl", function() {
 
   var isOperator = /[\.\/⌿⍀¨⍣]/;
   var isNiladic = /⍬/;
-  var isFunction = /[\+−×÷⌈⌊∣⍳\?⋆⍟○!⌹<≤=>≥≠≡≢∈⍷∪∩∼∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢]/;
-  var isArrow = /←/;
+  var isFunction = /[\+-x/⌈⌊∣⍳\?⋆⍟○!⌹<<==>>==≡≡∈⍷∪∩∼∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢]/;
+  var isArrow = /<-/;
   var isComment = /[⍝#].*$/;
 
   var stringEater = function(type) {

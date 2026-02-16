@@ -42,7 +42,7 @@
 :root {
 
   --bg-main-window-appearance: none;
-  
+
   --bg-dark-scrollbar-appearance: none;
   --bg-dark-scrollbar: black;
 
@@ -315,7 +315,7 @@ window:root {
 :root:not([cleartheme="true"]) treecolpicker {
   -moz-border-start: thin solid var(--bg-dark-gray);
 }
- 
+
 /* ::::: column picker :::::  */
 
 :root:not([cleartheme="true"]) .tree-columnpicker-icon {

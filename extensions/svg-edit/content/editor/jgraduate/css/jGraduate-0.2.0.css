@@ -1,6 +1,6 @@
-/* 
+/*
  * jGraduate Default CSS
- * 
+ *
  * Copyright (c) 2009 Jeff Schiller
  *
  * Licensed under the Apache License Version 2
@@ -48,7 +48,7 @@ li.jGraduate_tab_current {
   display: none;
 }
 
-.jGraduate_lgPick {  
+.jGraduate_lgPick {
   display: none;
   border: outset 1px #666;
   padding: 10px 7px 5px 5px;
@@ -69,7 +69,7 @@ div.jGraduate_Swatch {
 }
 div.jGraduate_GradContainer {
   border: 2px inset #EEE;
-  background-image: url(../images/map-opacity.png); 
+  background-image: url(../images/map-opacity.png);
   background-position: 0px 0px;
   height: 256px;
 }

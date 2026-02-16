@@ -63,7 +63,7 @@ window[rtl="false"] structurebar {
   margin-right: 10px;
   margin-left: 24px;
 }
- 
+
 window[rtl="false"] structurebar .autorepeatbutton-up {
   list-style-image: url("chrome://bluegriffon/skin/structurebar/arrow-left.png");
   -moz-image-region: auto; /* cut off inheritance */
@@ -94,7 +94,7 @@ window[rtl="true"] structurebar {
   margin-left: 10px;
   margin-right: 24px;
 }
- 
+
 window[rtl="true"] structurebar .autorepeatbutton-up {
   list-style-image: url("chrome://bluegriffon/skin/structurebar/arrow-right.png");
   -moz-image-region: auto; /* cut off inheritance */

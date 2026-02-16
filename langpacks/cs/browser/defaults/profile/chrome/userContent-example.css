@@ -3,9 +3,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /*
- * Ulozte kopii tohoto souboru jako userContent.css do adresare chrome 
+ * Ulozte kopii tohoto souboru jako userContent.css do adresare chrome
  * v adresari s uzivatelskym profilem a upravte dle vasich predstav.
- * 
+ *
  * Tento soubor se pouziva k nastaveni uzivatelskych kaskadovych stylu
  * na webovych strankach. Pravidla bez deklarace !important budou prepsana
  * kaskadovymi styly webove stranky, pokud takove jsou. Pravidla s deklaraci

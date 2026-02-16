@@ -36,18 +36,18 @@
  * the terms of any one of the MPL, the GPL or the LGPL.
  *
  * ***** END LICENSE BLOCK ***** */
- 
- /* Styles to alter look of things in the Editor content window 
+
+ /* Styles to alter look of things in the Editor content window
  *  for the "Normal Edit Mode" These settings will be removed
  *  when we display in completely WYSIWYG "Edit Preview" mode
- *  Anything that should never change, like cursors, should be 
+ *  Anything that should never change, like cursors, should be
  *  place in EditorOverride.css, instead of here.
 */
 
 @namespace bluegriffon url("http://disruptive-innovations.com/zoo/bluegriffon");
 @namespace svg url("http://www.w3.org/2000/svg");
 
-/* Force border display for empty cells 
+/* Force border display for empty cells
    and tables with 0 border
 */
 table {

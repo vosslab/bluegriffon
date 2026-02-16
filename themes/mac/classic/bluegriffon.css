@@ -53,7 +53,7 @@
 toolbar {
   -moz-appearance: none;
 }
-  
+
 tabeditor {
   -moz-binding: url('chrome://bluegriffon/content/bindings/tabeditor.xml#tabeditor');
 }
@@ -98,12 +98,12 @@ vruler {
 }
 
 #infoButton:hover {
-  list-style-image: url('chrome://bluegriffon/skin/icons/information-hover.png'); 
+  list-style-image: url('chrome://bluegriffon/skin/icons/information-hover.png');
 }
 
 #infoButton[disabled="true"],
 #infoButton[disabled="true"]:hover {
-  list-style-image: url('chrome://bluegriffon/skin/icons/information-disabled.png'); 
+  list-style-image: url('chrome://bluegriffon/skin/icons/information-disabled.png');
 }
 
 #viewSourceButton {
@@ -384,7 +384,7 @@ toolbox {
 
 panel[floating="true"] {
   -moz-binding: url("chrome://bluegriffon/content/bindings/floatingpanel.xml#floatingpanel");
-  -moz-appearance: none; 
+  -moz-appearance: none;
   background-color: rgba(96,96,96,0.9);
   color: var(--bg-main-foreground-color);
   border-radius: 5px;
