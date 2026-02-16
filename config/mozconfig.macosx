@@ -1,10 +1,10 @@
 # sh
-# Build configuration script for WIN32
+# Build configuration script for macOS
 #
 # See http://www.mozilla.org/build/unix.html for build instructions.
 #
 ##############################
-# TESTED ON OS X 10.13 with XCODE 9.0.1 (9A1004)
+# TESTED ON macOS 14+ with Xcode 16+
 ##############################
 
 CC=clang
@@ -27,11 +27,11 @@ mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/opt/
 mk_add_options MOZ_MAKE_FLAGS="-j8"
 
 ##############################
-# BlueGriffon is currently built against 10.10 SDK.
+# BlueGriffon is currently built against the platform MacOSX SDK.
 # See https://github.com/phracker/MacOSX-SDKs/ if you miss a given SDK
 ##############################
-ac_add_options --with-macos-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk
-ac_add_options --enable-macos-target=10.10
+ac_add_options --with-macos-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+ac_add_options --enable-macos-target=12.0
 
 ###############################
 # Uncomment the following lines for an optimized build.

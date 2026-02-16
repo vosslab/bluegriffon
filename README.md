@@ -1,78 +1,75 @@
-# Bluegriffon
+# BlueGriffon
 
-The Open Source next-generation Web Editor based on the rendering engine of Firefox
+An open-source WYSIWYG HTML editor built on Mozilla's Gecko rendering engine.
 
-## To prepare the build USING MERCURIAL
+BlueGriffon was originally created by Daniel Glazman (Disruptive Innovations
+SARL) around 2006, based on the Nvu editor lineage from Mozilla Composer.
+The current version is 3.2 (codename "Artemus"), now maintained by
+Neil R. Voss.
 
-* make sure to have installed the environment to build Mozilla: [windows](https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Windows_Prerequisites), [MacOS X](https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Mac_OS_X_Prerequisites), [linux](https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Linux_Prerequisites)
-* get mozilla-central from Mozilla through Mercurial:
+## Quick start
 
-  `hg clone http://hg.mozilla.org/mozilla-central bluegriffon-source`
+1. Set up the Gecko source tree and build environment --
+   see [docs/INSTALL.md](docs/INSTALL.md)
+2. Build: `./mach build`
+3. Run: `./mach run`
+4. Package: `./mach package`
 
-  Warning: on Windows, it's HIGHLY recommended to have both Windows and Visual Studio in the same locale, preferably en-US. If for instance you have a fr-FR Windows10 and a en-US VS, build will miserably fail...
+See [docs/USAGE.md](docs/USAGE.md) for details on build options and
+development workflow.
 
-* get BlueGriffon's tree through:
+## Build environments
 
-  `cd bluegriffon-source`
+- macOS 14+ (Sonoma) with Xcode 16+, native ARM64 for Apple Silicon
+- Ubuntu 22.04+ LTS
+- Windows 10+ with Visual Studio 2022
 
-  `git clone https://github.com/therealglazou/bluegriffon`
+## Documentation
 
-* update the mozilla tree
+- [docs/INSTALL.md](docs/INSTALL.md) -- setup and build prerequisites
+- [docs/USAGE.md](docs/USAGE.md) -- how to build, run, and package
+- [docs/CODE_ARCHITECTURE.md](docs/CODE_ARCHITECTURE.md) -- system design
+- [docs/FILE_STRUCTURE.md](docs/FILE_STRUCTURE.md) -- directory map
+- [docs/RELEASE_HISTORY.md](docs/RELEASE_HISTORY.md) -- version timeline
+- [docs/ROADMAP.md](docs/ROADMAP.md) -- planned work and priorities
 
-  ```hg update -r `cat bluegriffon/config/mozilla_central_revision.txt` ```
+## Build setup
 
-  `patch -p 1 < bluegriffon/config/gecko_dev_content.patch`
+BlueGriffon builds inside a Mozilla Gecko source tree. Clone `gecko-dev`,
+check out the pinned revision from
+[config/gecko_dev_revision.txt](config/gecko_dev_revision.txt), apply the
+patches in [config/](config/), and create a `.mozconfig` from the provided
+templates.
 
-  `patch -p 1 < bluegriffon/config/gecko_dev_idl.patch`
+```bash
+git clone https://github.com/mozilla/gecko-dev bluegriffon-source
+cd bluegriffon-source
+git reset --hard $(cat bluegriffon/config/gecko_dev_revision.txt)
+patch -p 1 < bluegriffon/config/gecko_dev_content.patch
+patch -p 1 < bluegriffon/config/gecko_dev_idl.patch
+cp bluegriffon/config/mozconfig.macosx .mozconfig
+./mach build
+```
 
-* create a `.mozconfig` file inside your `bluegriffon-source` directory. The  settings I am using on a daily basis on OS X (Sierra) can be found in `bluegriffon/config/mozconfig.macosx`
+See [docs/INSTALL.md](docs/INSTALL.md) for full instructions.
 
-## To prepare the build USING GIT
+## Contributing
 
-* make sure to have installed the environment to build Mozilla: [windows](https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Windows_Prerequisites), [MacOS X](https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Mac_OS_X_Prerequisites), [linux](https://developer.mozilla.org/En/Developer_Guide/Build_Instructions/Linux_Prerequisites)
-* get gecko-dev from github through git:
+- Code contributions via pull requests are welcome.
+- Localization: translate files in the `locales/` directory from `en-US`
+  into a new locale and submit a pull request.
 
-  `git clone https://github.com/mozilla/gecko-dev bluegriffon-source`
+## License
 
-  Warning: on Windows, it's HIGHLY recommended to have both Windows and Visual Studio in the same locale, preferably en-US. If for instance you have a fr-FR Windows10 and a en-US VS, build will miserably fail...
+This project is licensed under the
+[Mozilla Public License 2.0](LICENSE). Individual source files may reference
+the MPL 1.1 / GPL 2.0 / LGPL 2.1 tri-license from the original codebase.
 
-* get BlueGriffon's tree through:
+## Credits
 
-  `cd bluegriffon-source`
+- **Daniel Glazman** -- original author and creator of BlueGriffon
+  (Disruptive Innovations SARL)
+- **Neil R. Voss** -- current maintainer
+  (https://bsky.app/profile/neilvosslab.bsky.social)
 
-  `git clone https://github.com/therealglazou/bluegriffon`
-
-* update the mozilla tree
-
-  ```git reset --hard `cat bluegriffon/config/gecko_dev_revision.txt` ```
-
-  `patch -p 1 < bluegriffon/config/gecko_dev_content.patch`
-
-  `patch -p 1 < bluegriffon/config/gecko_dev_idl.patch`
-
-* create a `.mozconfig` file inside your `bluegriffon-source` directory. The  settings I am using on a daily basis on OS X (Sierra) can be found in `bluegriffon/config/mozconfig.macosx`
-
-## My own builds
-
-* OS X: OS X 10.12.6 with Xcode version 9.0 (9A235)
-* Windows: Windows 10 Pro with Visual Studio Community 2015
-* Linux: Ubuntu 16.04.1 LTS
-
-## Build BlueGriffon
-
-`./mach build`
-
-## Run BlueGriffon in a temporary profile
-
-`./mach run`
-
-## Package the build
-
-`./mach package`
-
-## Want to contribute to BlueGriffon?
-
-There are two ways to contribute:
-
-1. Contribute code. That's just another OSS project, we're waiting for your Pull Requests!
-2. Contribute L10N. All happens only in the 'locales' directory. You can review the existing locales and proposed changes/fixes or submit a new locale in a Pull Request. In that case, you need to translate everything from en-US into a new locale beforeI can accept the PR.
+See [docs/AUTHORS.md](docs/AUTHORS.md) for full author details.

@@ -36,6 +36,7 @@ RESOURCE_FILES.codemirror.addon.dialog += [
 ]
 
 RESOURCE_FILES.codemirror.addon.display += [
+  "res/codemirror/addon/display/autorefresh.js",
   "res/codemirror/addon/display/fullscreen.css",
   "res/codemirror/addon/display/fullscreen.js",
   "res/codemirror/addon/display/panel.js",
@@ -77,6 +78,7 @@ RESOURCE_FILES.codemirror.addon.hint += [
 RESOURCE_FILES.codemirror.addon.lint += [
   "res/codemirror/addon/lint/coffeescript-lint.js",
   "res/codemirror/addon/lint/css-lint.js",
+  "res/codemirror/addon/lint/html-lint.js",
   "res/codemirror/addon/lint/javascript-lint.js",
   "res/codemirror/addon/lint/json-lint.js",
   "res/codemirror/addon/lint/lint.css",
@@ -99,9 +101,7 @@ RESOURCE_FILES.codemirror.addon.mode += [
 
 RESOURCE_FILES.codemirror.addon.runmode += [
   "res/codemirror/addon/runmode/colorize.js",
-  "res/codemirror/addon/runmode/runmode-standalone.js",
   "res/codemirror/addon/runmode/runmode.js",
-  "res/codemirror/addon/runmode/runmode.node.js",
 ]
 
 RESOURCE_FILES.codemirror.addon.scroll += [
@@ -112,6 +112,7 @@ RESOURCE_FILES.codemirror.addon.scroll += [
 ]
 
 RESOURCE_FILES.codemirror.addon.search += [
+  "res/codemirror/addon/search/jump-to-line.js",
   "res/codemirror/addon/search/match-highlighter.js",
   "res/codemirror/addon/search/matchesonscrollbar.css",
   "res/codemirror/addon/search/matchesonscrollbar.js",
@@ -140,6 +141,11 @@ RESOURCE_FILES.codemirror.lib += [
   "res/codemirror/lib/codemirror.js",
 ]
 
+RESOURCE_FILES.codemirror.mode += [
+  "res/codemirror/mode/index.html",
+  "res/codemirror/mode/meta.js",
+]
+
 RESOURCE_FILES.codemirror.mode.apl += [
   "res/codemirror/mode/apl/apl.js",
   "res/codemirror/mode/apl/index.html",
@@ -150,20 +156,32 @@ RESOURCE_FILES.codemirror.mode.asciiarmor += [
   "res/codemirror/mode/asciiarmor/index.html",
 ]
 
+RESOURCE_FILES.codemirror.mode['asn.1'] += [
+  "res/codemirror/mode/asn.1/asn.1.js",
+  "res/codemirror/mode/asn.1/index.html",
+]
+
 RESOURCE_FILES.codemirror.mode.asterisk += [
   "res/codemirror/mode/asterisk/asterisk.js",
   "res/codemirror/mode/asterisk/index.html",
+]
+
+RESOURCE_FILES.codemirror.mode.brainfuck += [
+  "res/codemirror/mode/brainfuck/brainfuck.js",
+  "res/codemirror/mode/brainfuck/index.html",
 ]
 
 RESOURCE_FILES.codemirror.mode.clike += [
   "res/codemirror/mode/clike/clike.js",
   "res/codemirror/mode/clike/index.html",
   "res/codemirror/mode/clike/scala.html",
+  "res/codemirror/mode/clike/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.clojure += [
   "res/codemirror/mode/clojure/clojure.js",
   "res/codemirror/mode/clojure/index.html",
+  "res/codemirror/mode/clojure/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.cmake += [
@@ -186,8 +204,15 @@ RESOURCE_FILES.codemirror.mode.commonlisp += [
   "res/codemirror/mode/commonlisp/index.html",
 ]
 
+RESOURCE_FILES.codemirror.mode.crystal += [
+  "res/codemirror/mode/crystal/crystal.js",
+  "res/codemirror/mode/crystal/index.html",
+]
+
 RESOURCE_FILES.codemirror.mode.css += [
   "res/codemirror/mode/css/css.js",
+  "res/codemirror/mode/css/gss.html",
+  "res/codemirror/mode/css/gss_test.js",
   "res/codemirror/mode/css/index.html",
   "res/codemirror/mode/css/less.html",
   "res/codemirror/mode/css/less_test.js",
@@ -199,11 +224,13 @@ RESOURCE_FILES.codemirror.mode.css += [
 RESOURCE_FILES.codemirror.mode.cypher += [
   "res/codemirror/mode/cypher/cypher.js",
   "res/codemirror/mode/cypher/index.html",
+  "res/codemirror/mode/cypher/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.d += [
   "res/codemirror/mode/d/d.js",
   "res/codemirror/mode/d/index.html",
+  "res/codemirror/mode/d/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.dart += [
@@ -224,6 +251,7 @@ RESOURCE_FILES.codemirror.mode.django += [
 RESOURCE_FILES.codemirror.mode.dockerfile += [
   "res/codemirror/mode/dockerfile/dockerfile.js",
   "res/codemirror/mode/dockerfile/index.html",
+  "res/codemirror/mode/dockerfile/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.dtd += [
@@ -234,6 +262,7 @@ RESOURCE_FILES.codemirror.mode.dtd += [
 RESOURCE_FILES.codemirror.mode.dylan += [
   "res/codemirror/mode/dylan/dylan.js",
   "res/codemirror/mode/dylan/index.html",
+  "res/codemirror/mode/dylan/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.ebnf += [
@@ -251,9 +280,24 @@ RESOURCE_FILES.codemirror.mode.eiffel += [
   "res/codemirror/mode/eiffel/index.html",
 ]
 
+RESOURCE_FILES.codemirror.mode.elm += [
+  "res/codemirror/mode/elm/elm.js",
+  "res/codemirror/mode/elm/index.html",
+]
+
 RESOURCE_FILES.codemirror.mode.erlang += [
   "res/codemirror/mode/erlang/erlang.js",
   "res/codemirror/mode/erlang/index.html",
+]
+
+RESOURCE_FILES.codemirror.mode.factor += [
+  "res/codemirror/mode/factor/factor.js",
+  "res/codemirror/mode/factor/index.html",
+]
+
+RESOURCE_FILES.codemirror.mode.fcl += [
+  "res/codemirror/mode/fcl/fcl.js",
+  "res/codemirror/mode/fcl/index.html",
 ]
 
 RESOURCE_FILES.codemirror.mode.forth += [
@@ -308,6 +352,11 @@ RESOURCE_FILES.codemirror.mode.haskell += [
   "res/codemirror/mode/haskell/index.html",
 ]
 
+RESOURCE_FILES.codemirror.mode['haskell-literate'] += [
+  "res/codemirror/mode/haskell-literate/haskell-literate.js",
+  "res/codemirror/mode/haskell-literate/index.html",
+]
+
 RESOURCE_FILES.codemirror.mode.haxe += [
   "res/codemirror/mode/haxe/haxe.js",
   "res/codemirror/mode/haxe/index.html",
@@ -333,11 +382,6 @@ RESOURCE_FILES.codemirror.mode.idl += [
   "res/codemirror/mode/idl/index.html",
 ]
 
-RESOURCE_FILES.codemirror.mode.jade += [
-  "res/codemirror/mode/jade/index.html",
-  "res/codemirror/mode/jade/jade.js",
-]
-
 RESOURCE_FILES.codemirror.mode.javascript += [
   "res/codemirror/mode/javascript/index.html",
   "res/codemirror/mode/javascript/javascript.js",
@@ -351,14 +395,15 @@ RESOURCE_FILES.codemirror.mode.jinja2 += [
   "res/codemirror/mode/jinja2/jinja2.js",
 ]
 
+RESOURCE_FILES.codemirror.mode.jsx += [
+  "res/codemirror/mode/jsx/index.html",
+  "res/codemirror/mode/jsx/jsx.js",
+  "res/codemirror/mode/jsx/test.js",
+]
+
 RESOURCE_FILES.codemirror.mode.julia += [
   "res/codemirror/mode/julia/index.html",
   "res/codemirror/mode/julia/julia.js",
-]
-
-RESOURCE_FILES.codemirror.mode.kotlin += [
-  "res/codemirror/mode/kotlin/index.html",
-  "res/codemirror/mode/kotlin/kotlin.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.livescript += [
@@ -377,6 +422,16 @@ RESOURCE_FILES.codemirror.mode.markdown += [
   "res/codemirror/mode/markdown/test.js",
 ]
 
+RESOURCE_FILES.codemirror.mode.mathematica += [
+  "res/codemirror/mode/mathematica/index.html",
+  "res/codemirror/mode/mathematica/mathematica.js",
+]
+
+RESOURCE_FILES.codemirror.mode.mbox += [
+  "res/codemirror/mode/mbox/index.html",
+  "res/codemirror/mode/mbox/mbox.js",
+]
+
 RESOURCE_FILES.codemirror.mode.mirc += [
   "res/codemirror/mode/mirc/index.html",
   "res/codemirror/mode/mirc/mirc.js",
@@ -392,6 +447,14 @@ RESOURCE_FILES.codemirror.mode.modelica += [
   "res/codemirror/mode/modelica/modelica.js",
 ]
 
+RESOURCE_FILES.codemirror.mode.mscgen += [
+  "res/codemirror/mode/mscgen/index.html",
+  "res/codemirror/mode/mscgen/mscgen.js",
+  "res/codemirror/mode/mscgen/mscgen_test.js",
+  "res/codemirror/mode/mscgen/msgenny_test.js",
+  "res/codemirror/mode/mscgen/xu_test.js",
+]
+
 RESOURCE_FILES.codemirror.mode.mumps += [
   "res/codemirror/mode/mumps/index.html",
   "res/codemirror/mode/mumps/mumps.js",
@@ -402,6 +465,11 @@ RESOURCE_FILES.codemirror.mode.nginx += [
   "res/codemirror/mode/nginx/nginx.js",
 ]
 
+RESOURCE_FILES.codemirror.mode.nsis += [
+  "res/codemirror/mode/nsis/index.html",
+  "res/codemirror/mode/nsis/nsis.js",
+]
+
 RESOURCE_FILES.codemirror.mode.ntriples += [
   "res/codemirror/mode/ntriples/index.html",
   "res/codemirror/mode/ntriples/ntriples.js",
@@ -410,6 +478,11 @@ RESOURCE_FILES.codemirror.mode.ntriples += [
 RESOURCE_FILES.codemirror.mode.octave += [
   "res/codemirror/mode/octave/index.html",
   "res/codemirror/mode/octave/octave.js",
+]
+
+RESOURCE_FILES.codemirror.mode.oz += [
+  "res/codemirror/mode/oz/index.html",
+  "res/codemirror/mode/oz/oz.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.pascal += [
@@ -438,9 +511,25 @@ RESOURCE_FILES.codemirror.mode.pig += [
   "res/codemirror/mode/pig/pig.js",
 ]
 
+RESOURCE_FILES.codemirror.mode.powershell += [
+  "res/codemirror/mode/powershell/index.html",
+  "res/codemirror/mode/powershell/powershell.js",
+  "res/codemirror/mode/powershell/test.js",
+]
+
 RESOURCE_FILES.codemirror.mode.properties += [
   "res/codemirror/mode/properties/index.html",
   "res/codemirror/mode/properties/properties.js",
+]
+
+RESOURCE_FILES.codemirror.mode.protobuf += [
+  "res/codemirror/mode/protobuf/index.html",
+  "res/codemirror/mode/protobuf/protobuf.js",
+]
+
+RESOURCE_FILES.codemirror.mode.pug += [
+  "res/codemirror/mode/pug/index.html",
+  "res/codemirror/mode/pug/pug.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.puppet += [
@@ -451,6 +540,7 @@ RESOURCE_FILES.codemirror.mode.puppet += [
 RESOURCE_FILES.codemirror.mode.python += [
   "res/codemirror/mode/python/index.html",
   "res/codemirror/mode/python/python.js",
+  "res/codemirror/mode/python/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.q += [
@@ -486,11 +576,18 @@ RESOURCE_FILES.codemirror.mode.ruby += [
 RESOURCE_FILES.codemirror.mode.rust += [
   "res/codemirror/mode/rust/index.html",
   "res/codemirror/mode/rust/rust.js",
+  "res/codemirror/mode/rust/test.js",
+]
+
+RESOURCE_FILES.codemirror.mode.sas += [
+  "res/codemirror/mode/sas/index.html",
+  "res/codemirror/mode/sas/sas.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.sass += [
   "res/codemirror/mode/sass/index.html",
   "res/codemirror/mode/sass/sass.js",
+  "res/codemirror/mode/sass/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.scheme += [
@@ -533,6 +630,7 @@ RESOURCE_FILES.codemirror.mode.solr += [
 RESOURCE_FILES.codemirror.mode.soy += [
   "res/codemirror/mode/soy/index.html",
   "res/codemirror/mode/soy/soy.js",
+  "res/codemirror/mode/soy/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.sparql += [
@@ -559,6 +657,12 @@ RESOURCE_FILES.codemirror.mode.stex += [
 RESOURCE_FILES.codemirror.mode.stylus += [
   "res/codemirror/mode/stylus/index.html",
   "res/codemirror/mode/stylus/stylus.js",
+]
+
+RESOURCE_FILES.codemirror.mode.swift += [
+  "res/codemirror/mode/swift/index.html",
+  "res/codemirror/mode/swift/swift.js",
+  "res/codemirror/mode/swift/test.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.tcl += [
@@ -599,9 +703,24 @@ RESOURCE_FILES.codemirror.mode.troff += [
   "res/codemirror/mode/troff/troff.js",
 ]
 
+RESOURCE_FILES.codemirror.mode['ttcn-cfg'] += [
+  "res/codemirror/mode/ttcn-cfg/index.html",
+  "res/codemirror/mode/ttcn-cfg/ttcn-cfg.js",
+]
+
+RESOURCE_FILES.codemirror.mode.ttcn += [
+  "res/codemirror/mode/ttcn/index.html",
+  "res/codemirror/mode/ttcn/ttcn.js",
+]
+
 RESOURCE_FILES.codemirror.mode.turtle += [
   "res/codemirror/mode/turtle/index.html",
   "res/codemirror/mode/turtle/turtle.js",
+]
+
+RESOURCE_FILES.codemirror.mode.twig += [
+  "res/codemirror/mode/twig/index.html",
+  "res/codemirror/mode/twig/twig.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.vb += [
@@ -625,6 +744,27 @@ RESOURCE_FILES.codemirror.mode.verilog += [
   "res/codemirror/mode/verilog/verilog.js",
 ]
 
+RESOURCE_FILES.codemirror.mode.vhdl += [
+  "res/codemirror/mode/vhdl/index.html",
+  "res/codemirror/mode/vhdl/vhdl.js",
+]
+
+RESOURCE_FILES.codemirror.mode.vue += [
+  "res/codemirror/mode/vue/index.html",
+  "res/codemirror/mode/vue/vue.js",
+]
+
+RESOURCE_FILES.codemirror.mode.wast += [
+  "res/codemirror/mode/wast/index.html",
+  "res/codemirror/mode/wast/test.js",
+  "res/codemirror/mode/wast/wast.js",
+]
+
+RESOURCE_FILES.codemirror.mode.webidl += [
+  "res/codemirror/mode/webidl/index.html",
+  "res/codemirror/mode/webidl/webidl.js",
+]
+
 RESOURCE_FILES.codemirror.mode.xml += [
   "res/codemirror/mode/xml/index.html",
   "res/codemirror/mode/xml/test.js",
@@ -635,6 +775,16 @@ RESOURCE_FILES.codemirror.mode.xquery += [
   "res/codemirror/mode/xquery/index.html",
   "res/codemirror/mode/xquery/test.js",
   "res/codemirror/mode/xquery/xquery.js",
+]
+
+RESOURCE_FILES.codemirror.mode.yacas += [
+  "res/codemirror/mode/yacas/index.html",
+  "res/codemirror/mode/yacas/yacas.js",
+]
+
+RESOURCE_FILES.codemirror.mode['yaml-frontmatter'] += [
+  "res/codemirror/mode/yaml-frontmatter/index.html",
+  "res/codemirror/mode/yaml-frontmatter/yaml-frontmatter.js",
 ]
 
 RESOURCE_FILES.codemirror.mode.yaml += [
@@ -650,37 +800,68 @@ RESOURCE_FILES.codemirror.mode.z80 += [
 RESOURCE_FILES.codemirror.theme += [
   "res/codemirror/theme/3024-day.css",
   "res/codemirror/theme/3024-night.css",
+  "res/codemirror/theme/abbott.css",
+  "res/codemirror/theme/abcdef.css",
   "res/codemirror/theme/ambiance-mobile.css",
   "res/codemirror/theme/ambiance.css",
+  "res/codemirror/theme/ayu-dark.css",
+  "res/codemirror/theme/ayu-mirage.css",
   "res/codemirror/theme/base16-dark.css",
   "res/codemirror/theme/base16-light.css",
+  "res/codemirror/theme/bespin.css",
   "res/codemirror/theme/blackboard.css",
   "res/codemirror/theme/cobalt.css",
   "res/codemirror/theme/colorforth.css",
+  "res/codemirror/theme/darcula.css",
+  "res/codemirror/theme/dracula.css",
+  "res/codemirror/theme/duotone-dark.css",
+  "res/codemirror/theme/duotone-light.css",
   "res/codemirror/theme/eclipse.css",
   "res/codemirror/theme/elegant.css",
   "res/codemirror/theme/erlang-dark.css",
+  "res/codemirror/theme/gruvbox-dark.css",
+  "res/codemirror/theme/hopscotch.css",
+  "res/codemirror/theme/icecoder.css",
+  "res/codemirror/theme/idea.css",
+  "res/codemirror/theme/isotope.css",
+  "res/codemirror/theme/juejin.css",
   "res/codemirror/theme/lesser-dark.css",
   "res/codemirror/theme/liquibyte.css",
+  "res/codemirror/theme/lucario.css",
+  "res/codemirror/theme/material-darker.css",
+  "res/codemirror/theme/material-ocean.css",
+  "res/codemirror/theme/material-palenight.css",
+  "res/codemirror/theme/material.css",
   "res/codemirror/theme/mbo.css",
   "res/codemirror/theme/mdn-like.css",
   "res/codemirror/theme/midnight.css",
   "res/codemirror/theme/monokai.css",
+  "res/codemirror/theme/moxer.css",
   "res/codemirror/theme/neat.css",
   "res/codemirror/theme/neo.css",
   "res/codemirror/theme/night.css",
+  "res/codemirror/theme/nord.css",
+  "res/codemirror/theme/oceanic-next.css",
+  "res/codemirror/theme/panda-syntax.css",
   "res/codemirror/theme/paraiso-dark.css",
   "res/codemirror/theme/paraiso-light.css",
   "res/codemirror/theme/pastel-on-dark.css",
+  "res/codemirror/theme/railscasts.css",
   "res/codemirror/theme/rubyblue.css",
+  "res/codemirror/theme/seti.css",
+  "res/codemirror/theme/shadowfox.css",
   "res/codemirror/theme/solarized.css",
+  "res/codemirror/theme/ssms.css",
   "res/codemirror/theme/the-matrix.css",
   "res/codemirror/theme/tomorrow-night-bright.css",
   "res/codemirror/theme/tomorrow-night-eighties.css",
+  "res/codemirror/theme/ttcn.css",
   "res/codemirror/theme/twilight.css",
   "res/codemirror/theme/vibrant-ink.css",
   "res/codemirror/theme/xq-dark.css",
   "res/codemirror/theme/xq-light.css",
+  "res/codemirror/theme/yeti.css",
+  "res/codemirror/theme/yonce.css",
   "res/codemirror/theme/zenburn.css",
 ]
 

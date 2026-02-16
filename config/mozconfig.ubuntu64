@@ -1,5 +1,5 @@
 # sh
-# Build configuration script for Ubuntu 16.04 LTS ***64bits***
+# Build configuration script for Ubuntu 22.04+ LTS ***64bits***
 #
 # See http://www.mozilla.org/build/unix.html for build instructions.
 #

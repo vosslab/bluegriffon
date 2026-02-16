@@ -1,5 +1,14 @@
 # AUTHORS
 
+## Daniel Glazman
+
+Daniel Glazman is the original author and creator of BlueGriffon. He started
+the project around 2006 at Disruptive Innovations SARL, building on the
+lineage of the Nvu editor and Mozilla Composer. He designed and developed
+BlueGriffon as a modern WYSIWYG HTML editor using Mozilla's Gecko rendering
+engine and the XUL application framework. He maintained the project through
+version 3.2 (codename "Artemus").
+
 ## Neil R. Voss
 
 Neil R. Voss is an Associate Professor of Biology at [Roosevelt University](https://www.roosevelt.edu) in Chicago and the sole or primary author of this repository. He has been a faculty member at Roosevelt University since 2010, teaching across biochemistry, genetics, molecular biology, cellular biology, and biostatistics.
