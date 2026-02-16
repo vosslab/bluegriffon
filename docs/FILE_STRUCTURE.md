@@ -16,6 +16,8 @@ connect.
 | `Makefile.in` | Autoconf-generated makefile template |
 | `moz.configure` | Mozilla configure script |
 | `makefiles.sh` | Makefile generation helper |
+| `Brewfile` | macOS Homebrew build dependencies |
+| `build.sh` | Automated Gecko setup, build, run, and package |
 | `source_me.sh` | Environment setup for development |
 | `LICENSE` | Mozilla Public License 2.0 |
 | `README.md` | Project overview and quick start |
@@ -61,7 +63,8 @@ JavaScript and C++ components registered with XPCOM:
 
 ### `config/` -- build configuration
 
-- `gecko_dev_revision.txt` -- pinned Gecko commit (`042b84a`)
+- `gecko_dev_revision.txt` -- pinned Gecko commit (`0e1da68`, Firefox ESR 140)
+- `gecko_dev_branch.txt` -- Gecko branch name (`esr140`)
 - `gecko_dev_content.patch` -- content-layer patch for Gecko
 - `gecko_dev_idl.patch` -- IDL interface patch for Gecko
 - `mozilla_central_revision.txt` -- legacy Mercurial revision reference

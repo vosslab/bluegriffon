@@ -1,0 +1,74 @@
+# vim: set filetype=python:
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+# ESR 140: DEFINES migrated from Makefile.in
+DEFINES['MOZ_APP_NAME'] = CONFIG['MOZ_APP_NAME']
+DEFINES['PREF_DIR'] = CONFIG['PREF_DIR']
+
+if CONFIG['MOZ_MULET']:
+    DEFINES['MOZ_MULET'] = True
+
+if CONFIG['MOZ_DEBUG']:
+    DEFINES['MOZ_DEBUG'] = '1'
+
+toolkit = CONFIG['MOZ_WIDGET_TOOLKIT']
+if toolkit:
+    if 'gtk' in toolkit:
+        DEFINES['MOZ_GTK'] = '1'
+    if toolkit == 'gtk3':
+        DEFINES['MOZ_GTK3'] = '1'
+
+if CONFIG['MOZ_SYSTEM_NSPR']:
+    DEFINES['MOZ_SYSTEM_NSPR'] = '1'
+
+if CONFIG['MOZ_SYSTEM_NSS']:
+    DEFINES['MOZ_SYSTEM_NSS'] = '1'
+
+if CONFIG['NSS_DISABLE_DBM']:
+    DEFINES['NSS_DISABLE_DBM'] = '1'
+
+if CONFIG['MOZ_ARTIFACT_BUILDS']:
+    DEFINES['MOZ_ARTIFACT_BUILDS'] = '1'
+
+DEFINES['JAREXT'] = ''
+
+if CONFIG['MOZ_ANGLE_RENDERER']:
+    DEFINES['MOZ_ANGLE_RENDERER'] = CONFIG['MOZ_ANGLE_RENDERER']
+    if CONFIG['MOZ_D3DCOMPILER_VISTA_DLL']:
+        DEFINES['MOZ_D3DCOMPILER_VISTA_DLL'] = CONFIG['MOZ_D3DCOMPILER_VISTA_DLL']
+
+DEFINES['MOZ_CHILD_PROCESS_NAME'] = CONFIG['MOZ_CHILD_PROCESS_NAME']
+
+# TODO: MSVC DLL packaging DEFINES depend on WIN32_REDIST_DIR, WIN_UCRT_REDIST_DIR,
+# and MOZ_NO_DEBUG_RTL which may not be available as CONFIG values
+
+if CONFIG['OS_TARGET'] in ('WINNT', 'Darwin', 'Android'):
+    DEFINES['MOZ_SHARED_MOZGLUE'] = '1'
+
+if CONFIG['NECKO_WIFI']:
+    DEFINES['NECKO_WIFI'] = True
+
+if CONFIG['MAKENSISU']:
+    DEFINES['HAVE_MAKENSISU'] = '1'
+
+# TODO: BINPATH, RESPATH, APPNAME, LPROJ_ROOT depend on computed make
+# variables (_BINPATH, _APPNAME, MOZ_FS_LAYOUT) that cannot be expressed
+# in moz.build
+
+DEFINES['MOZ_ICU_VERSION'] = CONFIG['MOZ_ICU_VERSION']
+if CONFIG['MOZ_SYSTEM_ICU']:
+    DEFINES['MOZ_SYSTEM_ICU'] = True
+if CONFIG['MOZ_ICU_DATA_ARCHIVE']:
+    DEFINES['MOZ_ICU_DATA_ARCHIVE'] = True
+DEFINES['MOZ_ICU_DBG_SUFFIX'] = CONFIG['MOZ_ICU_DBG_SUFFIX']
+DEFINES['ICU_DATA_FILE'] = CONFIG['ICU_DATA_FILE']
+
+if CONFIG['CLANG_CXX']:
+    DEFINES['CLANG_CXX'] = True
+if CONFIG['CLANG_CL']:
+    DEFINES['CLANG_CL'] = True
+
+if CONFIG['ENABLE_MARIONETTE']:
+    DEFINES['ENABLE_MARIONETTE'] = '1'

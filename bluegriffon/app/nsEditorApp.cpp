@@ -5,6 +5,7 @@
 
 #include "nsXULAppAPI.h"
 #include "mozilla/XREAppData.h"
+#include "XREShellData.h"
 #include "application.ini.h"
 #include "mozilla/Bootstrap.h"
 #if defined(XP_WIN)
@@ -40,7 +41,9 @@
 
 #include "mozilla/Sprintf.h"
 #include "mozilla/StartupTimeline.h"
+#ifdef XP_WIN
 #include "mozilla/WindowsDllBlocklist.h"
+#endif
 
 #ifdef LIBFUZZER
 #include "FuzzerDefs.h"
@@ -237,19 +240,25 @@ static int do_main(int argc, char* argv[], char* envp[])
 }
 
 static nsresult
-InitXPCOMGlue(const char *argv0)
+InitXPCOMGlue()
 {
-  UniqueFreePtr<char> exePath = BinaryPath::Get(argv0);
+  if (gBootstrap) {
+    return NS_OK;
+  }
+
+  UniqueFreePtr<char> exePath = BinaryPath::Get();
   if (!exePath) {
     Output("Couldn't find the application directory.\n");
     return NS_ERROR_FAILURE;
   }
 
-  gBootstrap = mozilla::GetBootstrap(exePath.get());
-  if (!gBootstrap) {
+  auto bootstrapResult = mozilla::GetBootstrap(exePath.get());
+  if (bootstrapResult.isErr()) {
     Output("Couldn't load XPCOM.\n");
     return NS_ERROR_FAILURE;
   }
+
+  gBootstrap = bootstrapResult.unwrap();
 
   // This will set this thread as the main thread.
   gBootstrap->NS_LogInit();
@@ -278,7 +287,7 @@ int main(int argc, char* argv[], char* envp[])
     }
 #endif
 
-    nsresult rv = InitXPCOMGlue(argv[0]);
+    nsresult rv = InitXPCOMGlue();
     if (NS_FAILED(rv)) {
       return 255;
     }
@@ -293,7 +302,7 @@ int main(int argc, char* argv[], char* envp[])
 #endif
 
 
-  nsresult rv = InitXPCOMGlue(argv[0]);
+  nsresult rv = InitXPCOMGlue();
   if (NS_FAILED(rv)) {
     return 255;
   }

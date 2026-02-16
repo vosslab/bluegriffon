@@ -57,9 +57,12 @@ ac_add_options --enable-strip
 ac_add_options --disable-tests
 ac_add_options --disable-crashreporter
 ac_add_options --disable-webrtc
-ac_add_options --disable-dbm
 ac_add_options --disable-updater
 ac_add_options --disable-sandbox
+ac_add_options --disable-accessibility
+ac_add_options --disable-parental-controls
+ac_add_options --enable-linker=ld64
+ac_add_options --without-wasm-sandboxed-libraries
 
 ##############################
 # DO NOT MODIFY BELOW THIS LINE

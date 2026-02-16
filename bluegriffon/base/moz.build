@@ -1,5 +1,14 @@
 JAR_MANIFESTS += ['jar.mn']
 
+# ESR 140: DEFINES migrated from Makefile.in
+DEFINES['APP_NAME'] = CONFIG['MOZ_APP_DISPLAYNAME']
+DEFINES['APP_VERSION'] = CONFIG['MOZ_APP_VERSION']
+DEFINES['CODE_NAME'] = 'Artemus'
+DEFINES['GRE_BUILDID'] = '20260216000000'
+
+if CONFIG['MOZ_WIDGET_TOOLKIT'] in ('cocoa',):
+    DEFINES['TOOLBAR_CUSTOMIZATION_SHEET'] = True
+
 RESOURCE_FILES += [
   'res/base-min.css',
   'res/cm2.html',

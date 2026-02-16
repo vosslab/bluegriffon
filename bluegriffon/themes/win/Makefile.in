@@ -42,10 +42,11 @@ VPATH		= @srcdir@
 
 include $(DEPTH)/config/autoconf.mk
 
-DEFINES += \
-	-DAPP_NAME=$(MOZ_APP_DISPLAYNAME) \
-	-DAPP_VERSION=$(MOZ_APP_VERSION) \
-	$(NULL)
+# TODO: ESR 140 - DEFINES blocked in Makefile.in, moved to moz.build
+# DEFINES += \
+#	-DAPP_NAME=$(MOZ_APP_DISPLAYNAME) \
+#	-DAPP_VERSION=$(MOZ_APP_VERSION) \
+#	$(NULL)
 
 include $(topsrcdir)/config/rules.mk
 

@@ -14,6 +14,9 @@ ERROR_RE = re.compile(r":[0-9]+:[0-9]+:")
 CODEPOINT_RE = re.compile(r"non-ISO-8859-1 character U\+([0-9A-Fa-f]{4,6})")
 SKIP_FILE_PATTERNS = [
 	r"mkdocs.yml",
+	r"locale",
+	r"langpacks",
+	r"lang\..*",
 	r"^human_readable-.*\.html$",
 ]
 SKIP_FILE_REGEXES = [re.compile(pattern) for pattern in SKIP_FILE_PATTERNS]

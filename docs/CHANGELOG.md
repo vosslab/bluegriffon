@@ -2,6 +2,38 @@
 
 ## 2026-02-16
 
+- **Build succeeds on macOS ARM64 with Gecko ESR 140** -- first successful compilation, linking, and packaging of BlueGriffon on modern Gecko
+- Modernized [app/nsEditorApp.cpp](../bluegriffon/app/nsEditorApp.cpp) for ESR 140: guarded `WindowsDllBlocklist.h` include with `#ifdef XP_WIN`, added `XREShellData.h` include, updated `InitXPCOMGlue()` to use no-arg `BinaryPath::Get()` and `Result`-based `GetBootstrap` API
+- Added CoreFoundation framework linkage to [app/moz.build](../bluegriffon/app/moz.build) for macOS (fixes undefined symbols for `CFBundleCopyExecutableURL` etc.)
+- Replaced removed `nsXPIDLString.h` with `nsString.h` in [diOSIntegrationFactory.cpp](../bluegriffon/src/diOSIntegration.mac/diOSIntegrationFactory.cpp)
+- Converted macOS OS integration component from old `mozilla::Module`/`NSMODULE_DEFN` registration to modern `components.conf` static registration system; created [components.conf](../bluegriffon/src/diOSIntegration.mac/components.conf)
+- Patched Gecko `services/settings/dumps/gen_last_modified.py` to recognize `bluegriffon` as a valid `MOZ_BUILD_APP` platform
+- Restructured [app/Makefile.in](../bluegriffon/app/Makefile.in): fixed binary copy path to use `$(DIST)/bin/`, skipped `channel-prefs.js` preprocessing on macOS (matches Firefox ESR 140), fixed `tools repackage` target to reference `$(DIST)/bin/$(MOZ_APP_NAME)`, removed dead `LIBXUL_SDK` blocks
+- Added `APP_VERSION`, `CODE_NAME`, and `GRE_BUILDID` DEFINES to [base/moz.build](../bluegriffon/base/moz.build) (migrated from Makefile.in shell commands)
+- Replaced removed `nsIDOMNode` with `nsISupports` in 8 BlueGriffon IDL files under [bluegriffon/src/dibgutils/](../bluegriffon/src/dibgutils/) (`diIAttrChangedTxn.idl`, `diIAttrNameChangedTxn.idl`, `diIInnerHtmlChangedTxn.idl`, `diINodeInsertionTxn.idl`, `diIRemoveAttributeNSTxn.idl`, `diISetAttributeNSTxn.idl`, `diIStyleAttrChangeTxn.idl`, `diITextNodeChangedTxn.idl`) to fix XPIDL build error with ESR 140 where `nsIDOMNode` is no longer a scriptable interface
+- Removed unused `interface nsIDOMNode;` forward declaration from [diIChangeFileStylesheetTxn.idl](../bluegriffon/src/dibgutils/diIChangeFileStylesheetTxn.idl)
+- Updated [config/gecko_dev_idl.patch](../bluegriffon/config/gecko_dev_idl.patch) to replace `nsIDOMNode` with `nsISupports` in `nsIEditorMouseObserver` method signatures
+- Removed `DEFINES` from all 11 Makefile.in files under `bluegriffon/` (blocked by ESR 140 build system) and migrated them to corresponding moz.build files where possible; created new moz.build files for `installer/` and `installer/windows/`
+- Created [Brewfile](../Brewfile) with macOS Homebrew build dependencies (`autoconf`, `python@3.12`)
+- Added `--enable-linker=ld64` to [config/mozconfig.macosx](../config/mozconfig.macosx) to fix "Failed to find an adequate linker" error on macOS with Xcode clang 16+ (uses Apple's native linker instead of requiring LLVM `lld`)
+- Patched Gecko `toolchain.configure` ld64 detection to recognize Apple's new linker (Xcode 16+ no longer prints "Logging ld64 options")
+- Ported [confvars.sh](../confvars.sh) for ESR 140: moved `MOZ_APP_ID`, `MOZ_APP_VENDOR`, `MOZ_DEVTOOLS` to [moz.configure](../moz.configure) as `imply_option()` calls; removed obsolete variables no longer recognized by Gecko
+- Changed [build.sh](../build.sh) patches from opt-out (`--skip-patches`) to opt-in (`--apply-patches`) since content patch needs updating for ESR 140
+- Updated [docs/INSTALL.md](INSTALL.md) with `brew bundle` prerequisite and resolved Brewfile known gap
+- Added `Brewfile` to [docs/FILE_STRUCTURE.md](FILE_STRUCTURE.md) root files listing
+- Created [docs/GECKO_PATCHES.md](GECKO_PATCHES.md) documenting all 103 files in `gecko_dev_content.patch` and the IDL patch, grouped by category with BlueGriffon-specific preferences
+- Refreshed [docs/INSTALL.md](INSTALL.md) with verify-install section, known gaps, and trimmed duplicate build/run/package content
+- Refreshed [docs/USAGE.md](USAGE.md) with examples section, inputs/outputs, and known gaps
+- Updated Gecko base from Firefox ~55 (2017, commit `042b84a`) to Firefox ESR 140 (2026, commit `0e1da68`)
+- Updated Gecko source repo URL from `mozilla/gecko-dev` to `mozilla-firefox/firefox` (canonical repo moved)
+- Created [config/gecko_dev_branch.txt](../config/gecko_dev_branch.txt) with branch `esr140`
+- Updated [config/gecko_dev_revision.txt](../config/gecko_dev_revision.txt) to `0e1da68`
+- Created [build.sh](../build.sh) to automate Gecko clone, revision pin, patch application, mozconfig setup, build, run, package, and clean
+- Added `builds/` to [.gitignore](../.gitignore) for the Gecko source tree checkout
+- Updated [docs/INSTALL.md](INSTALL.md) to reference `build.sh` and new Firefox ESR 140 source
+- Updated [docs/USAGE.md](USAGE.md) with `build.sh` subcommand documentation
+- Updated [README.md](../README.md) quick start to use `build.sh`, updated to ESR 140
+- Updated [docs/FILE_STRUCTURE.md](FILE_STRUCTURE.md) to include `build.sh` and `gecko_dev_branch.txt`
 - Created [docs/CODE_ARCHITECTURE.md](CODE_ARCHITECTURE.md) with high-level system design, data flow diagram, and key directory overview
 - Created [docs/FILE_STRUCTURE.md](FILE_STRUCTURE.md) with full directory map of the project
 - Created [docs/INSTALL.md](INSTALL.md) with modern build prerequisites for macOS 14+, Ubuntu 22.04+, and Windows with VS 2022

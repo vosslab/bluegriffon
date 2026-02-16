@@ -16,7 +16,7 @@ new file mode 100644
 +
 +interface nsIEditorMouseObserver : nsISupports {
 +
-+  bool MouseDown(in int32_t aClientX, in int32_t aClientY, in nsIDOMNode aTarget, in boolean aShiftKey);
-+  bool MouseUp(in int32_t aClientX, in int32_t aClientY, in nsIDOMNode aTarget, in boolean aShiftKey);
-+  bool MouseMove(in int32_t aClientX, in int32_t aClientY, in nsIDOMNode aTarget, in boolean aShiftKey);
++  bool MouseDown(in int32_t aClientX, in int32_t aClientY, in nsISupports aTarget, in boolean aShiftKey);
++  bool MouseUp(in int32_t aClientX, in int32_t aClientY, in nsISupports aTarget, in boolean aShiftKey);
++  bool MouseMove(in int32_t aClientX, in int32_t aClientY, in nsISupports aTarget, in boolean aShiftKey);
 +};

@@ -15,7 +15,8 @@ EXTERNALLY_MANAGED_MAKE_FILE := 1
 STANDALONE_MAKEFILE := 1
 JAR_MANIFEST := $(srcdir)/jar.mn
 
-DEFINES += -DAB_CD=$(AB_CD)
+# TODO: ESR 140 - DEFINES blocked in Makefile.in, moved to moz.build
+# DEFINES += -DAB_CD=$(AB_CD)
 
 # Let jar.mn do its happy-dance
 

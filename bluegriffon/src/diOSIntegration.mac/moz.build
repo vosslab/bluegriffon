@@ -8,7 +8,7 @@ SOURCES += [
     'diOSIntegrationFactory.cpp',
 ]
 
-EXTRA_COMPONENTS += ['dibadge.manifest']
+XPCOM_MANIFESTS += ['components.conf']
 
 EXPORTS += [ 'diOSIntegrationCIID.h' ]
 

@@ -10,3 +10,7 @@ XPI_NAME = 'dbgserver'
 
 
 JAR_MANIFESTS += ['jar.mn']
+
+# ESR 140: DEFINES migrated from Makefile.in
+# TODO: LOCALE_SRCDIR is a computed make variable, may need adjustment
+DEFINES['LOCALE_SRCDIR'] = CONFIG['LOCALE_SRCDIR']

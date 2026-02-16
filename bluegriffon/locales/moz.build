@@ -1,0 +1,12 @@
+# vim: set filetype=python:
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+# ESR 140: DEFINES migrated from Makefile.in
+DEFINES['APP_NAME'] = CONFIG['MOZ_APP_DISPLAYNAME']
+# TODO: APP_VERSION was computed via $(shell cat version.txt) in Makefile.in
+# TODO: CODE_NAME was computed via $(shell cat codename.txt) in Makefile.in
+
+if CONFIG['MOZ_WIDGET_TOOLKIT'] in ('cocoa',):
+    DEFINES['TOOLBAR_CUSTOMIZATION_SHEET'] = True

@@ -9,14 +9,14 @@ Neil R. Voss.
 
 ## Quick start
 
-1. Set up the Gecko source tree and build environment --
-   see [docs/INSTALL.md](docs/INSTALL.md)
-2. Build: `./mach build`
-3. Run: `./mach run`
-4. Package: `./mach package`
+```bash
+./build.sh setup    # clone gecko, pin revision, apply patches, configure
+./build.sh build    # compile
+./build.sh run      # launch the editor
+```
 
-See [docs/USAGE.md](docs/USAGE.md) for details on build options and
-development workflow.
+For manual setup without the script, see [docs/INSTALL.md](docs/INSTALL.md).
+See [docs/USAGE.md](docs/USAGE.md) for all subcommands and build options.
 
 ## Build environments
 
@@ -35,23 +35,14 @@ development workflow.
 
 ## Build setup
 
-BlueGriffon builds inside a Mozilla Gecko source tree. Clone `gecko-dev`,
-check out the pinned revision from
-[config/gecko_dev_revision.txt](config/gecko_dev_revision.txt), apply the
-patches in [config/](config/), and create a `.mozconfig` from the provided
-templates.
+BlueGriffon builds inside a Mozilla Gecko source tree (Firefox ESR 140). The
+[build.sh](build.sh) script automates the full setup: cloning the Firefox
+source, pinning to the revision in
+[config/gecko_dev_revision.txt](config/gecko_dev_revision.txt), applying
+patches, and configuring the build.
 
-```bash
-git clone https://github.com/mozilla/gecko-dev bluegriffon-source
-cd bluegriffon-source
-git reset --hard $(cat bluegriffon/config/gecko_dev_revision.txt)
-patch -p 1 < bluegriffon/config/gecko_dev_content.patch
-patch -p 1 < bluegriffon/config/gecko_dev_idl.patch
-cp bluegriffon/config/mozconfig.macosx .mozconfig
-./mach build
-```
-
-See [docs/INSTALL.md](docs/INSTALL.md) for full instructions.
+See [docs/INSTALL.md](docs/INSTALL.md) for manual setup or platform-specific
+details.
 
 ## Contributing
 

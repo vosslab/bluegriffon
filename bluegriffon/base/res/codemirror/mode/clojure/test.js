@@ -147,8 +147,8 @@
       "[variable foobarBaz]",
       "[variable foo¡]",
       "[variable 符号]",
-      "[variable シンボル]",
-      "[variable ئۇيغۇر]",
+      "[variable シンホル]",
+      "[variable يۇيغۇر]",
       "[variable 🙂❤🇺🇸]",
 
       // invalid symbols

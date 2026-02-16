@@ -12,7 +12,8 @@ PKG_INST_PATH =
 CONFIG_DIR = instgen
 SFX_MODULE = $(topsrcdir)/other-licenses/7zstub/firefox/7zSD.sfx
 PRE_RELEASE_SUFFIX := ""
-DEFINES += -DPRE_RELEASE_SUFFIX="$(PRE_RELEASE_SUFFIX)"
+# TODO: ESR 140 - DEFINES blocked in Makefile.in, moved to moz.build
+# DEFINES += -DPRE_RELEASE_SUFFIX="$(PRE_RELEASE_SUFFIX)"
 
 INSTALLER_FILES = \
 	nsis/installer.nsi \
@@ -26,14 +27,15 @@ BRANDING_FILES = \
 	wizWatermark.bmp \
 	$(NULL)
 
-DEFINES += \
-	-DAB_CD=$(AB_CD) \
-	-DMOZ_APP_NAME=$(MOZ_APP_NAME) \
-	-DMOZ_APP_VERSION=$(MOZ_APP_VERSION) \
-	-DMOZ_APP_VENDOR=$(MOZ_APP_VENDOR) \
-	-DMOZ_APP_DISPLAYNAME=${MOZ_APP_DISPLAYNAME} \
-	-DMOZILLA_VERSION=${MOZILLA_VERSION} \
-	$(NULL)
+# TODO: ESR 140 - DEFINES blocked in Makefile.in, moved to moz.build
+# DEFINES += \
+#	-DAB_CD=$(AB_CD) \
+#	-DMOZ_APP_NAME=$(MOZ_APP_NAME) \
+#	-DMOZ_APP_VERSION=$(MOZ_APP_VERSION) \
+#	-DMOZ_APP_VENDOR=$(MOZ_APP_VENDOR) \
+#	-DMOZ_APP_DISPLAYNAME=${MOZ_APP_DISPLAYNAME} \
+#	-DMOZILLA_VERSION=${MOZILLA_VERSION} \
+#	$(NULL)
 
 include $(topsrcdir)/config/config.mk
 

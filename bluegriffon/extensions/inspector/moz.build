@@ -13,3 +13,6 @@ JS_PREFERENCE_FILES += [
     'resources/content/prefs/inspector.js',
 ]
 
+# ESR 140: DEFINES migrated from Makefile.in
+DEFINES['DOMi_VERSION'] = '2.0.17pre'
+

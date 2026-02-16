@@ -4,7 +4,8 @@
 
 XPI_PKGNAME = dbgserver-$(MOZILLA_VERSION).$(AB_CD)
 
-DEFINES += -DLOCALE_SRCDIR=$(LOCALE_SRCDIR)
+# TODO: ESR 140 - DEFINES blocked in Makefile.in, moved to moz.build
+# DEFINES += -DLOCALE_SRCDIR=$(LOCALE_SRCDIR)
 
 DIST_FILES = bootstrap.js install.rdf
 USE_EXTENSION_MANIFEST = 1

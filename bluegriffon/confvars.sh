@@ -36,31 +36,10 @@
 #
 # ***** END LICENSE BLOCK *****
 
-MOZ_APP_VENDOR=Disruptive\ Innovations\ SARL
+# Variables settable from confvars.sh (confvar origin).
+# project_flag variables (MOZ_APP_ID, MOZ_APP_VENDOR, MOZ_DEVTOOLS)
+# must be set via imply_option() in moz.configure instead.
 
 MOZ_APP_NAME=bluegriffon
 MOZ_APP_DISPLAYNAME=BlueGriffon
 MOZ_APP_BASENAME=BlueGriffon
-
-#MOZ_ENABLE_LIBXUL=1
-MOZ_NO_XPCOM_OBSOLETE=1
-MOZ_UPDATER=1
-MOZ_INSTALLER=1
-MOZ_STANDALONE_COMPOSER=1
-MOZ_NO_ACTIVEX_SUPPORT=1
-MOZ_ACTIVEX_SCRIPTING_SUPPORT=
-MOZ_JAVAXPCOM=
-MOZ_CRASHREPORTER=
-
-MOZ_APP_STATIC_INI=1
-MOZ_CHROME_FILE_FORMAT=jar
-
-MOZ_APP_VERSION_TXT=${_topsrcdir}/$MOZ_BUILD_APP/config/version.txt
-MOZ_APP_VERSION=`cat $MOZ_APP_VERSION_TXT`
-
-MOZ_APP_CODENAME_TXT=${_topsrcdir}/$MOZ_BUILD_APP/config/codename.txt
-MOZ_APP_CODENAME=`cat $MOZ_APP_CODENAME_TXT`
-
-MOZ_APP_ID=bluegriffon@bluegriffon.com
-
-MOZ_DEVTOOLS=all

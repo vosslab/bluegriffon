@@ -5,3 +5,7 @@ if toolkit == 'cocoa':
 else:
     DIRS += ['win']
 
+# ESR 140: DEFINES migrated from Makefile.in
+DEFINES['APP_NAME'] = CONFIG['MOZ_APP_DISPLAYNAME']
+DEFINES['APP_VERSION'] = CONFIG['MOZ_APP_VERSION']
+
