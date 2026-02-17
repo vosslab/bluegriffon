@@ -68,27 +68,20 @@ git clone --branch esr140 https://github.com/mozilla-firefox/firefox bluegriffon
 cd bluegriffon-source
 ```
 
-2. Pin to the required revision from
-   [config/gecko_dev_revision.txt](../config/gecko_dev_revision.txt):
-
-```bash
-git reset --hard $(cat bluegriffon/config/gecko_dev_revision.txt)
-```
-
-3. Symlink or clone BlueGriffon into the tree:
+2. Symlink or clone BlueGriffon into the tree:
 
 ```bash
 ln -sfn /path/to/bluegriffon bluegriffon
 ```
 
-4. Apply patches:
+3. Apply patches:
 
 ```bash
 patch -p 1 < bluegriffon/config/gecko_dev_content.patch
 patch -p 1 < bluegriffon/config/gecko_dev_idl.patch
 ```
 
-5. Copy a mozconfig template and adjust for your system:
+4. Copy a mozconfig template and adjust for your system:
 
 ```bash
 cp bluegriffon/config/mozconfig.macosx .mozconfig

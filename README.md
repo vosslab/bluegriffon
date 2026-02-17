@@ -37,9 +37,8 @@ See [docs/USAGE.md](docs/USAGE.md) for all subcommands and build options.
 
 BlueGriffon builds inside a Mozilla Gecko source tree (Firefox ESR 140). The
 [build.sh](build.sh) script automates the full setup: cloning the Firefox
-source, pinning to the revision in
-[config/gecko_dev_revision.txt](config/gecko_dev_revision.txt), applying
-patches, and configuring the build.
+source from the ESR 140 branch tip, applying patches, and configuring the
+build.
 
 See [docs/INSTALL.md](docs/INSTALL.md) for manual setup or platform-specific
 details.

@@ -12,7 +12,6 @@ GECKO_REPO_URL="https://github.com/mozilla-firefox/firefox"
 DEFAULT_GECKO_DIR="$REPO_ROOT/builds/bluegriffon-source"
 GECKO_DIR="$DEFAULT_GECKO_DIR"
 GECKO_BRANCH="$(tr -d '[:space:]' < "$BG_CONFIG_DIR/gecko_dev_branch.txt")"
-GECKO_REVISION="$(tr -d '[:space:]' < "$BG_CONFIG_DIR/gecko_dev_revision.txt")"
 OBJ_DIR="opt"
 APPLY_PATCHES=false
 
@@ -85,7 +84,7 @@ apply_patch_if_needed() {
 		echo "  - Gecko tree has been modified" >&2
 		echo "" >&2
 		echo "Current Gecko revision: $(git -C "$GECKO_DIR" rev-parse --short HEAD)" >&2
-		echo "Expected revision: $GECKO_REVISION" >&2
+		echo "Expected branch:   $GECKO_BRANCH" >&2
 		die "Patch application failed"
 	fi
 
@@ -224,21 +223,6 @@ cmd_setup() {
 		fi
 	else
 		info "Gecko directory already exists: $GECKO_DIR"
-	fi
-
-	# pin to the required revision if HEAD does not already match
-	# compare using the same prefix length as the stored revision
-	local rev_len=${#GECKO_REVISION}
-	local current_head
-	current_head="$(git -C "$GECKO_DIR" rev-parse HEAD | cut -c1-"$rev_len")"
-	if [ "$current_head" = "$GECKO_REVISION" ]; then
-		info "Gecko already at revision $GECKO_REVISION"
-	else
-		info "Pinning Gecko to revision $GECKO_REVISION (currently at $current_head)..."
-		# use git checkout for commits already in the local history
-		git -C "$GECKO_DIR" checkout "$GECKO_REVISION" 2>/dev/null \
-			|| git -C "$GECKO_DIR" checkout "$(git -C "$GECKO_DIR" rev-list --all | grep "^${GECKO_REVISION}")" \
-			|| die "Revision $GECKO_REVISION not found. Try './build.sh clean' then './build.sh setup'."
 	fi
 
 	# create symlink from gecko tree to bluegriffon app directory
@@ -470,23 +454,16 @@ cmd_status() {
 	echo "Repo root:        $REPO_ROOT"
 	echo "Gecko dir:        $GECKO_DIR"
 	echo "Gecko branch:     $GECKO_BRANCH"
-	echo "Expected revision: $GECKO_REVISION"
 	echo "Platform:         $(detect_platform)"
 	echo "CPU count:        $(detect_cpu_count)"
 	echo ""
 
 	# check gecko directory
-	local rev_len=${#GECKO_REVISION}
 	if [ -d "$GECKO_DIR" ]; then
 		echo "Gecko cloned:     yes"
 		local current_head
-		current_head="$(git -C "$GECKO_DIR" rev-parse HEAD 2>/dev/null | cut -c1-"$rev_len")"
+		current_head="$(git -C "$GECKO_DIR" rev-parse --short HEAD 2>/dev/null)"
 		echo "Current HEAD:     ${current_head:-unknown}"
-		if [ "$current_head" = "$GECKO_REVISION" ]; then
-			echo "Revision match:   yes"
-		else
-			echo "Revision match:   NO (expected $GECKO_REVISION)"
-		fi
 	else
 		echo "Gecko cloned:     no"
 	fi

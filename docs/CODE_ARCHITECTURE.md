@@ -35,10 +35,10 @@ bridge between the two.
 
 ## Gecko dependency
 
-BlueGriffon depends on Mozilla's Gecko engine, pinned to commit `042b84a` in
-[config/gecko_dev_revision.txt](../config/gecko_dev_revision.txt). During
-build setup, the builder clones `mozilla/gecko-dev`, checks out this pinned
-revision, and applies two patches:
+BlueGriffon depends on Mozilla's Gecko engine from the ESR 140 branch
+(configured in [config/gecko_dev_branch.txt](../config/gecko_dev_branch.txt)).
+During build setup, the builder shallow-clones the branch tip and applies two
+patches:
 
 - `config/gecko_dev_content.patch` -- content-layer modifications
 - `config/gecko_dev_idl.patch` -- IDL interface additions

@@ -2,6 +2,7 @@
 
 ## 2026-02-17
 
+- Removed Gecko revision pinning from `build.sh setup`: the ESR 140 branch only receives security patches and minor fixes, so the setup now uses the branch tip directly from the shallow clone instead of pinning to a specific commit. This eliminates the `git fetch --unshallow` workaround and the "empty string is not a valid pathspec" error. Deleted `config/gecko_dev_revision.txt` and updated all docs
 - Fixed 12 remaining `ChromeUtils.importESModule()` calls that were not capturing return values: in Gecko ESR 140 ES modules, the module namespace must be destructured (e.g., `var { Symbol } = ChromeUtils.importESModule(...)`) instead of relying on global side effects. Updated imports across sidebars (`cssproperty.xml`, `aria.xml`), devtools (`bootstrap.js`, `RemoteDebuggerServer.sys.mjs`), base JS (`recentPages.js2`, `printCommands.inc`), and bindings (`cssClassPicker.xml`, `filepickerbutton.xml`, `ecolorpicker.xml`)
 
 ## 2026-02-16

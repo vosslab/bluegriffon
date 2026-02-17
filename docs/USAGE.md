@@ -87,10 +87,9 @@ Remove the Gecko tree and start fresh:
 1. Creates a `builds/` directory in the repo root
 2. Shallow-clones the Firefox source from the branch in
    `config/gecko_dev_branch.txt` (no history, saves disk space)
-3. Pins Gecko to the revision in `config/gecko_dev_revision.txt`
-4. Creates a symlink from the Gecko tree to the BlueGriffon app directory
-5. Skips patches (patches are optional and currently broken - from 2017, incompatible with ESR 140)
-6. Copies the platform-appropriate mozconfig template and sets the `-j` flag
+3. Creates a symlink from the Gecko tree to the BlueGriffon app directory
+4. Skips patches (patches are optional and currently broken - from 2017, incompatible with ESR 140)
+5. Copies the platform-appropriate mozconfig template and sets the `-j` flag
    to your CPU count
 
 ## Mozconfig
@@ -117,7 +116,6 @@ Key settings to adjust:
 ### Inputs
 
 - Gecko source tree -- cloned by `build.sh setup` into `builds/bluegriffon-source`
-- [config/gecko_dev_revision.txt](../config/gecko_dev_revision.txt) -- pinned commit
 - [config/gecko_dev_branch.txt](../config/gecko_dev_branch.txt) -- Gecko branch (`esr140`)
 - [config/gecko_dev_content.patch](../config/gecko_dev_content.patch) -- content-layer Gecko patch
 - [config/gecko_dev_idl.patch](../config/gecko_dev_idl.patch) -- IDL interface patch
@@ -151,7 +149,6 @@ source source_me.sh && python -m pytest tests/test_pyflakes_code_lint.py
 
 - Version: [config/version.txt](../config/version.txt) (currently `3.2`)
 - Codename: [config/codename.txt](../config/codename.txt) (`"Artemus"`)
-- Gecko revision: [config/gecko_dev_revision.txt](../config/gecko_dev_revision.txt)
 - Gecko branch: [config/gecko_dev_branch.txt](../config/gecko_dev_branch.txt)
 
 ## Known gaps
