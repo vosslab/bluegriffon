@@ -125,8 +125,13 @@ Key settings to adjust:
 
 ### Outputs
 
-- Compiled binary in the `MOZ_OBJDIR` directory (default `opt/` inside the Gecko tree)
+Build artifacts go into the `MOZ_OBJDIR` directory (default `opt/` inside the Gecko tree):
+
+- macOS app bundle: `builds/bluegriffon-source/opt/dist/BlueGriffon.app`
+- Linux binary: `builds/bluegriffon-source/opt/dist/bin/bluegriffon`
 - Distributable package created by `./build.sh package`
+
+Run `./build.sh status` to see the current build directory size and app location.
 
 ## Development workflow
 
@@ -151,6 +156,5 @@ source source_me.sh && python -m pytest tests/test_pyflakes_code_lint.py
 
 ## Known gaps
 
-- [ ] Document output location per platform after `./build.sh package`
 - [ ] Add `--dry-run` flag to `build.sh setup` to preview actions without executing
 - [ ] Document debug build workflow (toggle optimize/debug flags in mozconfig)
