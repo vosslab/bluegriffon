@@ -639,13 +639,16 @@ main() {
 
 	# dispatch to subcommand
 	case "$command" in
-		setup)   cmd_setup ;;
-		build)   cmd_build ;;
-		run)     cmd_run ;;
-		package) cmd_package ;;
-		clean)   cmd_clean ;;
-		status)  cmd_status ;;
-		help)    cmd_help ;;
+		setup)     cmd_setup ;;
+		configure) cmd_configure ;;
+		build)     cmd_build ;;
+		run)       cmd_run ;;
+		open)      cmd_open ;;
+		package)   cmd_package ;;
+		clobber)   cmd_clobber ;;
+		clean)     cmd_clean ;;
+		status)    cmd_status ;;
+		help)      cmd_help ;;
 	esac
 }
 

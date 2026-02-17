@@ -21,12 +21,15 @@ The [build.sh](../build.sh) script automates all Gecko setup and build steps.
 
 | Command | Action |
 | --- | --- |
-| `setup` | Clone Firefox source (ESR 140), pin revision, symlink, copy mozconfig (skips outdated patches) |
-| `build` | Compile BlueGriffon (`./mach build`) |
-| `run` | Launch BlueGriffon (`./mach run`) |
+| `setup` | Clone Firefox source (ESR 140), pin revision, symlink, copy mozconfig |
+| `configure` | Run `./mach configure` separately (without full build) |
+| `build` | Compile BlueGriffon (`./mach build`) with timing and artifact info |
+| `run` | Launch BlueGriffon via `./mach run` |
+| `open` | Launch the built `.app` directly (macOS) or binary (Linux) |
 | `package` | Create distributable package (`./mach package`) |
-| `clean` | Remove the downloaded Gecko source tree |
-| `status` | Print diagnostic summary of the build environment |
+| `clobber` | Remove build artifacts but keep the Gecko source tree |
+| `clean` | Remove the entire downloaded Gecko source tree |
+| `status` | Print diagnostic summary of the build environment and artifacts |
 | `help` | Show usage (default if no args) |
 
 ### Options
@@ -55,13 +58,21 @@ Full setup and build:
 ```bash
 ./build.sh setup
 ./build.sh build
-./build.sh run
+./build.sh run      # launch via mach
+./build.sh open     # or open .app directly (macOS)
 ```
 
 Create a distributable package after building:
 
 ```bash
 ./build.sh package
+```
+
+Clean build artifacts without re-downloading Gecko:
+
+```bash
+./build.sh clobber  # wipe build artifacts, keep source
+./build.sh build    # recompile from scratch
 ```
 
 Remove the Gecko tree and start fresh:

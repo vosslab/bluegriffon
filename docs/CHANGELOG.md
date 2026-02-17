@@ -2,6 +2,12 @@
 
 ## 2026-02-16
 
+- Enhanced [build.sh](../build.sh) with new subcommands: `configure` (run mach configure separately), `open` (launch built .app directly on macOS or binary on Linux), and `clobber` (remove build artifacts while keeping the Gecko source tree)
+- Improved [build.sh](../build.sh) `build` subcommand to show platform info, build timing, and built app location on completion
+- Improved [build.sh](../build.sh) `run` subcommand to display the built app path before launching
+- Improved [build.sh](../build.sh) `status` subcommand to show build directory size, built app path, and ccache availability
+- Improved [build.sh](../build.sh) `package` subcommand to list created package files after packaging
+- Reorganized [build.sh](../build.sh) help text with typical workflow section and all new commands
 - Created [bluegriffon/config/gecko_esr140_toolchain_ld64.patch](../bluegriffon/config/gecko_esr140_toolchain_ld64.patch) to fix ld64 linker detection on Xcode 16+ for both target and host linker (Apple removed "Logging ld64 options" stderr message; also falls back to ld64 on Darwin when no linker is specified)
 - Created [bluegriffon/config/gecko_esr140_gen_last_modified.patch](../bluegriffon/config/gecko_esr140_gen_last_modified.patch) to add `bluegriffon` as a valid `MOZ_BUILD_APP` in `gen_last_modified.py`
 - Updated [build.sh](../build.sh) to apply required ESR 140 Gecko tree patches automatically during `setup` (separate from broken 2017 patches)
