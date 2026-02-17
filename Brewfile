@@ -11,5 +11,5 @@ brew "python@3.12"
 # Build-time only (safe to uninstall after build completes)
 brew "node"
 
-# Assembly -- only needed for Intel (x86_64) builds, not Apple Silicon
-# brew "nasm"
+# Compiler cache for 5-10x faster rebuilds (required by mozconfig)
+brew "ccache"

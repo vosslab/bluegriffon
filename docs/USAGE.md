@@ -6,10 +6,12 @@ How to build, run, and package BlueGriffon. For setup instructions see
 ## Quick start
 
 ```bash
-./build.sh setup    # clone gecko, pin revision, apply patches, configure
-./build.sh build    # compile
-./build.sh run      # launch the editor
+./build.sh setup  # clone gecko, pin revision, configure (skips outdated patches)
+./build.sh build  # compile
+./build.sh run    # launch the editor
 ```
+
+**Note**: Gecko patches are **not required** and are skipped by default. The patches in this repo are from 2017 (Firefox 55 era) and are incompatible with ESR 140 - they will fail to apply. See [docs/GECKO_PATCHES.md](GECKO_PATCHES.md) for historical context.
 
 ## CLI -- build.sh
 
@@ -19,7 +21,7 @@ The [build.sh](../build.sh) script automates all Gecko setup and build steps.
 
 | Command | Action |
 | --- | --- |
-| `setup` | Clone Firefox source (ESR 140), pin revision, symlink, apply patches, copy mozconfig |
+| `setup` | Clone Firefox source (ESR 140), pin revision, symlink, copy mozconfig (skips outdated patches) |
 | `build` | Compile BlueGriffon (`./mach build`) |
 | `run` | Launch BlueGriffon (`./mach run`) |
 | `package` | Create distributable package (`./mach package`) |
@@ -29,11 +31,15 @@ The [build.sh](../build.sh) script automates all Gecko setup and build steps.
 
 ### Options
 
-`--gecko-dir <path>` overrides the default Gecko directory
-(`builds/bluegriffon-source`).
+| Option | Description |
+| --- | --- |
+| `--apply-patches` | **Experimental:** Attempt to apply patches (currently broken - patches are from 2017 and incompatible with ESR 140) |
+| `--gecko-dir <path>` | Override default Gecko directory (`builds/bluegriffon-source`) |
 
 ```bash
-./build.sh --gecko-dir /tmp/gecko-tree setup
+./build.sh setup                             # normal setup (no patches needed)
+./build.sh --gecko-dir /tmp/gecko-tree setup # use custom gecko location
+./build.sh --apply-patches setup             # experimental: will fail (patches are from 2017)
 ```
 
 ## Examples
@@ -72,7 +78,7 @@ Remove the Gecko tree and start fresh:
    `config/gecko_dev_branch.txt` (no history, saves disk space)
 3. Pins Gecko to the revision in `config/gecko_dev_revision.txt`
 4. Creates a symlink from the Gecko tree to the BlueGriffon app directory
-5. Applies `gecko_dev_content.patch` and `gecko_dev_idl.patch` (idempotent)
+5. Skips patches (patches are optional and currently broken - from 2017, incompatible with ESR 140)
 6. Copies the platform-appropriate mozconfig template and sets the `-j` flag
    to your CPU count
 
@@ -92,6 +98,7 @@ Key settings to adjust:
 
 - `MOZ_MAKE_FLAGS="-j8"` -- set to your CPU core count
 - `--with-macos-sdk=...` -- macOS SDK path (macOS only)
+- `--with-ccache` -- compiler cache enabled by default (provides 5-10x faster rebuilds)
 - Optimize vs. debug flags (see comments in the template)
 
 ## Inputs and outputs

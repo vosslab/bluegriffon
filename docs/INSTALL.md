@@ -20,6 +20,7 @@ editor with `./build.sh run` or `./mach run`.
 - Native ARM64 support for Apple Silicon (M1/M2/M3/M4)
 - Homebrew packages (install with `brew bundle` from the repo root, see
   [Brewfile](../Brewfile))
+- ccache for faster rebuilds (installed via `brew bundle`, provides 5-10x speedup on rebuilds)
 
 ### Linux
 
@@ -53,6 +54,8 @@ The [build.sh](../build.sh) script handles the full Gecko setup:
 ./build.sh setup
 ./build.sh build
 ```
+
+**Note**: Patches are **not required** for building BlueGriffon. The patches in this repo are from 2017 and incompatible with ESR 140. See [docs/GECKO_PATCHES.md](GECKO_PATCHES.md) for historical context on what the patches did.
 
 See [docs/USAGE.md](USAGE.md) for all subcommands and options.
 

@@ -52,23 +52,100 @@ detect_cpu_count() {
 	fi
 }
 
-# apply a single patch idempotently
+# apply a single patch idempotently with per-file progress and timing
 # usage: apply_patch_if_needed <patch_file>
 apply_patch_if_needed() {
 	local patch_file="$1"
 	local patch_name
 	patch_name="$(basename "$patch_file")"
 
-	# check if patch can still be applied
-	if patch --dry-run --forward -p 1 -d "$GECKO_DIR" < "$patch_file" > /dev/null 2>&1; then
-		info "Applying $patch_name..."
-		patch --forward -p 1 -d "$GECKO_DIR" < "$patch_file"
-	# check if patch is already applied (reverse succeeds)
-	elif patch --dry-run --reverse -p 1 -d "$GECKO_DIR" < "$patch_file" > /dev/null 2>&1; then
-		info "$patch_name already applied, skipping"
-	else
-		die "Patch $patch_name cannot be applied or reversed cleanly"
+	# count files in patch for progress reporting
+	local file_count
+	file_count="$(grep -c '^--- ' "$patch_file" || echo "unknown")"
+
+	# check if patch is already applied using git
+	if git -C "$GECKO_DIR" apply --check --reverse "$patch_file" > /dev/null 2>&1; then
+		info "$patch_name already applied ($file_count files), skipping"
+		return 0
 	fi
+
+	# check if patch can be applied
+	local check_output
+	check_output="$(git -C "$GECKO_DIR" apply --check "$patch_file" 2>&1)"
+	if [ $? -ne 0 ]; then
+		echo "ERROR: Patch $patch_name cannot be applied cleanly" >&2
+		echo "" >&2
+		echo "Git apply check output:" >&2
+		echo "$check_output" >&2
+		echo "" >&2
+		echo "This may indicate:" >&2
+		echo "  - Patch conflicts with current Gecko revision" >&2
+		echo "  - Patch was already partially applied" >&2
+		echo "  - Gecko tree has been modified" >&2
+		echo "" >&2
+		echo "Current Gecko revision: $(git -C "$GECKO_DIR" rev-parse --short HEAD)" >&2
+		echo "Expected revision: $GECKO_REVISION" >&2
+		die "Patch application failed"
+	fi
+
+	info "Applying $patch_name ($file_count files)..."
+	local start_time
+	start_time="$(date +%s.%N)"
+
+	# apply patch with git apply (faster than GNU patch)
+	# track per-file timing
+	local current_file=""
+	local file_start_time=""
+	local files_patched=0
+
+	git -C "$GECKO_DIR" apply --verbose --whitespace=nowarn "$patch_file" 2>&1 | while IFS= read -r line; do
+		# parse "Applying: path/to/file" or similar patterns
+		if [[ "$line" =~ Applying:.*$ ]] || [[ "$line" =~ ^Checking\ patch\ (.*)\.\.\.$ ]]; then
+			# if we have a previous file, report its completion time
+			if [ -n "$current_file" ]; then
+				local file_end_time
+				file_end_time="$(date +%s.%N)"
+				local file_duration
+				file_duration="$(echo "$file_end_time - $file_start_time" | bc)"
+				printf "%s patched in %.2fs\n" "$current_file" "$file_duration"
+			fi
+
+			# extract filename from the line
+			current_file="$(echo "$line" | sed -E 's/^(Applying|Checking patch): *//' | sed 's/\.\.\.$//')"
+			file_start_time="$(date +%s.%N)"
+			files_patched=$((files_patched + 1))
+			printf "Patching %s...\n" "$current_file"
+		fi
+	done
+
+	# report final file if there was one
+	if [ -n "$current_file" ]; then
+		local file_end_time
+		file_end_time="$(date +%s.%N)"
+		local file_duration
+		file_duration="$(echo "$file_end_time - $file_start_time" | bc)"
+		printf "%s patched in %.2fs\n" "$current_file" "$file_duration"
+	fi
+
+	local end_time
+	end_time="$(date +%s.%N)"
+	local total_duration
+	total_duration="$(echo "$end_time - $start_time" | bc)"
+	info "$patch_name applied successfully (${files_patched} files in ${total_duration}s)"
+}
+
+# apply required Gecko tree fixes for ESR 140 (always applied, not optional)
+# these are separate from the old 2017 patches which are broken
+apply_required_gecko_fixes() {
+	info "Applying required ESR 140 Gecko tree fixes..."
+
+	# fix ld64 linker detection for Xcode 16+
+	apply_patch_if_needed "$BG_CONFIG_DIR/gecko_esr140_toolchain_ld64.patch"
+
+	# add bluegriffon to valid MOZ_BUILD_APP list in gen_last_modified.py
+	apply_patch_if_needed "$BG_CONFIG_DIR/gecko_esr140_gen_last_modified.patch"
+
+	info "Required Gecko fixes applied"
 }
 
 # verify gecko directory exists
@@ -138,13 +215,16 @@ cmd_setup() {
 		ln -sfn "$BG_APP_DIR" "$symlink_target"
 	fi
 
-	# apply patches only when explicitly requested
+	# apply required Gecko tree fixes (ld64 detection, gen_last_modified)
+	apply_required_gecko_fixes
+
+	# old patches are optional and currently broken (from 2017, incompatible with ESR 140)
 	if [ "$APPLY_PATCHES" = true ]; then
-		info "Applying patches..."
+		info "Attempting to apply patches (experimental, will likely fail)..."
 		apply_patch_if_needed "$BG_CONFIG_DIR/gecko_dev_content.patch"
 		apply_patch_if_needed "$BG_CONFIG_DIR/gecko_dev_idl.patch"
 	else
-		info "Skipping patches (use --apply-patches to apply)"
+		info "Skipping patches (not required - patches are from 2017 and incompatible with ESR 140)"
 	fi
 
 	# copy mozconfig if not already present
@@ -265,15 +345,28 @@ cmd_status() {
 		echo "Symlink:          no"
 	fi
 
-	# check patches
+	# check required ESR 140 patches
+	if [ -d "$GECKO_DIR" ]; then
+		for patch_file in "$BG_CONFIG_DIR/gecko_esr140_toolchain_ld64.patch" "$BG_CONFIG_DIR/gecko_esr140_gen_last_modified.patch"; do
+			local patch_name
+			patch_name="$(basename "$patch_file")"
+			if git -C "$GECKO_DIR" apply --check --reverse "$patch_file" > /dev/null 2>&1; then
+				echo "Patch $patch_name: applied"
+			else
+				echo "Patch $patch_name: not applied"
+			fi
+		done
+	fi
+
+	# check old 2017 patches (historical, broken)
 	if [ -d "$GECKO_DIR" ]; then
 		for patch_file in "$BG_CONFIG_DIR/gecko_dev_content.patch" "$BG_CONFIG_DIR/gecko_dev_idl.patch"; do
 			local patch_name
 			patch_name="$(basename "$patch_file")"
-			if patch --dry-run --reverse -p 1 -d "$GECKO_DIR" < "$patch_file" > /dev/null 2>&1; then
-				echo "Patch $patch_name: applied"
+			if git -C "$GECKO_DIR" apply --check --reverse "$patch_file" > /dev/null 2>&1; then
+				echo "Patch $patch_name: applied (legacy)"
 			else
-				echo "Patch $patch_name: not applied"
+				echo "Patch $patch_name: not applied (legacy, expected)"
 			fi
 		done
 	fi
@@ -294,7 +387,7 @@ cmd_help() {
 Usage: ./build.sh <command> [options]
 
 Commands:
-  setup     Clone Firefox source, pin revision, apply patches, configure
+  setup     Clone Firefox source, pin revision, symlink, configure (no patches needed)
   build     Compile BlueGriffon (./mach build)
   run       Launch BlueGriffon (./mach run)
   package   Create distributable package (./mach package)
@@ -304,13 +397,13 @@ Commands:
 
 Options:
   --gecko-dir <path>     Override the default Gecko directory location
-  --apply-patches        Apply Gecko patches during setup
+  --apply-patches        Experimental: attempt to apply patches (broken, from 2017)
 
 Examples:
-  ./build.sh setup                     # first-time setup
-  ./build.sh --apply-patches setup     # setup and apply Gecko patches
+  ./build.sh setup                     # normal setup (no patches needed)
   ./build.sh build                     # compile after setup
   ./build.sh run                       # launch the editor
+  ./build.sh --apply-patches setup     # experimental: will fail (patches from 2017)
   ./build.sh --gecko-dir /tmp/g setup  # use custom gecko location
 USAGE
 }

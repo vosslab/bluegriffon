@@ -33,6 +33,12 @@ mk_add_options MOZ_MAKE_FLAGS="-j8"
 ac_add_options --with-macos-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
 ac_add_options --enable-macos-target=12.0
 
+##############################
+# Compiler cache for faster rebuilds (5-10x speedup on rebuilds)
+# Install with: brew install ccache
+##############################
+ac_add_options --with-ccache
+
 ###############################
 # Uncomment the following lines for an optimized build.
 # Comment them out for a debug build.

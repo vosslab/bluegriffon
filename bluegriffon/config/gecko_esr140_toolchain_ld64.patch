@@ -1,0 +1,20 @@
+diff --git a/build/moz.configure/toolchain.configure b/build/moz.configure/toolchain.configure
+index 1842548c61..363c4e4b13 100644
+--- a/build/moz.configure/toolchain.configure
++++ b/build/moz.configure/toolchain.configure
+@@ -2026,7 +2026,14 @@ def select_linker_tmpl(host_or_target):
+             # ensure consistent output.
+             env["LC_ALL"] = "C"
+             retcode, stdout, stderr = get_cmd_output(*cmd, env=env)
+-            if retcode == 1 and "Logging ld64 options" in stderr:
++            # Xcode 16+ no longer prints "Logging ld64 options" so also
++            # accept ld64 when the linker was explicitly requested or when
++            # the default system linker on Darwin is ld64.
++            if retcode == 1 and (
++                "Logging ld64 options" in stderr
++                or linker == "ld64"
++                or (target.kernel == "Darwin" and linker is None)
++            ):
+                 kind = "ld64"
+
+             elif retcode != 0:

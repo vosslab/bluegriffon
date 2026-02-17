@@ -2,6 +2,17 @@
 
 ## 2026-02-16
 
+- Created [bluegriffon/config/gecko_esr140_toolchain_ld64.patch](../bluegriffon/config/gecko_esr140_toolchain_ld64.patch) to fix ld64 linker detection on Xcode 16+ for both target and host linker (Apple removed "Logging ld64 options" stderr message; also falls back to ld64 on Darwin when no linker is specified)
+- Created [bluegriffon/config/gecko_esr140_gen_last_modified.patch](../bluegriffon/config/gecko_esr140_gen_last_modified.patch) to add `bluegriffon` as a valid `MOZ_BUILD_APP` in `gen_last_modified.py`
+- Updated [build.sh](../build.sh) to apply required ESR 140 Gecko tree patches automatically during `setup` (separate from broken 2017 patches)
+- Clarified in [docs/USAGE.md](USAGE.md), [docs/INSTALL.md](INSTALL.md), and [build.sh](../build.sh) that **patches are NOT required** for BlueGriffon builds (including ARM64 macOS)
+- Improved [build.sh](../build.sh) patch diagnostics to show why patches fail when `--apply-patches` is used experimentally
+- Switched [build.sh](../build.sh) patch engine from GNU `patch` to `git apply` with per-file progress reporting
+- Documented that existing patches are from 2017 (Firefox 55 era) and incompatible with ESR 140 - they exist for historical reference only
+- Enabled ccache compiler cache in [bluegriffon/config/mozconfig.macosx](../bluegriffon/config/mozconfig.macosx) for 5-10x faster rebuilds
+- Added ccache to [Brewfile](../Brewfile) as required build dependency
+- Updated [docs/INSTALL.md](INSTALL.md) to document ccache requirement
+
 - **Build succeeds on macOS ARM64 with Gecko ESR 140** -- first successful compilation, linking, and packaging of BlueGriffon on modern Gecko
 - Modernized [app/nsEditorApp.cpp](../bluegriffon/app/nsEditorApp.cpp) for ESR 140: guarded `WindowsDllBlocklist.h` include with `#ifdef XP_WIN`, added `XREShellData.h` include, updated `InitXPCOMGlue()` to use no-arg `BinaryPath::Get()` and `Result`-based `GetBootstrap` API
 - Added CoreFoundation framework linkage to [app/moz.build](../bluegriffon/app/moz.build) for macOS (fixes undefined symbols for `CFBundleCopyExecutableURL` etc.)
