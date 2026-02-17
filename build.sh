@@ -13,6 +13,7 @@ DEFAULT_GECKO_DIR="$REPO_ROOT/builds/bluegriffon-source"
 GECKO_DIR="$DEFAULT_GECKO_DIR"
 GECKO_BRANCH="$(tr -d '[:space:]' < "$BG_CONFIG_DIR/gecko_dev_branch.txt")"
 GECKO_REVISION="$(tr -d '[:space:]' < "$BG_CONFIG_DIR/gecko_dev_revision.txt")"
+OBJ_DIR="opt"
 APPLY_PATCHES=false
 
 #============================================
@@ -148,6 +149,42 @@ apply_required_gecko_fixes() {
 	info "Required Gecko fixes applied"
 }
 
+# locate the built application bundle or binary
+# sets APP_PATH to the path if found, empty string otherwise
+find_built_app() {
+	local platform
+	platform="$(detect_platform)"
+	if [ "$platform" = "macosx" ]; then
+		local app_bundle="$GECKO_DIR/$OBJ_DIR/dist/BlueGriffon.app"
+		if [ -d "$app_bundle" ]; then
+			echo "$app_bundle"
+			return 0
+		fi
+	else
+		local app_bin="$GECKO_DIR/$OBJ_DIR/dist/bin/bluegriffon"
+		if [ -x "$app_bin" ]; then
+			echo "$app_bin"
+			return 0
+		fi
+	fi
+	echo ""
+	return 1
+}
+
+# format byte count as human-readable size
+human_size() {
+	local bytes="$1"
+	if [ "$bytes" -ge 1073741824 ]; then
+		echo "$(echo "scale=1; $bytes / 1073741824" | bc)G"
+	elif [ "$bytes" -ge 1048576 ]; then
+		echo "$(echo "scale=1; $bytes / 1048576" | bc)M"
+	elif [ "$bytes" -ge 1024 ]; then
+		echo "$(echo "scale=0; $bytes / 1024" | bc)K"
+	else
+		echo "${bytes}B"
+	fi
+}
+
 # verify gecko directory exists
 require_gecko_dir() {
 	if [ ! -d "$GECKO_DIR" ]; then
@@ -271,11 +308,53 @@ cmd_setup() {
 #============================================
 cmd_build() {
 	require_setup
+
+	local platform
+	platform="$(detect_platform)"
+	local cpu_count
+	cpu_count="$(detect_cpu_count)"
+
 	info "Building BlueGriffon..."
+	info "  Platform:   $platform"
+	info "  CPUs:       $cpu_count"
+	info "  Gecko dir:  $GECKO_DIR"
+	info "  Object dir: $GECKO_DIR/$OBJ_DIR/"
+
+	local start_time
+	start_time="$(date +%s)"
+
 	cd "$GECKO_DIR"
 	# unset CONFIG_FILES to avoid collision with Gecko's config_status
 	unset CONFIG_FILES
 	./mach build
+
+	local end_time
+	end_time="$(date +%s)"
+	local elapsed=$(( end_time - start_time ))
+	local minutes=$(( elapsed / 60 ))
+	local seconds=$(( elapsed % 60 ))
+
+	info "Build completed in ${minutes}m ${seconds}s"
+
+	# report the built app location
+	local app_path
+	app_path="$(find_built_app)" || true
+	if [ -n "$app_path" ]; then
+		info "Built app: $app_path"
+		info "Run './build.sh run' to launch, or './build.sh open' to open directly"
+	fi
+}
+
+#============================================
+# Subcommand: configure
+#============================================
+cmd_configure() {
+	require_setup
+	info "Configuring BlueGriffon build..."
+	cd "$GECKO_DIR"
+	unset CONFIG_FILES
+	./mach configure
+	info "Configure complete. Run './build.sh build' to compile."
 }
 
 #============================================
@@ -283,9 +362,43 @@ cmd_build() {
 #============================================
 cmd_run() {
 	require_setup
-	info "Running BlueGriffon..."
+
+	# show where the app is before launching
+	local app_path
+	app_path="$(find_built_app)" || true
+	if [ -n "$app_path" ]; then
+		info "Found built app: $app_path"
+	else
+		info "No built app found yet (will build on first run if needed)"
+	fi
+
+	info "Launching BlueGriffon via mach..."
 	cd "$GECKO_DIR"
 	./mach run
+}
+
+#============================================
+# Subcommand: open (macOS direct launch)
+#============================================
+cmd_open() {
+	require_setup
+	local platform
+	platform="$(detect_platform)"
+
+	local app_path
+	app_path="$(find_built_app)" || true
+
+	if [ -z "$app_path" ]; then
+		die "No built app found. Run './build.sh build' first."
+	fi
+
+	if [ "$platform" = "macosx" ]; then
+		info "Opening $app_path"
+		open "$app_path"
+	else
+		info "Launching $app_path"
+		"$app_path" &
+	fi
 }
 
 #============================================
@@ -296,6 +409,46 @@ cmd_package() {
 	info "Packaging BlueGriffon..."
 	cd "$GECKO_DIR"
 	./mach package
+
+	# show package output location
+	local dist_dir="$GECKO_DIR/$OBJ_DIR/dist"
+	info "Package output directory: $dist_dir"
+	if [ -d "$dist_dir" ]; then
+		# list any dmg, tar, or zip files produced
+		local packages
+		packages="$(find "$dist_dir" -maxdepth 1 \( -name '*.dmg' -o -name '*.tar.*' -o -name '*.zip' \) 2>/dev/null || true)"
+		if [ -n "$packages" ]; then
+			info "Packages created:"
+			echo "$packages" | while IFS= read -r pkg; do
+				echo "  $pkg"
+			done
+		fi
+	fi
+}
+
+#============================================
+# Subcommand: clobber
+#============================================
+cmd_clobber() {
+	require_gecko_dir
+
+	local obj_path="$GECKO_DIR/$OBJ_DIR"
+	if [ ! -d "$obj_path" ]; then
+		info "No build artifacts found at $obj_path"
+		return 0
+	fi
+
+	# show size before clobber
+	local dir_size
+	dir_size="$(du -sk "$obj_path" 2>/dev/null | cut -f1 || echo 0)"
+	local human
+	human="$(human_size $(( dir_size * 1024 )))"
+	info "Cleaning build artifacts: $obj_path ($human)"
+
+	cd "$GECKO_DIR"
+	./mach clobber
+
+	info "Clobber complete. Run './build.sh build' to recompile."
 }
 
 #============================================
@@ -377,6 +530,38 @@ cmd_status() {
 	else
 		echo "Mozconfig:        no"
 	fi
+
+	echo ""
+
+	# check build artifacts
+	local obj_path="$GECKO_DIR/$OBJ_DIR"
+	if [ -d "$obj_path" ]; then
+		local dir_size
+		dir_size="$(du -sk "$obj_path" 2>/dev/null | cut -f1 || echo 0)"
+		local human
+		human="$(human_size $(( dir_size * 1024 )))"
+		echo "Build dir:        $obj_path ($human)"
+	else
+		echo "Build dir:        not found (not yet built)"
+	fi
+
+	# check for built application
+	local app_path
+	app_path="$(find_built_app)" || true
+	if [ -n "$app_path" ]; then
+		echo "Built app:        $app_path"
+	else
+		echo "Built app:        not found"
+	fi
+
+	# check for ccache availability
+	if command -v ccache > /dev/null 2>&1; then
+		local ccache_version
+		ccache_version="$(ccache --version 2>/dev/null | head -1)"
+		echo "ccache:           $ccache_version"
+	else
+		echo "ccache:           not installed (recommended: brew install ccache)"
+	fi
 }
 
 #============================================
@@ -387,23 +572,31 @@ cmd_help() {
 Usage: ./build.sh <command> [options]
 
 Commands:
-  setup     Clone Firefox source, pin revision, symlink, configure (no patches needed)
-  build     Compile BlueGriffon (./mach build)
-  run       Launch BlueGriffon (./mach run)
-  package   Create distributable package (./mach package)
-  clean     Remove the downloaded Gecko source tree
-  status    Print build environment diagnostic summary
-  help      Show this help message
+  setup      Clone Firefox source, pin revision, symlink, configure
+  configure  Run mach configure separately (without full build)
+  build      Compile BlueGriffon (./mach build)
+  run        Launch BlueGriffon via mach (builds if needed)
+  open       Launch the built .app directly (macOS) or binary (Linux)
+  package    Create distributable package (./mach package)
+  clobber    Remove build artifacts but keep the Gecko source tree
+  clean      Remove the entire downloaded Gecko source tree
+  status     Print build environment and artifact summary
+  help       Show this help message
 
 Options:
   --gecko-dir <path>     Override the default Gecko directory location
   --apply-patches        Experimental: attempt to apply patches (broken, from 2017)
 
-Examples:
-  ./build.sh setup                     # normal setup (no patches needed)
-  ./build.sh build                     # compile after setup
-  ./build.sh run                       # launch the editor
-  ./build.sh --apply-patches setup     # experimental: will fail (patches from 2017)
+Typical workflow:
+  ./build.sh setup                     # clone gecko, symlink, configure
+  ./build.sh build                     # compile (takes a while)
+  ./build.sh run                       # launch via mach
+  ./build.sh open                      # launch .app directly (macOS)
+
+Other examples:
+  ./build.sh status                    # check build environment
+  ./build.sh clobber                   # wipe build artifacts, keep source
+  ./build.sh package                   # create distributable .dmg/.tar
   ./build.sh --gecko-dir /tmp/g setup  # use custom gecko location
 USAGE
 }
@@ -428,7 +621,7 @@ main() {
 				APPLY_PATCHES=true
 				shift
 				;;
-			setup|build|run|package|clean|status|help)
+			setup|configure|build|run|open|package|clobber|clean|status|help)
 				command="$1"
 				shift
 				;;
