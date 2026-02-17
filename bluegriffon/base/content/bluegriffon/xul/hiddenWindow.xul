@@ -10,8 +10,6 @@
 <!ENTITY % structurebarDTD SYSTEM "chrome://bluegriffon/locale/structurebar.dtd" >
 <!ENTITY % ariaDTD         SYSTEM "chrome://bluegriffon/locale/aria.dtd" >
 <!ENTITY % brandDTD        SYSTEM "chrome://branding/locale/brand.dtd" >
-<!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://browser/locale/baseMenuOverlay.dtd">
-%baseMenuOverlayDTD;
 %bluegriffonDTD;
 %findbarDTD;
 %structurebarDTD;

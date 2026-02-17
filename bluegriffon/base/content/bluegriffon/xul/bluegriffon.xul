@@ -44,8 +44,6 @@
 #include overlays.inc
 
 <!DOCTYPE window [
-  <!ENTITY % editMenuDTD     SYSTEM "chrome://global/locale/editMenuOverlay.dtd" >
-  %editMenuDTD;
   <!ENTITY % tabEditorDTD    SYSTEM "chrome://bluegriffon/locale/tabeditor.dtd" >
   %tabEditorDTD;
   <!ENTITY % bluegriffonDTD  SYSTEM "chrome://bluegriffon/locale/bluegriffon.dtd" >
@@ -58,8 +56,6 @@
   %ariaDTD;
   <!ENTITY % brandDTD        SYSTEM "chrome://branding/locale/brand.dtd" >
   %brandDTD;
-  <!ENTITY % baseMenuOverlayDTD SYSTEM "chrome://browser/locale/baseMenuOverlay.dtd">
-  %baseMenuOverlayDTD;
   <!ENTITY % pagePropertiesDTD SYSTEM "chrome://bluegriffon/locale/pageProperties.dtd" >
   %pagePropertiesDTD;
 ]>            

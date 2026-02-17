@@ -4,8 +4,20 @@ An open-source WYSIWYG HTML editor built on Mozilla's Gecko rendering engine.
 
 BlueGriffon was originally created by Daniel Glazman (Disruptive Innovations
 SARL) around 2006, based on the Nvu editor lineage from Mozilla Composer.
-The current version is 3.2 (codename "Artemus"), now maintained by
-Neil R. Voss.
+Active development stopped around 2017 (Firefox 55 era). This fork,
+maintained by Neil R. Voss, modernizes BlueGriffon to build against
+Firefox ESR 140. The strategy: keep the ESR 140 Gecko engine code as-is
+and update the BlueGriffon overlay code (XUL, JS, XPCOM) to work with
+modern Gecko APIs.
+
+## Project status
+
+BlueGriffon builds and links successfully on macOS ARM64 with Gecko ESR 140.
+The Gecko migration is complete -- all `.jsm` modules are converted to
+`.sys.mjs`, deprecated XPCOM interfaces are replaced, and the build system
+is updated. Remaining work focuses on fixing BlueGriffon UI and JavaScript
+to fully function with the modern Gecko runtime. See
+[docs/ROADMAP.md](docs/ROADMAP.md) for details.
 
 ## Quick start
 
@@ -32,6 +44,7 @@ See [docs/USAGE.md](docs/USAGE.md) for all subcommands and build options.
 - [docs/FILE_STRUCTURE.md](docs/FILE_STRUCTURE.md) -- directory map
 - [docs/RELEASE_HISTORY.md](docs/RELEASE_HISTORY.md) -- version timeline
 - [docs/ROADMAP.md](docs/ROADMAP.md) -- planned work and priorities
+- [docs/CHANGELOG.md](docs/CHANGELOG.md) -- timeline of changes
 
 ## Build setup
 
@@ -42,12 +55,6 @@ build.
 
 See [docs/INSTALL.md](docs/INSTALL.md) for manual setup or platform-specific
 details.
-
-## Contributing
-
-- Code contributions via pull requests are welcome.
-- Localization: translate files in the `locales/` directory from `en-US`
-  into a new locale and submit a pull request.
 
 ## License
 

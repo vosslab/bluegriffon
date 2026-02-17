@@ -2,6 +2,10 @@
 
 ## 2026-02-17
 
+- Removed all media disable flags from [mozconfig.macosx](../bluegriffon/config/mozconfig.macosx) (`--disable-av1`, `--disable-ffmpeg`, `--disable-jxl`, `--disable-webspeech`, `--disable-synth-speechd`): each flag causes cascading build failures in Gecko's tightly coupled build system (missing `media_libdav1d_asm`, broken prefs, missing IPDL files). The media code compiles but is unused by the editor. Major build savings already come from `--disable-webrtc` and `--disable-tests`
+- Updated [README.md](../README.md): rewrote overview to describe ESR 140 modernization strategy, added project status section, added [docs/CHANGELOG.md](CHANGELOG.md) link, removed Contributing section
+- Updated [docs/ROADMAP.md](ROADMAP.md): rewrote Gecko situation section to reflect completed ESR 140 migration and remaining UI work
+- Added mozconfig flags to disable unnecessary media features for a text editor: `--disable-av1`, `--disable-ffmpeg`, `--disable-jxl`, `--disable-webspeech`, `--disable-synth-speechd` (skips AV1/dav1d, FFmpeg codecs, JPEG XL, and speech API compilation)
 - Removed Gecko revision pinning from `build.sh setup`: the ESR 140 branch only receives security patches and minor fixes, so the setup now uses the branch tip directly from the shallow clone instead of pinning to a specific commit. This eliminates the `git fetch --unshallow` workaround and the "empty string is not a valid pathspec" error. Deleted `config/gecko_dev_revision.txt` and updated all docs
 - Fixed 12 remaining `ChromeUtils.importESModule()` calls that were not capturing return values: in Gecko ESR 140 ES modules, the module namespace must be destructured (e.g., `var { Symbol } = ChromeUtils.importESModule(...)`) instead of relying on global side effects. Updated imports across sidebars (`cssproperty.xml`, `aria.xml`), devtools (`bootstrap.js`, `RemoteDebuggerServer.sys.mjs`), base JS (`recentPages.js2`, `printCommands.inc`), and bindings (`cssClassPicker.xml`, `filepickerbutton.xml`, `ecolorpicker.xml`)
 

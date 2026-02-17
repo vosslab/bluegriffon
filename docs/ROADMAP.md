@@ -24,16 +24,23 @@ These areas are intentionally left unchanged for now:
 
 ## Gecko situation
 
-BlueGriffon is pinned to a 2017-era Gecko revision (`042b84a`). Mozilla
-dropped XUL support after Firefox 57 (November 2017), so updating Gecko is
-not a simple version bump. It would require substantial investigation into
-alternative rendering approaches or a port away from XUL.
+BlueGriffon has been migrated from the original 2017-era Gecko (Firefox 55)
+to Firefox ESR 140. The ESR 140 Gecko code stays in place as the rendering
+engine; BlueGriffon overlay code (XUL, JS, XPCOM bindings) is updated to
+work with the modern Gecko APIs. Key migration work already completed:
 
-This is a major investigation, not a near-term task.
+- All 18 `.jsm` modules converted to `.sys.mjs` ES modules
+- All 248 `Components.utils.import()` calls replaced with `ChromeUtils.importESModule()`
+- Removed XPCOM interfaces (`nsIDOMNode`, `nsIDOMWindow`, etc.) replaced with standard DOM equivalents
+- Build system updated for ESR 140 (mozconfig, moz.build, component registration)
+- Builds and links on macOS ARM64
+
+Remaining work is fixing BlueGriffon UI and JavaScript to fully function
+with the modern Gecko runtime.
 
 ## Future goals
 
-- Investigate Gecko version update feasibility
-- Evaluate alternative rendering engines if Gecko update proves impractical
+- Complete BlueGriffon UI fixes for ESR 140 compatibility
 - Expand test coverage for build and packaging workflows
 - Improve cross-platform build documentation
+- Evaluate Linux and Windows build support on ESR 140
