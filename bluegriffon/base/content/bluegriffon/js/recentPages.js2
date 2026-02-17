@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
 var RecentPagesHandler = {
 

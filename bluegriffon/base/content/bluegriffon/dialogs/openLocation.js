@@ -35,7 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 const nsIFilePicker = Components.interfaces.nsIFilePicker;
 

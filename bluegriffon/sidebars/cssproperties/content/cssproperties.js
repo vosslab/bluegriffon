@@ -35,11 +35,11 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { CssUtils } = ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+var { CssInspector, CSSParser } = ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 var gMain = null;
 var gCurrentElement = null;

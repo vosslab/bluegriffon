@@ -1,5 +1,5 @@
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 var gNode = null;
 var gEditor = null;

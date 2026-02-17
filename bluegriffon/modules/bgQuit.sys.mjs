@@ -1,4 +1,4 @@
-ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 export var BlueGriffonQuitHelper = {
 

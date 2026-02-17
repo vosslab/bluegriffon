@@ -36,9 +36,9 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+var { CssUtils } = ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { L10NUtils } = ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
 
 function LocNoteSectionResetter()
 {

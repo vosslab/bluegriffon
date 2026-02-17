@@ -35,7 +35,11 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+// Lazy import to break circular dependency: editorHelper imports urlHelper
+var lazy = {};
+ChromeUtils.defineESModuleGetters(lazy, {
+  EditorUtils: "resource://gre/modules/editorHelper.sys.mjs",
+});
 
 export var UrlUtils = {
 
@@ -197,8 +201,8 @@ export var UrlUtils = {
 
 
     // Get just the file path part of the urls
-    var charset = EditorUtils.getCurrentEditor()
-                  ? EditorUtils.getCurrentEditor().documentCharacterSet
+    var charset = lazy.EditorUtils.getCurrentEditor()
+                  ? lazy.EditorUtils.getCurrentEditor().documentCharacterSet
                   : "utf-8";
     var docPath = IOService.newURI(docUrl,   charset, null).path;
     var urlPath = IOService.newURI(inputUrl, charset, null).path;
@@ -316,7 +320,7 @@ export var UrlUtils = {
     
     // Make a URI object to use its "resolve" method
     var absoluteUrl = resultUrl;
-    var docUri = IOService.newURI(docUrl, EditorUtils.getCurrentEditor().documentCharacterSet, null);
+    var docUri = IOService.newURI(docUrl, lazy.EditorUtils.getCurrentEditor().documentCharacterSet, null);
 
     try {
       absoluteUrl = docUri.resolve(resultUrl);
@@ -340,7 +344,7 @@ export var UrlUtils = {
       var docUrl;
 
       // if document supplies a <base> tag, use that URL instead 
-      var baseList = EditorUtils.getCurrentDocument().getElementsByTagName("base");
+      var baseList = lazy.EditorUtils.getCurrentDocument().getElementsByTagName("base");
       if (baseList)
       {
         var base = baseList.item(0);
@@ -359,7 +363,7 @@ export var UrlUtils = {
   getDocumentUrl: function getDocumentUrl()
   {
     try {
-      var aDOMHTMLDoc = EditorUtils.getCurrentEditor().document;
+      var aDOMHTMLDoc = lazy.EditorUtils.getCurrentEditor().document;
       return aDOMHTMLDoc.URL;
     }
     catch (e) { }

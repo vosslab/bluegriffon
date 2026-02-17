@@ -36,9 +36,9 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 const kIOServiceCID       = "@mozilla.org/network/io-service;1";
 const kFileInputStreamCID = "@mozilla.org/network/file-input-stream;1";

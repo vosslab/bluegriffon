@@ -35,19 +35,19 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/InlineSpellChecker.sys.mjs");
+var { InlineSpellChecker } = ChromeUtils.importESModule("resource://gre/modules/InlineSpellChecker.sys.mjs");
 
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/fileHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/handlersManager.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/screens.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/bgQuit.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { CssUtils } = ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+var { BGFileHelper } = ChromeUtils.importESModule("resource://gre/modules/fileHelper.sys.mjs");
+var { L10NUtils } = ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+var { HandlersManager } = ChromeUtils.importESModule("resource://gre/modules/handlersManager.sys.mjs");
+var { ScreenUtils } = ChromeUtils.importESModule("resource://gre/modules/screens.sys.mjs");
+var { FileChangeUtils } = ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
+var { BlueGriffonQuitHelper } = ChromeUtils.importESModule("resource://gre/modules/bgQuit.sys.mjs");
+var { AddonManager } = ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
 #include blanks.inc
 

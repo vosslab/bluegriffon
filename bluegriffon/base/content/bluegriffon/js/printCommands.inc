@@ -10,7 +10,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/printHelper.sys.mjs");
+var { PrintHelper } = ChromeUtils.importESModule("resource://gre/modules/printHelper.sys.mjs");
 
 //-----------------------------------------------------------------------------------
 var cmdPrint =

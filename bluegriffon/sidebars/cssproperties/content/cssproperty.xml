@@ -89,7 +89,7 @@
 
       <method name="parseGrammar">
         <body><![CDATA[
-          ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
+          var { CssInspector, CSSParser } = ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
         
           var grammar = this.getAttribute("grammar").toLowerCase();
           var parser = new CSSParser();

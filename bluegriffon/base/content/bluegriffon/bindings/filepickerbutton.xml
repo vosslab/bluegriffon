@@ -96,8 +96,8 @@
 
       <constructor>
         <![CDATA[
-          ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-          ChromeUtils.importESModule("resource://gre/modules/filePicker.sys.mjs");
+          var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+          var { diFilePicker } = ChromeUtils.importESModule("resource://gre/modules/filePicker.sys.mjs");
 
           var w = EditorUtils.getCurrentEditorWindow();
           if (w &&

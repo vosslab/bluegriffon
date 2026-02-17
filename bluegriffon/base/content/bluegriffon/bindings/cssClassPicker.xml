@@ -64,8 +64,8 @@
     <implementation>
       <constructor>
         <![CDATA[
-          ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-          ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+          var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+          var { CssUtils } = ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
           var classes = CssUtils.getAllClassesForDocument(EditorUtils.getCurrentDocument());
           classes.sort();
           for (var i = 0; i < classes.length; i++) {

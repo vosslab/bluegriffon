@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+var { L10NUtils } = ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 var LoginUtils = {
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-02-17
+
+- Fixed 12 remaining `ChromeUtils.importESModule()` calls that were not capturing return values: in Gecko ESR 140 ES modules, the module namespace must be destructured (e.g., `var { Symbol } = ChromeUtils.importESModule(...)`) instead of relying on global side effects. Updated imports across sidebars (`cssproperty.xml`, `aria.xml`), devtools (`bootstrap.js`, `RemoteDebuggerServer.sys.mjs`), base JS (`recentPages.js2`, `printCommands.inc`), and bindings (`cssClassPicker.xml`, `filepickerbutton.xml`, `ecolorpicker.xml`)
+
 ## 2026-02-16
 
 - **Modernized BlueGriffon for Gecko ESR 140**: converted all 18 `.jsm` modules to `.sys.mjs` ES modules, replaced 248 `Components.utils.import()` calls with `ChromeUtils.importESModule()` across 122 files, and fixed deprecated API usage

@@ -1,5 +1,16 @@
-ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+dump("bgCommandHandler.js: TOP OF FILE - loading\n");
+try {
+  var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+  dump("bgCommandHandler.js: XPCOMUtils loaded OK\n");
+} catch(e) {
+  dump("bgCommandHandler.js: ERROR loading XPCOMUtils: " + e + "\n");
+}
+try {
+  var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+  dump("bgCommandHandler.js: UrlUtils loaded OK\n");
+} catch(e) {
+  dump("bgCommandHandler.js: ERROR loading UrlUtils: " + e + "\n");
+}
 
 const nsISupports            = Components.interfaces.nsISupports;
 
@@ -117,6 +128,7 @@ nsBlueGriffonContentHandler.prototype = {
 
   /* nsICommandLineHandler */
   handle : function bch_handle(cmdLine) {
+    dump("bgCommandHandler m-bluegriffon: handle() called, length=" + cmdLine.length + "\n");
     if (!cmdLine.length)
       return;
 
@@ -220,8 +232,7 @@ nsDefaultCommandLineHandler.prototype = {
 
   /* nsICommandLineHandler */
   handle : function dch_handle(cmdLine) {
-    if (!cmdLine.length)
-      return;
+    dump("bgCommandHandler y-default: handle() called, length=" + cmdLine.length + " preventDefault=" + cmdLine.preventDefault + "\n");
 
     var urlArray = [];
     var url = null;
@@ -273,9 +284,12 @@ nsDefaultCommandLineHandler.prototype = {
       mostRecent = e.getNext();
     }
 
+    dump("bgCommandHandler y-default: urlArray.length=" + urlArray.length + " mostRecent=" + mostRecent + "\n");
+
     if (urlArray && urlArray.length) {
       cmdLine.preventDefault = true;
       if (mostRecent) {
+        dump("bgCommandHandler y-default: opening URLs in existing window\n");
         var navNav = mostRecent.QueryInterface(nsIInterfaceRequestor)
                           .getInterface(nsIWebNavigation);
         var rootItem = navNav.QueryInterface(nsIDocShellTreeItem).rootTreeItem;
@@ -284,6 +298,7 @@ nsDefaultCommandLineHandler.prototype = {
         rootWin.OpenFiles(urlArray, true);
         return;
       }
+      dump("bgCommandHandler y-default: opening new window with URLs\n");
       return openWindow(null, "chrome://bluegriffon/content/xul/bluegriffon.xul",
                               "_blank",
                               "chrome,dialog=no,all",
@@ -291,23 +306,18 @@ nsDefaultCommandLineHandler.prototype = {
     }
 
     if (mostRecent) {
+      dump("bgCommandHandler y-default: focusing existing window\n");
       mostRecent.focus();
       return mostRecent;
     }
-#ifdef TAGADA
-    var wwatch = Components.classes["@mozilla.org/embedcomp/window-watcher;1"]
-                           .getService(nsIWindowWatcher);
-    return wwatch.openWindow(null, this.hiddenChromeURL,
-                             "_blank",
-                             "chrome,dialog=no,all",
-                             cmdLine);
-#else
+
+    // bare launch with no args and no existing window - open the editor
+    dump("bgCommandHandler y-default: bare launch, opening default window\n");
     if (!cmdLine.preventDefault)
       return openWindow(null, "chrome://bluegriffon/content/xul/bluegriffon.xul",
                                "_blank",
                                "chrome,dialog=no,all",
                                "");
-#endif
 
   },
 
@@ -333,4 +343,22 @@ nsDefaultCommandLineHandler.prototype = {
 var gBlueGriffonContentHandler = new nsBlueGriffonContentHandler();
 
 var components = [nsBlueGriffonContentHandler, nsDefaultCommandLineHandler];
-var NSGetFactory = XPCOMUtils.generateNSGetFactory(components);
+// Polyfill for XPCOMUtils.generateNSGetFactory (removed in Gecko ESR 140)
+function generateNSGetFactory(aComponents) {
+  var cidMap = {};
+  for (var i = 0; i < aComponents.length; i++) {
+    var cid = aComponents[i].prototype.classID.toString();
+    cidMap[cid] = aComponents[i];
+  }
+  return function(cid) {
+    var comp = cidMap[cid.toString()];
+    if (!comp) throw Components.Exception("", Components.results.NS_ERROR_FACTORY_NOT_REGISTERED);
+    if (comp.prototype._xpcom_factory) return comp.prototype._xpcom_factory;
+    return {
+      createInstance: function(iid) {
+        return (new comp()).QueryInterface(iid);
+      }
+    };
+  };
+}
+var NSGetFactory = generateNSGetFactory(components);

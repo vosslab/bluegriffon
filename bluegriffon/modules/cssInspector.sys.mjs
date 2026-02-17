@@ -44,8 +44,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/cssProperties.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
+var { kCSS_PROPERTIES } = ChromeUtils.importESModule("resource://gre/modules/cssProperties.sys.mjs");
+var { FileChangeUtils } = ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
 
 const kCHARSET_RULE_MISSING_SEMICOLON = "Missing semicolon at the end of @charset rule";
 const kCHARSET_RULE_CHARSET_IS_STRING = "The charset in the @charset rule should be a string";

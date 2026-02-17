@@ -24,9 +24,9 @@ pref("toolkit.telemetry.archive.enabled", false);
 pref("bluegriffon.wysiwyg.theme", "black");
 
 /* debugging prefs */
-pref("browser.dom.window.dump.enabled", false);
-pref("javascript.options.showInConsole", false);
-pref("javascript.options.strict", false);
+pref("browser.dom.window.dump.enabled", true);
+pref("javascript.options.showInConsole", true);
+pref("javascript.options.strict", true);
 pref("bluegriffon.console.showInvalidVariables", false);
 pref("nglayout.debug.disable_xul_cache", true);
 pref("nglayout.debug.disable_xul_fastload", true);

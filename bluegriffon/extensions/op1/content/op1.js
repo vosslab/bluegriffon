@@ -1,4 +1,4 @@
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
 const kSPEEDS = [1, 10, 50, 100, 150, 250, 350, 500, 750, 1000];
 var dontFocus = false;

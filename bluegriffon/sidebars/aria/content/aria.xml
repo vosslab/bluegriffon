@@ -48,7 +48,7 @@
       <method name="populateIDs">
         <parameter name="aElt"/>
         <body><![CDATA[
-          ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+          var { CssUtils } = ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
 
           var child = this.getChild("separator").nextElementSibling;
           while (child) {

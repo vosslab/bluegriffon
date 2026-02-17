@@ -1,5 +1,5 @@
-ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/unicodeHelper.sys.mjs");
+var { XPCOMUtils } = ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+var { UnicodeUtils } = ChromeUtils.importESModule("resource://gre/modules/unicodeHelper.sys.mjs");
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Constants
@@ -170,4 +170,22 @@ bgCharUnicodeAutocomplete.prototype = {
 };
 
 let components = [bgCharUnicodeAutocomplete];
-const NSGetFactory = XPCOMUtils.generateNSGetFactory(components);
+// Polyfill for XPCOMUtils.generateNSGetFactory (removed in Gecko ESR 140)
+function generateNSGetFactory(aComponents) {
+  var cidMap = {};
+  for (var i = 0; i < aComponents.length; i++) {
+    var cid = aComponents[i].prototype.classID.toString();
+    cidMap[cid] = aComponents[i];
+  }
+  return function(cid) {
+    var comp = cidMap[cid.toString()];
+    if (!comp) throw Components.Exception("", Components.results.NS_ERROR_FACTORY_NOT_REGISTERED);
+    if (comp.prototype._xpcom_factory) return comp.prototype._xpcom_factory;
+    return {
+      createInstance: function(iid) {
+        return (new comp()).QueryInterface(iid);
+      }
+    };
+  };
+}
+const NSGetFactory = generateNSGetFactory(components);

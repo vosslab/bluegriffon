@@ -1,6 +1,6 @@
-ChromeUtils.importESModule("resource://gre/modules/reflect.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+var { Reflect } = ChromeUtils.importESModule("resource://gre/modules/reflect.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { L10NUtils } = ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
 
 var bespinEditor = null;
 var gSource = {value: ""};

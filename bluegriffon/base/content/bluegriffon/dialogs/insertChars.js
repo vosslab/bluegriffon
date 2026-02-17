@@ -1,6 +1,6 @@
 
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/unicodeHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { UnicodeUtils } = ChromeUtils.importESModule("resource://gre/modules/unicodeHelper.sys.mjs");
 
 var currentChar = -1;
 

@@ -12,7 +12,7 @@ function startup(aData, aReasion) {
   resource.setSubstitution("dbgserver", aData.resourceURI);
 
   // Load the debug server and start it if enabled.
-  ChromeUtils.importESModule("resource://dbgserver/modules/RemoteDebuggerServer.sys.mjs");
+  var { RemoteDebuggerServer } = ChromeUtils.importESModule("resource://dbgserver/modules/RemoteDebuggerServer.sys.mjs");
   let remoteEnabled = Services.prefs.getBoolPref("devtools.debugger.remote-enabled");
 
   RemoteDebuggerServer.extraInit = function(DebuggerServer) {

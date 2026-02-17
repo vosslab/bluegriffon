@@ -8,9 +8,10 @@
  */
 
 /** Load the debugger module, if its available. */
+var DebuggerServer;
 var debugServerSupported = (function() {
   try {
-    ChromeUtils.importESModule("resource://gre/modules/devtools/dbg-server.sys.mjs");
+    ({ DebuggerServer } = ChromeUtils.importESModule("resource://gre/modules/devtools/dbg-server.sys.mjs"));
     return true;
   } catch (e) {
     return false;

@@ -35,7 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/fireFtp.sys.mjs");
+var { ftpMozilla, ftpDataSocketMozilla } = ChromeUtils.importESModule("resource://gre/modules/fireFtp.sys.mjs");
 
 export var ProjectManager = {
 

@@ -1,4 +1,4 @@
-ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
+var { CssInspector, CSSParser } = ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
 
 function OnStylesPaneLoad()
 {

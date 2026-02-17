@@ -63,7 +63,7 @@
     <implementation>
       <constructor>
         try {
-          ChromeUtils.importESModule("resource://gre/modules/colourPickerHelper.sys.mjs");
+          var { ColorPickerHelper } = ChromeUtils.importESModule("resource://gre/modules/colourPickerHelper.sys.mjs");
         } catch (e) {}
 #ifdef XP_MACOSX
         var colorpicker = this.getChild("colorbox");

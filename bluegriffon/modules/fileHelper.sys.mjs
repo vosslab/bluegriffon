@@ -35,12 +35,12 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/handlersManager.sys.mjs");
-ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
+var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+var { PromptUtils } = ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { L10NUtils } = ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+var { HandlersManager } = ChromeUtils.importESModule("resource://gre/modules/handlersManager.sys.mjs");
+var { FileChangeUtils } = ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
 
 export var BGFileHelper = {
 

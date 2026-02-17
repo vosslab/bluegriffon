@@ -35,7 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
  
-ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
 var gNode = null;
 var gOkButton = null;

@@ -1,15 +1,30 @@
 # DIRS += ['devtools']
 
-EXTRA_COMPONENTS += [
-  'bgCharUnicodeAutocomplete.js',
-  'bgCharUnicodeAutocomplete.manifest',
-  'bgCommandHandler.manifest',
-  'bgLocationAutocomplete.js',
-  'bgLocationAutocomplete.manifest',
-  'phpStreamConverter.js',
-  'phpStreamConverter.manifest',
+# Static component registration (replaces manifest 'component' directives
+# which were removed in Gecko ESR 140)
+XPCOM_MANIFESTS += [
+    'components.conf',
 ]
 
-EXTRA_PP_COMPONENTS += [
-    'bgCommandHandler.js',
+# Install the ES module for bgCommandHandler so it's accessible
+# at resource://gre/modules/bgCommandHandler.sys.mjs
+EXTRA_JS_MODULES += [
+    'bgCommandHandler.sys.mjs',
 ]
+
+# Legacy components that still use manifest-based registration
+# Note: the 'component' directive no longer works in ESR 140,
+# so these manifests only provide 'contract' and 'category' entries.
+# The actual component registration happens via components.conf above.
+EXTRA_COMPONENTS += [
+    'bgCharUnicodeAutocomplete.js',
+    'bgCharUnicodeAutocomplete.manifest',
+    'bgLocationAutocomplete.js',
+    'bgLocationAutocomplete.manifest',
+    'phpStreamConverter.js',
+    'phpStreamConverter.manifest',
+]
+
+# Note: bgCommandHandler.manifest is no longer needed - all registration
+# is handled by components.conf above. The old bgCommandHandler.js is
+# replaced by bgCommandHandler.sys.mjs (ES module).
