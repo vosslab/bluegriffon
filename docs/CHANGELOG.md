@@ -2,6 +2,17 @@
 
 ## 2026-02-16
 
+- **Modernized BlueGriffon for Gecko ESR 140**: converted all 18 `.jsm` modules to `.sys.mjs` ES modules, replaced 248 `Components.utils.import()` calls with `ChromeUtils.importESModule()` across 122 files, and fixed deprecated API usage
+- Fixed prefs preprocessing: changed `JS_PREFERENCE_FILES` to `JS_PREFERENCE_PP_FILES` in [app/moz.build](../bluegriffon/app/moz.build) so `#filter substitution` and `#ifdef` directives in `bluegriffon-prefs.js` are processed at build time
+- Converted 18 BlueGriffon `.jsm` modules to `.sys.mjs` ES module format: removed `EXPORTED_SYMBOLS`, added `export` keywords, replaced `Services.jsm` imports (now a built-in global), updated cross-module references to `.sys.mjs`
+- Updated [modules/moz.build](../bluegriffon/modules/moz.build) to reference new `.sys.mjs` filenames
+- Replaced all 248 `Components.utils.import()` calls across components, main JS, dialogs, sidebars, extensions, prefs, utils, bindings, and txns with `ChromeUtils.importESModule()` using `.sys.mjs` paths; removed all `Services.jsm` imports (Services is now a global)
+- Replaced all `Components.utils.reportError()` calls with `console.error()` (14 occurrences across 9 files)
+- Fixed removed `nsIDOMWindow`/`nsIDOMChromeWindow` interfaces: replaced `QueryInterface(nsIDOMWindow)` calls with direct usage (enumerator already returns window proxy in ESR 140), replaced `getInterface(nsIDOMWindow)` with `getInterface(nsISupports)` fallback
+- Replaced removed `nsIDOMCSSRule` with standard `CSSRule` in [modules/cssHelper.sys.mjs](../bluegriffon/modules/cssHelper.sys.mjs), [modules/cssInspector.sys.mjs](../bluegriffon/modules/cssInspector.sys.mjs), and [modules/fileChanges.sys.mjs](../bluegriffon/modules/fileChanges.sys.mjs)
+- Replaced removed `nsIDOMNode`/`nsIDOMNodeFilter` with standard `Node`/`NodeFilter` in [modules/editorHelper.sys.mjs](../bluegriffon/modules/editorHelper.sys.mjs)
+- Replaced removed `nsIDOMHTMLDocument`/`nsIDOMHTMLStyleElement` with standard DOM equivalents
+- Converted [components/devtools/modules/RemoteDebuggerServer.jsm](../bluegriffon/components/devtools/modules/RemoteDebuggerServer.sys.mjs) to `.sys.mjs` and fixed `Cu.import`/`Cu.unload` calls in devtools bootstrap
 - Enhanced [build.sh](../build.sh) with new subcommands: `configure` (run mach configure separately), `open` (launch built .app directly on macOS or binary on Linux), and `clobber` (remove build artifacts while keeping the Gecko source tree)
 - Improved [build.sh](../build.sh) `build` subcommand to show platform info, build timing, and built app location on completion
 - Improved [build.sh](../build.sh) `run` subcommand to display the built app path before launching

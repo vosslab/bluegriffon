@@ -35,14 +35,11 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/cssInspector.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
 
-var EXPORTED_SYMBOLS = ["CssUtils"];
-
-var CssUtils = {
-  kCSSRule: Components.interfaces.nsIDOMCSSRule,
+export var CssUtils = {
+  kCSSRule: CSSRule,
   
   getStyleSheets: function(aDoc)
   {
@@ -148,7 +145,7 @@ var CssUtils = {
   
     function enumerateRules(aSheet)
     {
-      if (aSheet.ownerNode instanceof Components.interfaces.nsIDOMHTMLStyleElement)
+      if (aSheet.ownerNode instanceof HTMLStyleElement)
       {
         var cssRules = aSheet.cssRules;
         for (var i = 0; i < cssRules.length; i++)

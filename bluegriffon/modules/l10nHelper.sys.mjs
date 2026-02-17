@@ -35,9 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-var EXPORTED_SYMBOLS = ["L10NUtils"];
-
-var L10NUtils = {
+export var L10NUtils = {
 
   /********** CONSTANTS **********/
 

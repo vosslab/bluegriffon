@@ -35,8 +35,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 // tocHeadersArray is the array containing the pairs tag/class
 // defining TOC entries

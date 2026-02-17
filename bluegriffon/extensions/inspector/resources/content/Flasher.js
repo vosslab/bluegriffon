@@ -210,7 +210,7 @@ LegacyFlasher.prototype =
       this.mShell.color = aVal;
     }
     catch (e) { // Catch exception in case aVal is an invalid or empty value.
-      Components.utils.reportError(e);
+      console.error(e);
     }
     return aVal;
   },

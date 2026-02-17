@@ -1,5 +1,5 @@
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-Components.utils.import("resource://gre/modules/unicodeHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/unicodeHelper.sys.mjs");
 
 ////////////////////////////////////////////////////////////////////////////////
 //// Constants

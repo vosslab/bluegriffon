@@ -35,20 +35,19 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/InlineSpellChecker.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
+ChromeUtils.importESModule("resource://gre/modules/InlineSpellChecker.sys.mjs");
 
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/cssHelper.jsm");
-Components.utils.import("resource://gre/modules/fileHelper.jsm");
-Components.utils.import("resource://gre/modules/l10nHelper.jsm");
-Components.utils.import("resource://gre/modules/handlersManager.jsm");
-Components.utils.import("resource://gre/modules/screens.jsm");
-Components.utils.import("resource://gre/modules/fileChanges.jsm");
-Components.utils.import("resource://gre/modules/bgQuit.jsm");
-Components.utils.import("resource://gre/modules/AddonManager.jsm");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/fileHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/handlersManager.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/screens.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/bgQuit.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/AddonManager.sys.mjs");
 
 #include blanks.inc
 
@@ -217,7 +216,7 @@ function AboutComposer()
   var enumerator = wm.getEnumerator( "BlueGriffon:About" );
   while ( enumerator.hasMoreElements() )
   {
-    var win = enumerator.getNext().QueryInterface(Components.interfaces.nsIDOMWindow);
+    var win = enumerator.getNext();
     win.focus();
     return;
   }
@@ -228,7 +227,7 @@ function AboutComposer()
 
 function OpenConsole()
 {
-   let { require } = Components.utils.import("resource://devtools/shared/Loader.jsm", {});
+   let { require } = ChromeUtils.importESModule("resource://devtools/shared/Loader.sys.mjs");
    let HUDService = require("devtools/client/webconsole/hudservice");
    HUDService.openBrowserConsoleOrFocus();
 }

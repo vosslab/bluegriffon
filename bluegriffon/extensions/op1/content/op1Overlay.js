@@ -1,7 +1,6 @@
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/l10nHelper.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
 
 var cmdOp1Command =
 {

@@ -1,9 +1,6 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
-var EXPORTED_SYMBOLS = ["diFilePicker"];
-
-function diFilePicker()
+export function diFilePicker()
 {
   
 }

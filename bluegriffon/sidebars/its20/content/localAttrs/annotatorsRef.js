@@ -36,7 +36,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
 function AnnotatorsRefSectionResetter()
 {

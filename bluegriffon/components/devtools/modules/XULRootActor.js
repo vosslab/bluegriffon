@@ -14,7 +14,7 @@ var Services = require("Services");
 var DevToolsUtils = require("resource://gre/modules/devtools/DevToolsUtils.js");
 var { RootActor } = require("resource://gre/modules/devtools/server/actors/root");
 var { DebuggerServer } = require("resource://gre/modules/devtools/server/main");
-var { Promise } = Cu.import("resource://gre/modules/Promise.jsm", {});
+var { Promise } = ChromeUtils.importESModule("resource://gre/modules/Promise.sys.mjs");
 var { BrowserTabList, BrowserTabActor, BrowserAddonList } = require("devtools/server/actors/webbrowser");
 
 /**
@@ -192,13 +192,13 @@ XulTabList.prototype = {
     // loaded, and then see what we've got. This also avoids
     // nsIWindowMediator enumeration from within listeners (bug 873589).
     aWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
-                     .getInterface(Ci.nsIDOMWindow);
+                     .getInterface(Ci.nsISupports);
     aWindow.addEventListener("load", handleLoad, false);
   }, "XulTabList.prototype.onOpenWindow"),
 
   onCloseWindow: DevToolsUtils.makeInfallible(function(aWindow) {
     aWindow = aWindow.QueryInterface(Ci.nsIInterfaceRequestor)
-                     .getInterface(Ci.nsIDOMWindow);
+                     .getInterface(Ci.nsISupports);
 
     // Only handle our window types
     if (this._checkedWindows.has(appShellDOMWindowType(aWindow))) {

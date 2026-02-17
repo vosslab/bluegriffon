@@ -1,6 +1,4 @@
-var EXPORTED_SYMBOLS = ["HandlersManager"];
-
-var HandlersManager = {
+export var HandlersManager = {
 
   mHandlers: {},
 

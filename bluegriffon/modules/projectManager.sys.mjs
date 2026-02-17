@@ -35,11 +35,9 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/fireFtp.jsm");
+ChromeUtils.importESModule("resource://gre/modules/fireFtp.sys.mjs");
 
-var EXPORTED_SYMBOLS = ["ProjectManager"];
-
-var ProjectManager = {
+export var ProjectManager = {
 
   projects: {},
 

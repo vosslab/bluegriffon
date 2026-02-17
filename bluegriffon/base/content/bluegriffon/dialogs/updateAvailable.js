@@ -1,5 +1,3 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 var DOWNLOAD_URL = "http://bluegriffon.org/#download";
 
 function ShowUpdatePage()

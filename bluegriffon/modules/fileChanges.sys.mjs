@@ -1,15 +1,11 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
 
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/l10nHelper.jsm");
+export var FileChangeUtils = {
 
-var EXPORTED_SYMBOLS = ["FileChangeUtils"];
-
-var FileChangeUtils = {
-
-  kCSSRule: Components.interfaces.nsIDOMCSSRule,
+  kCSSRule: CSSRule,
 
   mFileInfo: {},
   mLinkedFiles: {},
@@ -19,7 +15,7 @@ var FileChangeUtils = {
     var enumerator = Services.wm.getEnumerator( "bluegriffon" );
     while ( enumerator.hasMoreElements() )
     {
-      var win = enumerator.getNext().QueryInterface(Components.interfaces.nsIDOMWindow);
+      var win = enumerator.getNext();
       this.lookForChangesForWindow(win);
     }
 

@@ -1,5 +1,3 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 var gTree = null;
 var gReferenceParent = null;
 var gReference = null;

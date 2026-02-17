@@ -438,7 +438,7 @@ InspectorApp.prototype =
       catch (ex) {
         // We've failed with this window somehow, but we're catching the error
         // so the others will still work
-        Components.utils.reportError(ex);
+        console.error(ex);
       }
     }
 

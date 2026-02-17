@@ -1,4 +1,4 @@
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
 var gNode = null;
 var gEditor = null;

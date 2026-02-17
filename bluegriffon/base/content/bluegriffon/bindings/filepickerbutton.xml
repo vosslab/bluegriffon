@@ -96,9 +96,8 @@
 
       <constructor>
         <![CDATA[
-          Components.utils.import("resource://gre/modules/Services.jsm");
-          Components.utils.import("resource://gre/modules/editorHelper.jsm");
-          Components.utils.import("resource://gre/modules/filePicker.jsm");
+          ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+          ChromeUtils.importESModule("resource://gre/modules/filePicker.sys.mjs");
 
           var w = EditorUtils.getCurrentEditorWindow();
           if (w &&

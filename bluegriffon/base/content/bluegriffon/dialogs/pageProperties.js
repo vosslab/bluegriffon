@@ -1,4 +1,4 @@
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 var gAuthorElement;
 var gDescriptionElement;

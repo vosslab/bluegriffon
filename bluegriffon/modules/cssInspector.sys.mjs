@@ -44,11 +44,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-var EXPORTED_SYMBOLS = ["CssInspector", "CSSParser"];
-
-Components.utils.import("resource://gre/modules/cssProperties.jsm");
-Components.utils.import("resource://gre/modules/fileChanges.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
+ChromeUtils.importESModule("resource://gre/modules/cssProperties.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
 
 const kCHARSET_RULE_MISSING_SEMICOLON = "Missing semicolon at the end of @charset rule";
 const kCHARSET_RULE_CHARSET_IS_STRING = "The charset in the @charset rule should be a string";
@@ -98,7 +95,7 @@ const kCSS_PREFIXED_VALUE = [
   {"gecko": "-moz-box", "webkit": "-moz-box", "presto": "", "trident": "", "generic": "box"}
 ];
 
-var CssInspector = {
+export var CssInspector = {
 
   kINIDOMUTILS: Components.interfaces.inIDOMUtils,
   kINIDOMUTILS_CID: "@mozilla.org/inspector/dom-utils;1",
@@ -206,7 +203,7 @@ var CssInspector = {
     if (aSheet
         && aSheet.cssRules
         && aSheet.cssRules.length
-        && aSheet.cssRules.item(0).type == Components.interfaces.nsIDOMCSSRule.CHARSET_RULE)
+        && aSheet.cssRules.item(0).type == CSSRule.CHARSET_RULE)
       charset = aSheet.cssRules.item(0).encoding;
     try {
     converter.init(foStream, charset, 0, 0);
@@ -1023,10 +1020,10 @@ var CssInspector = {
       var rule = rules.item(j);
       switch (rule.type)
       {
-        case Components.interfaces.nsIDOMCSSRule.IMPORT_RULE:
+        case CSSRule.IMPORT_RULE:
           this.findWebFontsInStylesheet(rule.styleSheet, aFonts);
           break;
-        case Components.interfaces.nsIDOMCSSRule.FONT_FACE_RULE:
+        case CSSRule.FONT_FACE_RULE:
           {
             var fontFace = rule.style.getPropertyValue("font-family").trim();
             if ((fontFace[0] == "'" && fontFace[fontFace.length - 1] == "'") ||
@@ -2256,7 +2253,7 @@ CSSScanner.prototype = {
   }
 };
 
-function CSSParser(aString, aExpandShorthands)
+export function CSSParser(aString, aExpandShorthands)
 {
   this.mToken = null;
   this.mLookAhead = null;

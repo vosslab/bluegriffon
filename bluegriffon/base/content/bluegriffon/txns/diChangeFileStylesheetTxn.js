@@ -1,4 +1,4 @@
-Components.utils.import("resource://gre/modules/cssInspector.jsm");
+ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
 
 function diChangeFileStylesheetTxn(aHref, aRule, aProperty, aValue, aPriority)
 {

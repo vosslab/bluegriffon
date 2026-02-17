@@ -35,8 +35,6 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 var BGUpdateManager = {
 
   kPREF_APPID:            "bluegriffon.updates.id",

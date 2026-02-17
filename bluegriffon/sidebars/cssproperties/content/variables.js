@@ -1,5 +1,3 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 RegisterIniter(VariablesSectionIniter);
 
 function VariablesSectionIniter(aElt, aRuleset)

@@ -4,8 +4,6 @@
 
 var { classes: Cc, interfaces: Ci, results: Cr, utils: Cu } = Components;
 
-Cu.import("resource://gre/modules/Services.jsm");
-
 function startup(aData, aReasion) {
   // Register the resource:// location
   let resource = Services.io
@@ -14,7 +12,7 @@ function startup(aData, aReasion) {
   resource.setSubstitution("dbgserver", aData.resourceURI);
 
   // Load the debug server and start it if enabled.
-  Cu.import("resource://dbgserver/modules/RemoteDebuggerServer.jsm");
+  ChromeUtils.importESModule("resource://dbgserver/modules/RemoteDebuggerServer.sys.mjs");
   let remoteEnabled = Services.prefs.getBoolPref("devtools.debugger.remote-enabled");
 
   RemoteDebuggerServer.extraInit = function(DebuggerServer) {
@@ -32,7 +30,7 @@ function shutdown(aData, aReason) {
   }
 
   // Unload our debug server
-  Cu.unload("resource://dbgserver/modules/RemoteDebuggerServer.jsm");
+  // Cu.unload is removed in ESR 140; ES modules are unloaded automatically
 
   // Unregister the dbgserve resource:// location
   let resource = Services.io

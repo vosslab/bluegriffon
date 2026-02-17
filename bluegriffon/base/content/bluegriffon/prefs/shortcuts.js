@@ -1,9 +1,7 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 const nsIInterfaceRequestor  = Components.interfaces.nsIInterfaceRequestor;
 const nsIWebNavigation       = Components.interfaces.nsIWebNavigation;
 const nsIDocShellTreeItem    = Components.interfaces.nsIDocShellTreeItem;
-const nsIDOMWindow           = Components.interfaces.nsIDOMWindow;
+const nsIDOMWindow           = Ci.nsISupports;
 
 var bgWindow = null;
 

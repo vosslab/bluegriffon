@@ -36,9 +36,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 const kBASE_COMMAND_CONTROLLER_CID = "@mozilla.org/embedcomp/base-command-controller;1";
 
@@ -124,7 +123,7 @@ var ComposerCommands = {
       goSetCommandEnabled(aCommand, enabled);
     }
     catch (e) {
-      Components.utils.reportError("An error occurred updating the " +
+      console.error("An error occurred updating the " +
                                    aCommand + " command: " + e);
     }
   },
@@ -640,7 +639,7 @@ function goDoNoCSSCommand(aCommand)
     }
   }
   catch (e) {
-    Components.utils.reportError("An error occurred executing the " +
+    console.error("An error occurred executing the " +
                                  aCommand + " command: " + e);
   }
 }

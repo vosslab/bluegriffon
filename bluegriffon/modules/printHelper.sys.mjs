@@ -10,14 +10,10 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-
-var EXPORTED_SYMBOLS = ["PrintHelper"];
-
 var gPrintSettingsAreGlobal = false;
 var gSavePrintSettings = false;
 
-var PrintHelper = {
+export var PrintHelper = {
 
   showPageSetup: function (aWindow)
   {

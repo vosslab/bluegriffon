@@ -35,9 +35,9 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/cssHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/l10nHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
 
 const kWINDOWMEDIATOR_CID = "@mozilla.org/appshell/window-mediator;1";
 

@@ -1,5 +1,5 @@
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/cssInspector.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/cssInspector.sys.mjs");
 
 var gNode = null;
 var gEditor = null;

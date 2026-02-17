@@ -35,11 +35,9 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-var EXPORTED_SYMBOLS = ["UrlUtils"];
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-
-var UrlUtils = {
+export var UrlUtils = {
 
   /********** CONSTANTS ***********/
 
@@ -338,7 +336,6 @@ var UrlUtils = {
 
   getDocumentBaseUrl: function getDocumentBaseUrl()
   {
-    Components.utils.import("resource://gre/modules/editorHelper.jsm");
     try {
       var docUrl;
 
@@ -362,7 +359,7 @@ var UrlUtils = {
   getDocumentUrl: function getDocumentUrl()
   {
     try {
-      var aDOMHTMLDoc = EditorUtils.getCurrentEditor().document.QueryInterface(Components.interfaces.nsIDOMHTMLDocument);
+      var aDOMHTMLDoc = EditorUtils.getCurrentEditor().document;
       return aDOMHTMLDoc.URL;
     }
     catch (e) { }

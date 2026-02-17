@@ -1,6 +1,6 @@
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 var gClassifications = null;
 var gFontLists = {};

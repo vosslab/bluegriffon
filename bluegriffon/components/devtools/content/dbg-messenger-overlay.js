@@ -2,8 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/RemoteDebuggerServer.jsm");
+ChromeUtils.importESModule("resource://gre/modules/RemoteDebuggerServer.sys.mjs");
 /**
  * Handler to call when the checked state of the menuitem is toggled. Sets the
  * remote-enabled preference of the debugger and starts the debugger if needed.

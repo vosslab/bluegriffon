@@ -35,18 +35,14 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/handlersManager.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
 
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/l10nHelper.jsm");
-Components.utils.import("resource://gre/modules/handlersManager.jsm");
-Components.utils.import("resource://gre/modules/fileChanges.jsm");
-
-var EXPORTED_SYMBOLS = ["BGFileHelper"];
-
-var BGFileHelper = {
+export var BGFileHelper = {
 
   kLAST_FILE_LOCATION_PREFIX: "bluegriffon.lastFileLocation.",
 

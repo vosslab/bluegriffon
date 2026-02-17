@@ -36,8 +36,6 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 function CustomizeToolbar(id)
 {
   // Disable the toolbar context menu items

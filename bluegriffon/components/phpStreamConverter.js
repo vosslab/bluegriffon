@@ -28,7 +28,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 
 const Cc = Components.classes;
 const Ci = Components.interfaces;

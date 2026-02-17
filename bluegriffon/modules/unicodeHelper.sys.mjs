@@ -1,7 +1,5 @@
 
-var EXPORTED_SYMBOLS = ["UnicodeUtils"];
-
-var UnicodeUtils = {
+export var UnicodeUtils = {
   mNamesList: {
     0x0000: "<control>",
     0x0001: "<control>",

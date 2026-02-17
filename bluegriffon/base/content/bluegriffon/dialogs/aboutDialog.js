@@ -1,5 +1,3 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 function Startup()
 {
   var windowElt = document.documentElement;

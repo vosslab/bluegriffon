@@ -703,7 +703,7 @@
           // Uncheck any previously checked items.
           var checked = aPopup.getElementsByAttribute("checked", "true");
           if (checked.length > 1) {
-            Components.utils.reportError("expected only zero or one checked items");
+            console.error("expected only zero or one checked items");
           }
           while (checked.length) {
             checked[0].removeAttribute("checked");
@@ -714,7 +714,7 @@
             checked[0].setAttribute("checked", "true");
           }
           else {
-            Components.utils.reportError("expected one item to match entry " +
+            console.error("expected one item to match entry " +
                                          entry);
           }
         ]]></body>

@@ -334,7 +334,8 @@ var BlueGriffonPrefsObserver = {
 };
 
 
-const nsIDCW = Components.interfaces.nsIDOMChromeWindow;
+// nsIDOMChromeWindow removed in ESR 140; window state constants are on the window object
+const nsIDCW = { STATE_MINIMIZED: 2 };
 var gLastWindowState = -1;
 
 function onSizeModeChange()
@@ -351,7 +352,7 @@ function onSizeModeChange()
         gLastWindowState = window.windowState;
         while ( enumerator.hasMoreElements() )
         {
-          var win = enumerator.getNext().QueryInterface(Components.interfaces.nsIDOMWindow);
+          var win = enumerator.getNext();
           if (win.opener
               && win.document.documentElement.id != "Bluegriffon"
               && (win.opener == window || win.opener.document.documentElement.id == "hidden-window")) {
@@ -369,7 +370,7 @@ function onSizeModeChange()
         gLastWindowState = -1;
         while ( enumerator.hasMoreElements() )
         {
-          var win = enumerator.getNext().QueryInterface(Components.interfaces.nsIDOMWindow);
+          var win = enumerator.getNext();
           if (win.opener
               && win.document.documentElement.id != "Bluegriffon"
               && (win.opener == window || win.opener.document.documentElement.id == "hidden-window")) {

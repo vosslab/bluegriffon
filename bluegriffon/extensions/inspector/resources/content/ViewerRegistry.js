@@ -158,7 +158,7 @@ ViewerRegistry.prototype =
       return this.mFilters[aIndex](aObject, aLinkedViewer);
     }
     catch (ex) {
-      Components.utils.reportError(ex);
+      console.error(ex);
     }
     return false;
   },

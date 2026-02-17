@@ -1,6 +1,6 @@
-Components.utils.import("resource://gre/modules/cssHelper.jsm");
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/cssHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 var gNodes = [];
 var gList = null;

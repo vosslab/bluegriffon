@@ -96,7 +96,7 @@ ComputedStyleViewer.prototype =
         selection.currentIndex = currentIndex;
       }
       catch (ex) {
-        Components.utils.reportError(ex);
+        console.error(ex);
       }
       bo.endUpdateBatch();
     }

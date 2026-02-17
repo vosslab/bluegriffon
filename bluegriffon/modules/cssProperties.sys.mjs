@@ -35,9 +35,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-var EXPORTED_SYMBOLS = ["kCSS_PROPERTIES"];
-
-var kCSS_PROPERTIES = {
+export var kCSS_PROPERTIES = {
   "lastUpdate": "20160501",
   "source": "http://disruptive-innovations.com/zoo/cssproperties",
   "engines": ["blink", "gecko", "servo", "vivliostyle", "weasyprint", "webkit"],

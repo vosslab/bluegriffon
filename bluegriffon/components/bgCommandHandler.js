@@ -1,6 +1,5 @@
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 const nsISupports            = Components.interfaces.nsISupports;
 
@@ -8,8 +7,7 @@ const nsICommandLine         = Components.interfaces.nsICommandLine;
 const nsICommandLineHandler  = Components.interfaces.nsICommandLineHandler;
 const nsIContentHandler      = Components.interfaces.nsIContentHandler;
 const nsIDocShellTreeItem    = Components.interfaces.nsIDocShellTreeItem;
-const nsIDOMChromeWindow     = Components.interfaces.nsIDOMChromeWindow;
-const nsIDOMWindow           = Components.interfaces.nsIDOMWindow;
+const nsIDOMWindow           = Ci.nsISupports;
 const nsIFileURL             = Components.interfaces.nsIFileURL;
 const nsIHttpProtocolHandler = Components.interfaces.nsIHttpProtocolHandler;
 const nsIInterfaceRequestor  = Components.interfaces.nsIInterfaceRequestor;

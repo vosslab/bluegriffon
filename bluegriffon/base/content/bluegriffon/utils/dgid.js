@@ -36,7 +36,6 @@
  * ***** END LICENSE BLOCK ***** */
 
 // we store all globals in a gDialog object for convenience
-Components.utils.import("resource://gre/modules/Services.jsm");
 
 var gDialog = {};
 

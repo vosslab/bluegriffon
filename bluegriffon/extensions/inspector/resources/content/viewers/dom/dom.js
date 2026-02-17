@@ -108,7 +108,7 @@ DOMViewer.prototype =
   {
     --this.mSelectionBatchNest;
     if (this.mSelectionBatchNest < 0) {
-      Components.utils.reportError("Attempted to end a selection batch " +
+      console.error("Attempted to end a selection batch " +
                                    "that doesn't exist");
     }
     else if (!this.mSelectionBatchNest && this.mPendingSelection) {
@@ -890,7 +890,7 @@ DOMViewer.prototype =
   {
     var walker = this.mFindWalker;
     if (!walker) {
-      Components.utils.reportError("deep tree walker unavailable");
+      console.error("deep tree walker unavailable");
       return;
     }
     var result = null;
@@ -1768,7 +1768,7 @@ cmdEditDelete.prototype.doTransaction = function Delete_DoTransaction()
         this.mDeletedIndexes.push(i);
       }
       catch (ex) {
-        Components.utils.reportError(node + " was expected to be deletable but isn't");
+        console.error(node + " was expected to be deletable but isn't");
       }
     }
     else {
@@ -1823,7 +1823,7 @@ cmdEditDelete.prototype.undoTransaction = function Delete_UndoTransaction()
     }
     catch (ex) {
       // XXX allow recovery from external manipulation
-      Components.utils.reportError("Couldn't undo deletion for node " +
+      console.error("Couldn't undo deletion for node " +
                                    this.nodes[idx]);
     }
   }

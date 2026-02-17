@@ -474,7 +474,7 @@ JSObjectView.prototype.checkForBadIndex =
   function JSOV_CheckForBadIndex(aIndex)
 {
   if (aIndex < 0 || aIndex >= this.mRowCount) {
-    Components.utils.reportError("Bad index");
+    console.error("Bad index");
     return true;
   }
 
@@ -538,7 +538,7 @@ JSObjectView.prototype.getParentIndex = function JSOV_GetParentIndex(aIndex)
     }
   }
 
-  Components.utils.reportError("Unrooted rows present");
+  console.error("Unrooted rows present");
   return -1;
 };
 

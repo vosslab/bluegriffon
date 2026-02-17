@@ -1,8 +1,8 @@
-Components.utils.import("resource://gre/modules/editorHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-Components.utils.import("resource://gre/modules/fileChanges.jsm");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/fileChanges.sys.mjs");
 
 var gMain = null;
 var gDoc = null;

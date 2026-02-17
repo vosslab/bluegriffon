@@ -35,15 +35,11 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-var EXPORTED_SYMBOLS = ["EditorUtils"];
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-//Components.utils.import("resource://gre/modules/cssHelper.jsm");
+export var EditorUtils = {
 
-var EditorUtils = {
-
-  nsIDOMNode: Components.interfaces.nsIDOMNode,
+  nsIDOMNode: Node,
 
   mActiveViewActive: false,
   mAtomService: null,
@@ -212,7 +208,6 @@ var EditorUtils = {
 
   isAlreadyEdited: function isAlreadyEdited(aURL)
   {
-    Components.utils.import("resource://gre/modules/urlHelper.jsm");
     // blank documents are never "already edited"...
     if (UrlUtils.isUrlOfBlankDocument(aURL))
       return null;
@@ -222,7 +217,7 @@ var EditorUtils = {
     var enumerator = Services.wm.getEnumerator( "bluegriffon" );
     while ( enumerator.hasMoreElements() )
     {
-      var win = enumerator.getNext().QueryInterface(Components.interfaces.nsIDOMWindow);
+      var win = enumerator.getNext();
       try {
         var mixed = win.gDialog.tabeditor.isAlreadyEdited(url);
         if (mixed)
@@ -578,7 +573,7 @@ var EditorUtils = {
   getDocumentUrl: function()
   {
     try {
-      var aDOMHTMLDoc = this.getCurrentEditor().document.QueryInterface(Components.interfaces.nsIDOMHTMLDocument);
+      var aDOMHTMLDoc = this.getCurrentEditor().document;
       return aDOMHTMLDoc.location.toString();
     }
     catch (e) {}
@@ -939,8 +934,8 @@ var EditorUtils = {
 	},
 
   cleanupBRs: function() {
-    const kNF = Components.interfaces.nsIDOMNodeFilter;
-    const kN  = Components.interfaces.nsIDOMNode;
+    const kNF = NodeFilter;
+    const kN  = Node;
 
     function acceptNodeBR(node)
     {

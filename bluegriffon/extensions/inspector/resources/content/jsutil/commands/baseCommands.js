@@ -10,7 +10,7 @@
 *   (Other files may be necessary, depending on which base commands are used.)
 *****************************************************************************/
 
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 
 //////////////////////////////////////////////////////////////////////////////
 //// Global Constants

@@ -1,6 +1,5 @@
-Components.utils.import("resource://gre/modules/Services.jsm");
-Components.utils.import("resource://gre/modules/l10nHelper.jsm");
-Components.utils.import("resource://gre/modules/prompterHelper.jsm");
+ChromeUtils.importESModule("resource://gre/modules/l10nHelper.sys.mjs");
+ChromeUtils.importESModule("resource://gre/modules/prompterHelper.sys.mjs");
 
 function Startup()
 {

@@ -2,18 +2,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var EXPORTED_SYMBOLS = ["RemoteDebuggerServer"];
 
 /**
  * A module to wrap the devtools DebuggerServer with some extra methods.
  */
 
-Components.utils.import("resource://gre/modules/Services.jsm");
-
 /** Load the debugger module, if its available. */
 var debugServerSupported = (function() {
   try {
-    Components.utils.import("resource://gre/modules/devtools/dbg-server.jsm");
+    ChromeUtils.importESModule("resource://gre/modules/devtools/dbg-server.sys.mjs");
     return true;
   } catch (e) {
     return false;
@@ -53,7 +50,7 @@ function isMainWindow(aWindow) {
  * The Frontend for the remote debugger, starts, stops and initializes the
  * actors.
  */
-var RemoteDebuggerServer = {
+export var RemoteDebuggerServer = {
   /** @return true if the debugger server is running */
   get listening() { return DebuggerServer && DebuggerServer._listener != null; },
 
@@ -175,7 +172,7 @@ var RemoteDebuggerServer = {
 
       listener.open();
     } catch (e) {
-      Components.utils.reportError("Unable to start debugger server: " + e);
+      console.error("Unable to start debugger server: " + e);
       return false;
     }
     return true;
@@ -196,7 +193,7 @@ var RemoteDebuggerServer = {
     try {
       DebuggerServer.closeAllListeners(aForce);
     } catch (e) {
-      Components.utils.reportError("Unable to stop debugger server: " + e);
+      console.error("Unable to stop debugger server: " + e);
       return false;
     }
     return true;

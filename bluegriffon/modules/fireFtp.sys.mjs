@@ -30,10 +30,7 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
-Components.utils.import("resource://gre/modules/urlHelper.jsm");
-Components.utils.import("resource://gre/modules/Services.jsm");
-
-var EXPORTED_SYMBOLS = ["ftpMozilla", "ftpDataSocketMozilla"];
+ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
 function setTimeout(func, delay)
 {
@@ -42,7 +39,7 @@ function setTimeout(func, delay)
   timer.initWithCallback(func, delay, Components.interfaces.nsITimer.TYPE_ONE_SHOT);
 }
 
-function ftpMozilla(observer) {
+export function ftpMozilla(observer) {
   this.transportService = Components.classes["@mozilla.org/network/socket-transport-service;1"].getService(Components.interfaces.nsISocketTransportService);
   this.proxyService     = Components.classes["@mozilla.org/network/protocol-proxy-service;1"].getService  (Components.interfaces.nsIProtocolProxyService);
   this.cacheService     = Components.classes["@mozilla.org/network/cache-service;1"].getService           (Components.interfaces.nsICacheService);
@@ -2488,7 +2485,7 @@ ftpMozilla.prototype.ftp = {
   }
 };
 
-function ftpDataSocketMozilla(controlHost, controlPort, security, proxy, host, port, compress, id, observer, cert, asciiMode) {
+export function ftpDataSocketMozilla(controlHost, controlPort, security, proxy, host, port, compress, id, observer, cert, asciiMode) {
   this.transportService  = Components.classes["@mozilla.org/network/socket-transport-service;1"].getService(Components.interfaces.nsISocketTransportService);
   this.proxyService      = Components.classes["@mozilla.org/network/protocol-proxy-service;1"].getService  (Components.interfaces.nsIProtocolProxyService);
   this.dnsService        = Components.classes["@mozilla.org/network/dns-service;1"].getService             (Components.interfaces.nsIDNSService);

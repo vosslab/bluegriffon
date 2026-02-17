@@ -38,7 +38,7 @@
 const Ci = Components.interfaces;
 const Cc = Components.classes;
 
-Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
+ChromeUtils.importESModule("resource://gre/modules/XPCOMUtils.sys.mjs");
 
 //=================================================
 // Singleton that holds services and utilities
@@ -219,7 +219,7 @@ BrowserTab.prototype = {
       if (!(aEvent.originalTarget instanceof Ci.nsIDOMDocument))
         return;
 
-      if (aEvent.originalTarget.defaultView instanceof Ci.nsIDOMWindow &&
+      if (aEvent.originalTarget.defaultView &&
           aEvent.originalTarget.defaultView.frameElement)
         return;
     }
