@@ -20,7 +20,8 @@ application framework.
 | 2.1 - 2.4 | Continued improvements; dropped 32-bit universal builds on macOS |
 | 3.0 | Architecture refresh; updated Gecko integration |
 | 3.1 | Stability and feature updates |
-| 3.2 | Current version, codename "Artemus" |
+| 3.2 | Last original release, codename "Artemus" |
+| 26.02 | Modernized for Gecko ESR 140; CalVer versioning |
 
 ## Gecko sync history
 

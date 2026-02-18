@@ -67,7 +67,7 @@ JavaScript and C++ components registered with XPCOM:
 - `gecko_dev_content.patch` -- content-layer patch for Gecko
 - `gecko_dev_idl.patch` -- IDL interface patch for Gecko
 - `mozilla_central_revision.txt` -- legacy Mercurial revision reference
-- `version.txt` -- BlueGriffon version (`3.2`)
+- `version.txt` -- BlueGriffon version (`26.02`)
 - `codename.txt` -- release codename (`"Artemus"`)
 - `mozconfig.macosx` -- macOS mozconfig template
 - `mozconfig.ubuntu64` -- Ubuntu 64-bit mozconfig template

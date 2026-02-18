@@ -7,7 +7,7 @@ the project around 2006 at Disruptive Innovations SARL, building on the
 lineage of the Nvu editor and Mozilla Composer. He designed and developed
 BlueGriffon as a modern WYSIWYG HTML editor using Mozilla's Gecko rendering
 engine and the XUL application framework. He maintained the project through
-version 3.2 (codename "Artemus").
+version 3.2 (codename "Artemus"), the last original release.
 
 ## Neil R. Voss
 

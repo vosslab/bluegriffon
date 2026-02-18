@@ -6,3 +6,4 @@ report_ascii_compliance.txt
 report_bandit.txt
 report_pyright.txt
 builds/
+bluegriffon/base/locale/en-US/

@@ -147,7 +147,7 @@ source source_me.sh && python -m pytest tests/test_pyflakes_code_lint.py
 
 ### Project files
 
-- Version: [config/version.txt](../config/version.txt) (currently `3.2`)
+- Version: [config/version.txt](../config/version.txt) (currently `26.02`)
 - Codename: [config/codename.txt](../config/codename.txt) (`"Artemus"`)
 - Gecko branch: [config/gecko_dev_branch.txt](../config/gecko_dev_branch.txt)
 

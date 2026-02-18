@@ -3,6 +3,8 @@
 ## 2026-02-18
 
 - Changed `build.sh clean` to preserve the Gecko git clone: instead of `rm -rf "$GECKO_DIR"`, it now removes only build artifacts (`$OBJ_DIR`), the BlueGriffon symlink, `.mozconfig`, and reverts patched files via `git checkout`. This avoids re-downloading the ~1.5GB source tree when re-running setup
+- Fixed XML parsing error on macOS launch (`undefined entity &preferencesCmdMac.commandkey;`): added missing macOS-specific DTD entities (from removed `baseMenuOverlay.dtd` and `editMenuOverlay.dtd`) to the locale source of truth at `bluegriffon/locales/en-US/` instead of `bluegriffon/base/locale/en-US/` which gets overwritten during build
+- Switched version from `3.2` to `26.02` (CalVer) across `VERSION`, `config/version.txt`, all extension `install.rdf` files, all langpack `install.rdf` files, and docs
 
 ## 2026-02-17
 
@@ -79,10 +81,10 @@
 - Created [docs/FILE_STRUCTURE.md](FILE_STRUCTURE.md) with full directory map of the project
 - Created [docs/INSTALL.md](INSTALL.md) with modern build prerequisites for macOS 14+, Ubuntu 22.04+, and Windows with VS 2022
 - Created [docs/USAGE.md](USAGE.md) with build, run, and package instructions
-- Created [docs/RELEASE_HISTORY.md](RELEASE_HISTORY.md) with version timeline from v1.0 through v3.2
+- Created [docs/RELEASE_HISTORY.md](RELEASE_HISTORY.md) with version timeline from v1.0 through v26.02
 - Created [docs/ROADMAP.md](ROADMAP.md) with current work, deferred items, and future goals
 - Updated [README.md](../README.md) with modern build environments, quick start, documentation links, and credits
-- Created `VERSION` file at repo root (synced with `config/version.txt` at `3.2`)
+- Created `VERSION` file at repo root (synced with `config/version.txt` at `26.02`)
 - Updated [docs/AUTHORS.md](AUTHORS.md) to add Daniel Glazman as original author
 - Rewrote [app/macversion.py](../app/macversion.py) to replace deprecated `optparse` with `argparse`, add type hints, use f-strings, use tabs for indentation, and add function separator comments
 - Updated [config/mozconfig.macosx](../config/mozconfig.macosx): fixed header to say macOS instead of WIN32, updated to macOS 14+/Xcode 16+, changed SDK path to generic `MacOSX.sdk`, set minimum target to macOS 12.0
