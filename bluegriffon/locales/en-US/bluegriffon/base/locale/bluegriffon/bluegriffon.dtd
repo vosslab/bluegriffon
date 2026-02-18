@@ -520,3 +520,25 @@
 <!ENTITY structureBar.caption "Structure bar">
 
 <!ENTITY cmd.showReleaseNotes.label           "Show Release Notes">
+
+<!-- Entities formerly in editMenuOverlay.dtd (removed in ESR 140) -->
+<!ENTITY findCmd.label             "Find">
+<!ENTITY findCmd.key               "F">
+<!ENTITY findCmd.accesskey         "F">
+<!ENTITY findAgainCmd.label        "Find Again">
+<!ENTITY findAgainCmd.key          "G">
+<!ENTITY findAgainCmd.accesskey    "g">
+
+<!-- Entities formerly in baseMenuOverlay.dtd (removed in ESR 140) -->
+<!ENTITY minimizeWindow.key        "m">
+<!ENTITY minimizeWindow.label      "Minimize">
+<!ENTITY bringAllToFront.label     "Bring All to Front">
+<!ENTITY zoomWindow.label          "Zoom">
+<!ENTITY windowMenu.label          "Window">
+<!ENTITY preferencesCmdMac.commandkey ",">
+<!ENTITY servicesMenuMac.label     "Services">
+<!ENTITY hideThisAppCmdMac2.label  "Hide &brandShorterName;">
+<!ENTITY hideThisAppCmdMac2.commandkey "H">
+<!ENTITY hideOtherAppsCmdMac.label "Hide Others">
+<!ENTITY hideOtherAppsCmdMac.commandkey "H">
+<!ENTITY showAllAppsCmdMac.label   "Show All">

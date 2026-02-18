@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-02-18
+
+- Changed `build.sh clean` to preserve the Gecko git clone: instead of `rm -rf "$GECKO_DIR"`, it now removes only build artifacts (`$OBJ_DIR`), the BlueGriffon symlink, `.mozconfig`, and reverts patched files via `git checkout`. This avoids re-downloading the ~1.5GB source tree when re-running setup
+
 ## 2026-02-17
 
 - Removed all media disable flags from [mozconfig.macosx](../bluegriffon/config/mozconfig.macosx) (`--disable-av1`, `--disable-ffmpeg`, `--disable-jxl`, `--disable-webspeech`, `--disable-synth-speechd`): each flag causes cascading build failures in Gecko's tightly coupled build system (missing `media_libdav1d_asm`, broken prefs, missing IPDL files). The media code compiles but is unused by the editor. Major build savings already come from `--disable-webrtc` and `--disable-tests`

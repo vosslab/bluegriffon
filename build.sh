@@ -440,9 +440,38 @@ cmd_clobber() {
 #============================================
 cmd_clean() {
 	require_gecko_dir
-	info "Removing Gecko source tree: $GECKO_DIR"
-	rm -rf "$GECKO_DIR"
-	info "Clean complete. Run './build.sh setup' to re-download."
+
+	# remove build artifacts (same as clobber but without requiring mach)
+	local obj_path="$GECKO_DIR/$OBJ_DIR"
+	if [ -d "$obj_path" ]; then
+		local dir_size
+		dir_size="$(du -sk "$obj_path" 2>/dev/null | cut -f1 || echo 0)"
+		local human
+		human="$(human_size $(( dir_size * 1024 )))"
+		info "Removing build artifacts: $obj_path ($human)"
+		rm -rf "$obj_path"
+	fi
+
+	# remove BlueGriffon symlink
+	if [ -L "$GECKO_DIR/bluegriffon" ]; then
+		info "Removing BlueGriffon symlink"
+		rm -f "$GECKO_DIR/bluegriffon"
+	fi
+
+	# remove mozconfig
+	if [ -f "$GECKO_DIR/.mozconfig" ]; then
+		info "Removing .mozconfig"
+		rm -f "$GECKO_DIR/.mozconfig" "$GECKO_DIR/.mozconfig.bak"
+	fi
+
+	# revert any applied patches by resetting the git tree
+	if [ -d "$GECKO_DIR/.git" ]; then
+		info "Reverting patched files in Gecko tree"
+		git -C "$GECKO_DIR" checkout -- .
+	fi
+
+	info "Clean complete. Gecko source preserved at $GECKO_DIR"
+	info "Run './build.sh setup' to reconfigure."
 }
 
 #============================================
@@ -556,7 +585,7 @@ Commands:
   open       Launch the built .app directly (macOS) or binary (Linux)
   package    Create distributable package (./mach package)
   clobber    Remove build artifacts but keep the Gecko source tree
-  clean      Remove the entire downloaded Gecko source tree
+  clean      Remove build artifacts, symlink, and mozconfig (keeps Gecko source)
   status     Print build environment and artifact summary
   help       Show this help message
 
