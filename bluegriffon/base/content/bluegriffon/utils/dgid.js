@@ -41,7 +41,7 @@ var gDialog = {};
 
 function GetUIElements()
 {
-  var elts = document.getElementsByAttribute("id", "*");
+  var elts = document.querySelectorAll("[id]");
   for (var i = 0; i < elts.length; i++)
   {
     var elt = elts.item(i);

@@ -4,7 +4,7 @@
 
 #include overlays.inc
 
-<!DOCTYPE html [
+<!DOCTYPE window [
 <!ENTITY % bluegriffonDTD  SYSTEM "chrome://bluegriffon/locale/bluegriffon.dtd" >
 <!ENTITY % findbarDTD      SYSTEM "chrome://bluegriffon/locale/findbar.dtd" >
 <!ENTITY % structurebarDTD SYSTEM "chrome://bluegriffon/locale/structurebar.dtd" >
@@ -17,13 +17,12 @@
 %brandDTD;
 ]>
 
-<html xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-      xmlns="http://www.w3.org/1999/xhtml"
-      id="hidden-window" windowtype="hidden-main"
-      width="0" height="0" >
-<head>
-  <script><![CDATA[
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
+        id="hidden-window" windowtype="hidden-main"
+        width="0" height="0" >
+
+  <html:script><![CDATA[
     const PREFS_SERVICE_CONTRACTID = "@mozilla.org/preferences-service;1";
     const WNDMEDIATOR_SERVICE_CONTRACTID = "@mozilla.org/appshell/window-mediator;1";
     const CMDLINEHANDLER_SERVICE_CONTRACTID = "@disruptive-innovations.com/commandlinehandler/general-startup;1?type=bluegriffon";
@@ -77,11 +76,9 @@
     } */
     window.addEventListener("load", selectMainWindowAndClose, false);
 
-  ]]></script>
+  ]]></html:script>
 
 #include scripts.inc
-</head>
-<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 #include sets.inc
 
@@ -95,5 +92,4 @@
               oncommand="OpenBlueGriffonWindow();" />
   </menupopup>
 </popupset>
-</html:body>
-</html>
+</window>

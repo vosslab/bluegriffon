@@ -43,7 +43,7 @@
 
 #include overlays.inc
 
-<!DOCTYPE html [
+<!DOCTYPE window [
   <!ENTITY % tabEditorDTD    SYSTEM "chrome://bluegriffon/locale/tabeditor.dtd" >
   %tabEditorDTD;
   <!ENTITY % bluegriffonDTD  SYSTEM "chrome://bluegriffon/locale/bluegriffon.dtd" >
@@ -60,9 +60,8 @@
   %pagePropertiesDTD;
 ]>
 
-<html xmlns:html="http://www.w3.org/1999/xhtml"
-      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-      xmlns="http://www.w3.org/1999/xhtml"
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+        xmlns:html="http://www.w3.org/1999/xhtml"
   id         = "Bluegriffon"
   windowtype = "bluegriffon"
   fullscreenbutton="true"
@@ -71,6 +70,9 @@
   height     = "640"
   persist    = "screenX screenY width height"
   iconsize   = "medium"
+  onload     = "Startup()"
+  onunload   = "Shutdown()"
+  onclose    = "return onClose()"
 #ifdef CAN_DRAW_IN_TITLEBAR
 #ifdef XP_WIN
         chromemargin="0,2,2,2"
@@ -80,13 +82,8 @@
         tabsintitlebar="true"
 #endif
 >
-<head>
+
 #include scripts.inc
-</head>
-<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-           onload="Startup()"
-           onunload="Shutdown()"
-           onclose="return onClose()">
 
 #include sets.inc
 #include popups.inc
@@ -265,5 +262,4 @@
       </hbox>
     </deck>
   </statusbar>
-</html:body>
-</html>
+</window>

@@ -47,20 +47,25 @@ var cmdOpenFile =
   doCommand: function(aCommand)
   {
     try {
+      // stringbundle.getString() removed in ESR 140; use Services.strings
+      var openLocBundle = Services.strings.createBundle("chrome://bluegriffon/locale/openLocation.properties");
       var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(Components.interfaces.nsIFilePicker);
       fp.init(window.browsingContext,
-              gDialog.bundleOpenLocation.getString("chooseFileDialogTitle"),
+              openLocBundle.GetStringFromName("chooseFileDialogTitle"),
               Components.interfaces.nsIFilePicker.modeOpen);
 
       var ebmAvailable = ("EBookManager" in window);
-      if (ebmAvailable)
-        fp.appendFilter(document.getElementById("bundleEbookManager").getString("HTMLorEPUBBooks"),
+      if (ebmAvailable) {
+        var ebmBundle = Services.strings.createBundle(
+          document.getElementById("bundleEbookManager").getAttribute("src"));
+        fp.appendFilter(ebmBundle.GetStringFromName("HTMLorEPUBBooks"),
                         "*.html; *.htm; *.shtml; *.xhtml; *.epub");
+      }
       fp.appendFilters(Components.interfaces.nsIFilePicker.filterHTML);
-      fp.appendFilter(gDialog.bundleOpenLocation.getString("PHPfiles"), "*.php");
+      fp.appendFilter(openLocBundle.GetStringFromName("PHPfiles"), "*.php");
       fp.appendFilters(Components.interfaces.nsIFilePicker.filterText);
       if (ebmAvailable)
-        fp.appendFilter(document.getElementById("bundleEbookManager").getString("EPUBbooks"),
+        fp.appendFilter(ebmBundle.GetStringFromName("EPUBbooks"),
                         "*.epub");
       fp.appendFilters(Components.interfaces.nsIFilePicker.filterAll);
 
@@ -103,6 +108,7 @@ var cmdOpenFile =
       });
     }
     catch(ex) {
+      console.error("cmdOpenFile error:", ex);
     }
   }
 };

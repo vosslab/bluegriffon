@@ -3,10 +3,11 @@
     "allow": [
       "Bash(bluegriffon:*)",
       "Bash(./build.sh:*)",
-		"Bash(reset_and_run.sh)",
+      "Bash(reset_and_run.sh)",
       "Bash(**/BlueGriffon.app/Contents/MacOS/bluegriffon *)",
       "Bash(osascript:*)",
-      "Bash(pkill:*)"
+      "Bash(pkill:*)",
+      "Bash(./reset_and_run.sh:*)"
     ]
   }
 }

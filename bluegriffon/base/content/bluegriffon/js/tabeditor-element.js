@@ -571,9 +571,11 @@ class BGTabEditor extends XULElement {
     var newBox = this._newEditor();
     var newEditorElement = newBox.firstChild;
 
-    var newTab = this.mTabs.appendItem(aTitle,
-                   UrlUtils.stripUsernamePassword(aURL, null, null));
+    // tabs.appendItem() removed in ESR 140; create tab element manually
+    var newTab = document.createXULElement("tab");
     newTab.setAttribute("label", aTitle);
+    newTab.setAttribute("value", UrlUtils.stripUsernamePassword(aURL, null, null));
+    this.mTabs.appendChild(newTab);
     newTab.setAttribute("context", "tabContextPopup");
     newTab.setAttribute("class", "tabeditor-tab");
     newTab.setAttribute("maxwidth", 200);
