@@ -269,47 +269,49 @@ function SavePosterAsFile()
 
     fp = Components.classes["@mozilla.org/filepicker;1"]
            .createInstance(Components.interfaces.nsIFilePicker);
-    fp.init(window, gDialog.bundleString.getString("SavePosterAsPng"), 1);
+    fp.init(window.browsingContext, gDialog.bundleString.getString("SavePosterAsPng"), 1);
     fp.appendFilter(gDialog.bundleString.getString("PNGFiles"), "*.png");
 
-    if (fp.show() == Components.interfaces.nsIFilePicker.returnCancel)
-      return;
+    fp.open(function(result) {
+      if (result == Components.interfaces.nsIFilePicker.returnCancel)
+        return;
 
-    var file = fp.file;
-  
-    // create a data url from the canvas and then create URIs of the source and targets  
-    var io = Components.classes["@mozilla.org/network/io-service;1"]
-                       .getService(Components.interfaces.nsIIOService);
-    var source = io.newURI(canvas.toDataURL("image/png", ""), "UTF8", null);
-    var target = io.newFileURI(file)
-      
-    // prepare to save the canvas data
-    var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"]
-                            .createInstance(Components.interfaces.nsIWebBrowserPersist);
-    
-    persist.persistFlags = Components.interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_REPLACE_EXISTING_FILES;
-    persist.persistFlags |= Components.interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
+      var file = fp.file;
 
-    persist.progressListener = {
-      onLocationChange: function() {},
-      onProgressChange: function() {},
-      onSecurityChange: function() {},
-      onStatusChange:   function() {},
-      onStateChange:    function(aWebProgress, aRequest, aStateFlags, aStatus) {
-        if (aStateFlags & Components.interfaces.nsIWebProgressListener.STATE_STOP)
-        setTimeout(function() {
-          // save the canvas data to the file
-          gDialog.urlPosterTextbox.value = fp.fileURL.spec;
-          var imageCache = Components.classes["@mozilla.org/image/cache;1"]
-                                     .getService(Components.interfaces.imgICache);
-          imageCache.removeEntry(fp.fileURL);
-          gDialog.previewPoster.setAttribute("src","");
-          LoadPosterFile();
-          CheckURL('urlPosterTextbox', 'relativeURLPosterCheckbox');
-        }, 200);
-      }
-    };
-    persist.saveURI(source, null, null, null, null, file);
+      // create a data url from the canvas and then create URIs of the source and targets
+      var io = Components.classes["@mozilla.org/network/io-service;1"]
+                         .getService(Components.interfaces.nsIIOService);
+      var source = io.newURI(canvas.toDataURL("image/png", ""), "UTF8", null);
+      var target = io.newFileURI(file)
+
+      // prepare to save the canvas data
+      var persist = Components.classes["@mozilla.org/embedding/browser/nsWebBrowserPersist;1"]
+                              .createInstance(Components.interfaces.nsIWebBrowserPersist);
+
+      persist.persistFlags = Components.interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_REPLACE_EXISTING_FILES;
+      persist.persistFlags |= Components.interfaces.nsIWebBrowserPersist.PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION;
+
+      persist.progressListener = {
+        onLocationChange: function() {},
+        onProgressChange: function() {},
+        onSecurityChange: function() {},
+        onStatusChange:   function() {},
+        onStateChange:    function(aWebProgress, aRequest, aStateFlags, aStatus) {
+          if (aStateFlags & Components.interfaces.nsIWebProgressListener.STATE_STOP)
+          setTimeout(function() {
+            // save the canvas data to the file
+            gDialog.urlPosterTextbox.value = fp.fileURL.spec;
+            var imageCache = Components.classes["@mozilla.org/image/cache;1"]
+                                       .getService(Components.interfaces.imgICache);
+            imageCache.removeEntry(fp.fileURL);
+            gDialog.previewPoster.setAttribute("src","");
+            LoadPosterFile();
+            CheckURL('urlPosterTextbox', 'relativeURLPosterCheckbox');
+          }, 200);
+        }
+      };
+      persist.saveURI(source, null, null, null, null, file);
+    });
   }
   catch(e) {alert(e)}
 }

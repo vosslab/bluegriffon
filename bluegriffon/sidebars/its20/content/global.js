@@ -390,6 +390,22 @@ function CloseAddRulesetPanel()
   gDialog.addRulesetPanel.hidePopup();
 }
 
+function _FinishCreateNewRuleset(elt)
+{
+  CloseAddRulesetPanel();
+
+  if (elt) { // sanity case
+    var headElt = EditorUtils.getCurrentDocument().querySelector("head");
+    var txn = new diNodeInsertionTxn(elt,
+                                     headElt,
+                                     null);
+    EditorUtils.getCurrentEditor().transactionManager.doTransaction(txn);
+    EditorUtils.getCurrentEditor().incrementModificationCount(1);
+    SelectionChanged(null, gCurrentElement, true);
+    gDialog.rulesetsBox.selectedIndex = gDialog.rulesetsBox.getRowCount() - 1;
+  }
+}
+
 function CreateNewRuleset()
 {
   var type = gDialog.newRulesetTypeRadiogroup.value;
@@ -407,16 +423,21 @@ function CreateNewRuleset()
           break;
         case "new":
         {
-          var spec = NewITS20File("<?xml version='1.0' encoding='UTF-8'?>\n"
+          // async path: NewITS20File calls callback when done
+          var asyncElt = elt;
+          NewITS20File("<?xml version='1.0' encoding='UTF-8'?>\n"
                        + "<its:rules xmlns:its='" + kITS_NAMESPACE + "' version='2.0' queryLanguage='" + queryLanguage + "'>\n"
-                       + "</its:rules>");
-          if (!spec) {
-            CloseAddRulesetPanel();
-            return;
-          }
-          elt.setAttribute("href", spec);
+                       + "</its:rules>",
+            function(spec) {
+              if (!spec) {
+                CloseAddRulesetPanel();
+                return;
+              }
+              asyncElt.setAttribute("href", spec);
+              _FinishCreateNewRuleset(asyncElt);
+            });
+          return; // early return since async now
         }
-        break;
       }
       break;
 
@@ -433,68 +454,61 @@ function CreateNewRuleset()
     default: break; // should never happen
   }
 
-  CloseAddRulesetPanel();
-
-  if (elt) { // sanity case
-    var headElt = EditorUtils.getCurrentDocument().querySelector("head");
-    var txn = new diNodeInsertionTxn(elt,
-                                     headElt,
-                                     null);
-    EditorUtils.getCurrentEditor().transactionManager.doTransaction(txn);
-    EditorUtils.getCurrentEditor().incrementModificationCount(1);  
-    SelectionChanged(null, gCurrentElement, true);
-    gDialog.rulesetsBox.selectedIndex = gDialog.rulesetsBox.getRowCount() - 1;
- }
+  _FinishCreateNewRuleset(elt);
 }
 
-function NewITS20File(aContents)
+function NewITS20File(aContents, aCallback)
 {
   const nsIFP = Components.interfaces.nsIFilePicker;
   var fp = Components.classes["@mozilla.org/filepicker;1"]
               .createInstance(nsIFP);
-  fp.init(window, gDialog.its20Bundle.getString("NewITSFile"), nsIFP.modeSave);
+  fp.init(window.browsingContext, gDialog.its20Bundle.getString("NewITSFile"), nsIFP.modeSave);
   fp.appendFilter("*.xml", "xml");
-  var fpr = fp.show();
-  if ((fpr == nsIFP.returnOK || fpr == nsIFP.returnReplace) &&
-      fp.fileURL.spec && fp.fileURL.spec.length > 0)
-  {
-    var spec = fp.fileURL.spec;
-    var file = fp.file;
-    if (spec.length < 5 ||
-        spec.substring(spec.length - 4) != ".xml") {
-      spec += ".xml";
-      var ioService =
-        Components.classes["@mozilla.org/network/io-service;1"]
-                  .getService(Components.interfaces.nsIIOService);
-      var fileHandler =
-        ioService.getProtocolHandler("file")
-                 .QueryInterface(Components.interfaces.nsIFileProtocolHandler);
-      file = fileHandler.getFileFromURLSpec(spec);
+  fp.open(function(result) {
+    if ((result == nsIFP.returnOK || result == nsIFP.returnReplace) &&
+        fp.fileURL.spec && fp.fileURL.spec.length > 0)
+    {
+      var spec = fp.fileURL.spec;
+      var file = fp.file;
+      if (spec.length < 5 ||
+          spec.substring(spec.length - 4) != ".xml") {
+        spec += ".xml";
+        var ioService =
+          Components.classes["@mozilla.org/network/io-service;1"]
+                    .getService(Components.interfaces.nsIIOService);
+        var fileHandler =
+          ioService.getProtocolHandler("file")
+                   .QueryInterface(Components.interfaces.nsIFileProtocolHandler);
+        file = fileHandler.getFileFromURLSpec(spec);
+      }
+
+      // file is nsIFile, data is a string
+      var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
+                               createInstance(Components.interfaces.nsIFileOutputStream);
+
+      // use 0x02 | 0x10 to open file for appending.
+      foStream.init(file, 0x02 | 0x08 | 0x20, 0x1b6, 0);
+      // write, create, truncate
+      // In a c file operation, we have no need to set file mode with or operation,
+      // directly using "r" or "w" usually.
+
+      // if you are sure there will never ever be any non-ascii text in data you can
+      // also call foStream.writeData directly
+      var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
+                                createInstance(Components.interfaces.nsIConverterOutputStream);
+      converter.init(foStream, "UTF-8", 0, 0);
+      converter.writeString(aContents);
+      converter.close(); // this closes foStream
+
+      var finalSpec = (gDialog.relativeURLCheckbox.checked && gDocUrlScheme && gDocUrlScheme != "resource")
+                        ? UrlUtils.makeRelativeUrl(spec)
+                        : spec;
+      aCallback(finalSpec);
     }
-
-    // file is nsIFile, data is a string
-    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-                             createInstance(Components.interfaces.nsIFileOutputStream);
-    
-    // use 0x02 | 0x10 to open file for appending.
-    foStream.init(file, 0x02 | 0x08 | 0x20, 0x1b6, 0);
-    // write, create, truncate
-    // In a c file operation, we have no need to set file mode with or operation,
-    // directly using "r" or "w" usually.
-    
-    // if you are sure there will never ever be any non-ascii text in data you can 
-    // also call foStream.writeData directly
-    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
-                              createInstance(Components.interfaces.nsIConverterOutputStream);
-    converter.init(foStream, "UTF-8", 0, 0);
-    converter.writeString(aContents);
-    converter.close(); // this closes foStream
-
-    return (gDialog.relativeURLCheckbox.checked && gDocUrlScheme && gDocUrlScheme != "resource")
-             ? UrlUtils.makeRelativeUrl(spec)
-             : spec;
-  }
-  return null;
+    else {
+      aCallback(null);
+    }
+  });
 }
 
 function CheckURL(aTextboxId, aCheckboxId)

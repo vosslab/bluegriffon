@@ -108,47 +108,48 @@ function NewFile()
   const nsIFP = Components.interfaces.nsIFilePicker;
   var fp = Components.classes["@mozilla.org/filepicker;1"]
               .createInstance(nsIFP);
-  fp.init(window, gDialog.bundleString.getString("NewCSSFile"), nsIFP.modeSave);
+  fp.init(window.browsingContext, gDialog.bundleString.getString("NewCSSFile"), nsIFP.modeSave);
   fp.appendFilter("*.css", "*.css");
-  var fpr = fp.show();
-  if ((fpr == nsIFP.returnOK || fpr == nsIFP.returnReplace) &&
-      fp.fileURL.spec && fp.fileURL.spec.length > 0)
-  {
-    var spec = fp.fileURL.spec;
-    var file = fp.file;
-    if (spec.length < 5 ||
-        spec.substring(spec.length - 4) != ".css") {
-      spec += ".css";
-      var ioService =
-        Components.classes["@mozilla.org/network/io-service;1"]
-                  .getService(Components.interfaces.nsIIOService);
-      var fileHandler =
-        ioService.getProtocolHandler("file")
-                 .QueryInterface(Components.interfaces.nsIFileProtocolHandler);
-      file = fileHandler.getFileFromURLSpec(spec);
+  fp.open(function(result) {
+    if ((result == nsIFP.returnOK || result == nsIFP.returnReplace) &&
+        fp.fileURL.spec && fp.fileURL.spec.length > 0)
+    {
+      var spec = fp.fileURL.spec;
+      var file = fp.file;
+      if (spec.length < 5 ||
+          spec.substring(spec.length - 4) != ".css") {
+        spec += ".css";
+        var ioService =
+          Components.classes["@mozilla.org/network/io-service;1"]
+                    .getService(Components.interfaces.nsIIOService);
+        var fileHandler =
+          ioService.getProtocolHandler("file")
+                   .QueryInterface(Components.interfaces.nsIFileProtocolHandler);
+        file = fileHandler.getFileFromURLSpec(spec);
+      }
+
+      // file is nsIFile, data is a string
+      var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
+                               createInstance(Components.interfaces.nsIFileOutputStream);
+
+      // use 0x02 | 0x10 to open file for appending.
+      foStream.init(file, 0x02 | 0x08 | 0x20, 0x1b6, 0);
+      // write, create, truncate
+      // In a c file operation, we have no need to set file mode with or operation,
+      // directly using "r" or "w" usually.
+
+      // if you are sure there will never ever be any non-ascii text in data you can
+      // also call foStream.writeData directly
+      var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
+                                createInstance(Components.interfaces.nsIConverterOutputStream);
+      converter.init(foStream, "UTF-8", 0, 0);
+      converter.writeString("");
+      converter.close(); // this closes foStream
+
+      gDialog.urlTextbox.value = spec;
+      CheckURL('urlTextbox', 'relativeURLCheckbox');
     }
-
-    // file is nsIFile, data is a string
-    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"].
-                             createInstance(Components.interfaces.nsIFileOutputStream);
-    
-    // use 0x02 | 0x10 to open file for appending.
-    foStream.init(file, 0x02 | 0x08 | 0x20, 0x1b6, 0);
-    // write, create, truncate
-    // In a c file operation, we have no need to set file mode with or operation,
-    // directly using "r" or "w" usually.
-    
-    // if you are sure there will never ever be any non-ascii text in data you can 
-    // also call foStream.writeData directly
-    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"].
-                              createInstance(Components.interfaces.nsIConverterOutputStream);
-    converter.init(foStream, "UTF-8", 0, 0);
-    converter.writeString("");
-    converter.close(); // this closes foStream
-
-    gDialog.urlTextbox.value = spec;
-    CheckURL('urlTextbox', 'relativeURLCheckbox');
-  }
+  });
 }
 
 function onAccept()

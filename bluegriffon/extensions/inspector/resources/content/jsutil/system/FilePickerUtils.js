@@ -21,20 +21,20 @@ const nsIFilePicker = Components.interfaces.nsIFilePicker;
 
 var FilePickerUtils =
 {
-  pickFile: function(aTitle, aInitPath, aFilters, aMode)
+  pickFile: function(aTitle, aInitPath, aFilters, aMode, aCallback)
   {
     try {
       var modeStr = aMode ? "mode" + aMode : "modeOpen";
       var mode;
       try {
         mode = nsIFilePicker[modeStr];
-      } catch (ex) { 
+      } catch (ex) {
         dump("WARNING: Invalid FilePicker mode '"+aMode+"'. Defaulting to 'Open'.\n");
         mode = nsIFilePicker.modeOpen;
       }
-      
+
       var fp = XPCU.createInstance(kFilePickerCID, "nsIFilePicker");
-      fp.init(window, aTitle, mode);
+      fp.init(window.browsingContext, aTitle, mode);
 
       // join array of filter names into bit string
       var filters = this.prepareFilters(aFilters);
@@ -45,35 +45,42 @@ var FilePickerUtils =
         fp.displayDirectory = dir;
       }
 
-      if (fp.show() == nsIFilePicker.returnOK) {
-        return fp.file;
-      }
+      fp.open(function(result) {
+        if (result == nsIFilePicker.returnOK) {
+          if (aCallback) aCallback(fp.file);
+        } else {
+          if (aCallback) aCallback(null);
+        }
+      });
     } catch (ex) {
       dump("ERROR: Unable to open file picker.\n" + ex + "\n");
+      if (aCallback) aCallback(null);
     }
-    return null;
   },
 
-  pickDir: function(aTitle, aInitPath)
+  pickDir: function(aTitle, aInitPath, aCallback)
   {
     try {
       var fp = XPCU.createInstance(kFilePickerCID, "nsIFilePicker");
-      fp.init(window, aTitle, nsIFilePicker.modeGetFolder);
+      fp.init(window.browsingContext, aTitle, nsIFilePicker.modeGetFolder);
 
       if (aInitPath) {
         var dir = XPCU.createInstance(kLFileCID, "nsILocalFile");
         dir.initWithPath(aInitPath);
         fp.displayDirectory = dir;
       }
-      
-      if (fp.show() == nsIFilePicker.returnOK) {
-        return fp.file;
-      }
+
+      fp.open(function(result) {
+        if (result == nsIFilePicker.returnOK) {
+          if (aCallback) aCallback(fp.file);
+        } else {
+          if (aCallback) aCallback(null);
+        }
+      });
     } catch (ex) {
       dump("ERROR: Unable to open directory picker.\n" + ex + "\n");
+      if (aCallback) aCallback(null);
     }
-
-    return null;
   },
   
   prepareFilters: function(aFilters)

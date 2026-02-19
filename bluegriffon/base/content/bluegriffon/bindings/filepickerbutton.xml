@@ -105,7 +105,7 @@
               w.EBookManager.isUrlSpecInBook(EditorUtils.getDocumentUrl())) {
             try {
               this.fp = new diFilePicker();
-              this.fp.init(window, this.getAttribute("title"),
+              this.fp.init(window.browsingContext, this.getAttribute("title"),
                            parseInt(this.getAttribute("mode")));
 
               var w = EditorUtils.getCurrentEditorWindow();
@@ -138,7 +138,7 @@
           try {
             this.fp = Components.classes["@mozilla.org/filepicker;1"].
                         createInstance(this.nsIFP);
-            this.fp.init(window, this.getAttribute("title"),
+            this.fp.init(window.browsingContext, this.getAttribute("title"),
                          parseInt(this.getAttribute("mode")));
             var filters = this.getAttribute("filters");
             if (filters) {
@@ -192,19 +192,21 @@
       <handler event="command" phase="capturing">
         <![CDATA[
           try {
-            if (this.fp.show() == this.nsIFP.returnOK &&
-                this.fp.fileURL.spec && this.fp.fileURL.spec.length > 0)
-            {
-              var spec = this.fp.fileURL.spec;
-              if (this.hasAttribute("processor"))
-                spec = eval(this.getAttribute("processor") + "(spec)");
-              this.setAttribute("value", spec);
-              if (this.hasAttribute("control"))
+            this.fp.open(function(result) {
+              if (result == this.nsIFP.returnOK &&
+                  this.fp.fileURL.spec && this.fp.fileURL.spec.length > 0)
               {
-                var c = document.getElementById(this.getAttribute("control"));
-                c.inputField.value = spec;
+                var spec = this.fp.fileURL.spec;
+                if (this.hasAttribute("processor"))
+                  spec = eval(this.getAttribute("processor") + "(spec)");
+                this.setAttribute("value", spec);
+                if (this.hasAttribute("control"))
+                {
+                  var c = document.getElementById(this.getAttribute("control"));
+                  c.inputField.value = spec;
+                }
               }
-            }
+            }.bind(this));
           }
           catch(e) {}
         ]]>

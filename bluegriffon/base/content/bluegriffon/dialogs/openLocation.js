@@ -66,8 +66,8 @@ function onChooseFile()
 {
   try {
     var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(nsIFilePicker);
-    fp.init(window, gDialog.bundle.getString("chooseFileDialogTitle"), nsIFilePicker.modeOpen);
-    
+    fp.init(window.browsingContext, gDialog.bundle.getString("chooseFileDialogTitle"), nsIFilePicker.modeOpen);
+
     fp.appendFilters(nsIFilePicker.filterHTML);
     fp.appendFilter(gDialog.bundle.getString("PHPfiles"), "*.php");
     fp.appendFilters(nsIFilePicker.filterText);
@@ -77,12 +77,14 @@ function onChooseFile()
                       "*.epub");
     fp.appendFilters(nsIFilePicker.filterAll);
 
-    if (fp.show() == nsIFilePicker.returnOK && fp.fileURL.spec && fp.fileURL.spec.length > 0)
-    {
-      gDialog.input.value = decodeURI(fp.fileURL.spec);
-      // give focus to the OK buton
-      document.documentElement.getButton("accept").focus();
-    }
+    fp.open(function(result) {
+      if (result == nsIFilePicker.returnOK && fp.fileURL.spec && fp.fileURL.spec.length > 0)
+      {
+        gDialog.input.value = decodeURI(fp.fileURL.spec);
+        // give focus to the OK buton
+        document.documentElement.getButton("accept").focus();
+      }
+    });
   }
   catch(ex) {
   }

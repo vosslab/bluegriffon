@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(./build.sh:*)"
+      "Bash(bluegriffon:*)",
+      "Bash(./build.sh:*)",
+      "Bash(git -C /Users/vosslab/nsh/bluegriffon ls-tree -r --full-tree 22d70ed3 bluegriffon/base/content/bluegriffon/js/)"
     ]
   }
 }

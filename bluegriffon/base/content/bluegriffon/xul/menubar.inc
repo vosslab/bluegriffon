@@ -45,7 +45,7 @@
                   label="&quit.label;"
                   accesskey="&quit.accesskey;"
                   key="key_quitApplication"
-                  oncommand="goQuitApplication()"/>
+                  oncommand="goQuitApplication(event)"/>
       </menupopup>
     </menu>
 

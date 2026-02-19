@@ -14,8 +14,6 @@
   <script type="application/javascript" src="chrome://aria/content/aria-roles.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/js/bluegriffon.js"/>
   <script type="application/javascript" src="chrome://global/content/globalOverlay.js"/>
-  <script type="application/javascript" src="chrome://global/content/nsDragAndDrop.js"/>
-  <script type="application/javascript" src="chrome://global/content/nsTransferable.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/js/colourPickerHelper.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/js/zoomManager.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/js/recentPages.js"/>

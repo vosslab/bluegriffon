@@ -3,7 +3,7 @@
 <keyset id="mainKeySet">
   <key id="savekb"              key="&filesave.key;"         observes="cmd_save"      modifiers="accel"/>
   <key id="saveaskb"            key="&filesaveas.key;"       observes="cmd_saveAs"    modifiers="accel,shift"/>
-  <key id="key_quitApplication" key="&quit.key;"                                      modifiers="accel"/>
+  <key id="key_quitApplication" key="&quit.key;" oncommand="goQuitApplication(event)" modifiers="accel"/>
   <key id="closetabkb"          key="&closeWindow.key;"      observes="cmd_closeTab"  modifiers="accel"/>
   <key id="openpagekb"          key="&openPage.key;"         observes="cmd_open"      modifiers="accel,shift"/>
   <key id="openfilekb"          key="&openPage.key;"         observes="cmd_openFile"  modifiers="accel"/>

@@ -48,10 +48,10 @@ var cmdOpenFile =
   {
     try {
       var fp = Components.classes["@mozilla.org/filepicker;1"].createInstance(Components.interfaces.nsIFilePicker);
-      fp.init(window,
+      fp.init(window.browsingContext,
               gDialog.bundleOpenLocation.getString("chooseFileDialogTitle"),
               Components.interfaces.nsIFilePicker.modeOpen);
-      
+
       var ebmAvailable = ("EBookManager" in window);
       if (ebmAvailable)
         fp.appendFilter(document.getElementById("bundleEbookManager").getString("HTMLorEPUBBooks"),
@@ -63,42 +63,44 @@ var cmdOpenFile =
         fp.appendFilter(document.getElementById("bundleEbookManager").getString("EPUBbooks"),
                         "*.epub");
       fp.appendFilters(Components.interfaces.nsIFilePicker.filterAll);
-  
-      if (fp.show() == Components.interfaces.nsIFilePicker.returnOK
-          && fp.fileURL.spec
-          && fp.fileURL.spec.length > 0)
-      {
-        if (ebmAvailable && fp.fileURL.spec.toLowerCase().endsWith(".epub")) {
-          var windowEnumerator = Services.wm.getEnumerator("bluegriffon");
-          var win = null;
-          while (windowEnumerator.hasMoreElements()) {
-            var w = windowEnumerator.getNext();
-            var ebookElt = w.document.querySelector("epub2,epub3,epub31");
-            if (ebookElt) {
-              var ebook = ebookElt.getUserData("ebook");
-              if (fp.file.equals(ebook.packageFile)) {
-                w.focus();
-                return;
+
+      fp.open(function(result) {
+        if (result == Components.interfaces.nsIFilePicker.returnOK
+            && fp.fileURL.spec
+            && fp.fileURL.spec.length > 0)
+        {
+          if (ebmAvailable && fp.fileURL.spec.toLowerCase().endsWith(".epub")) {
+            var windowEnumerator = Services.wm.getEnumerator("bluegriffon");
+            var win = null;
+            while (windowEnumerator.hasMoreElements()) {
+              var w = windowEnumerator.getNext();
+              var ebookElt = w.document.querySelector("epub2,epub3,epub31");
+              if (ebookElt) {
+                var ebook = ebookElt.getUserData("ebook");
+                if (fp.file.equals(ebook.packageFile)) {
+                  w.focus();
+                  return;
+                }
               }
+              else if (!win)
+                win = w;
             }
-            else if (!win)
-              win = w;
+
+            if (win && !win.EditorUtils.getCurrentEditor()) {
+              win.focus();
+              win.EBookManager.showEbook(fp.file, fp.fileURL.spec);
+              win.updateCommands("style");
+              return;
+            }
+            OpenNewWindow(UrlUtils.getIOService().newFileURI(fp.file).QueryInterface(Components.interfaces.nsIURL).spec);
           }
-    
-          if (win && !win.EditorUtils.getCurrentEditor()) {
-            win.focus();
-            win.EBookManager.showEbook(fp.file, fp.fileURL.spec);
-            win.updateCommands("style");
-            return;
+          else {
+            if (!ebmAvailable || !EBookManager.isUrlSpecInBook(fp.fileURL.spec))
+              StoreUrlInLocationDB(fp.fileURL.spec);
+            OpenFile(fp.fileURL.spec, true);
           }
-          OpenNewWindow(UrlUtils.getIOService().newFileURI(fp.file).QueryInterface(Components.interfaces.nsIURL).spec);
         }
-        else {
-          if (!ebmAvailable || !EBookManager.isUrlSpecInBook(fp.fileURL.spec))
-            StoreUrlInLocationDB(fp.fileURL.spec);
-          OpenFile(fp.fileURL.spec, true);
-        }
-      }
+      });
     }
     catch(ex) {
     }
