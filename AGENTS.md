@@ -20,3 +20,5 @@ On this user's macOS (Homebrew Python 3.12), Python modules are installed to `/o
 
 please only run pointed pytests specific to your update; we have too many files to run pytest all of the time
 
+
+reset_and_run.sh is set for running and testing to the program. it is the only command you can run without getting permission
