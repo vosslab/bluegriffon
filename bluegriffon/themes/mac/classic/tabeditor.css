@@ -58,7 +58,7 @@
 
 /* ::::: tabeditor ::::: */
 
-tabeditor > tabbox {
+bg-tabeditor > tabbox {
   margin: 0;
 }
 
@@ -153,7 +153,7 @@ tabeditor > tabbox {
   display: none;
 }
 
-tabeditor > tabbox > tabpanels {
+bg-tabeditor > tabbox > tabpanels {
   -moz-appearance: none !important;
 }
 
@@ -175,10 +175,6 @@ tabeditor > tabbox > tabpanels {
   -moz-image-region: rect(0, 48px, 16px, 32px);
 }
 
-.tabeditor-tab {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/tab.xml#bluegriffon-editortab");
-}
-
 .tabeditor-tab .toolbarbutton-icon {
   padding: 0px;
 }
@@ -191,12 +187,12 @@ tabeditor > tabbox > tabpanels {
    border-bottom: red solid thin;
 }
 
-tabeditor[tabmode="left"] .tabs-left {
+bg-tabeditor[tabmode="left"] .tabs-left {
   width: 8px !important;
   -moz-box-flex: 0 !important;
 }
 
-tabeditor[tabmode="right"] .tabs-right {
+bg-tabeditor[tabmode="right"] .tabs-right {
   max-width: 8px !important;
   -moz-box-flex: 0 ! important;
 }

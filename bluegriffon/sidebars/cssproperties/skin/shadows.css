@@ -48,13 +48,11 @@
 }
 
 richlistitem.noneTextShadow {
-  -moz-binding: url("chrome://cssproperties/content/textshadowitem.xml#none");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.shadowTextShadow {
-  -moz-binding: url("chrome://cssproperties/content/textshadowitem.xml#shadow");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
@@ -64,13 +62,11 @@ richlistitem.shadowTextShadow {
 }
 
 richlistitem.noneBoxShadow {
-  -moz-binding: url("chrome://cssproperties/content/boxshadowitem.xml#none");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.shadowBoxShadow {
-  -moz-binding: url("chrome://cssproperties/content/boxshadowitem.xml#shadow");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }

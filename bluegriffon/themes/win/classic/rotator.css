@@ -37,7 +37,7 @@
 
  @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-rotator {
+bg-rotator {
   -moz-box-align: center;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -65,8 +65,7 @@ rotator {
   transform: rotate(-90deg);
 }
 
-rotateGrippy {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/rotator.xml#rotateGrippy");
+bg-rotategrippy {
    cursor: -moz-grab;
   -moz-appearance: none;
   margin: 2px;
@@ -79,11 +78,11 @@ rotateGrippy {
   border: #a0a0a0 thin groove;
 }
 
-rotator[disabled="true"] rotateGrippy {
+bg-rotator[disabled="true"] bg-rotategrippy {
   cursor: default;
 }
 
-rotateGrippy[rotating="true"] {
+bg-rotategrippy[rotating="true"] {
   cursor: -moz-grabbing;
 }
 

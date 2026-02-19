@@ -37,13 +37,19 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % composerOverlayDTD SYSTEM "chrome://aria/locale/ariaOverlay.dtd">
   %composerOverlayDTD;
 ]>
 
-<overlay id="ariaOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="ariaOverlay">
+<head>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
 
   <menupopup id="panelsMenuPopup">
     <menuitem id="panel-aria-menuitem"
@@ -66,5 +72,6 @@
               flex="1"/>
     </panel>
   </panelset>
-</overlay>         
+</html:body>
+</html>         
 

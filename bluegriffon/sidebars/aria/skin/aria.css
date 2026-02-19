@@ -98,22 +98,3 @@ hbox.csspropertiesHeader[open="true"] > image {
   border-bottom: thin solid gray;
 }
 
-.aria-id {
-  -moz-binding: url("chrome://aria/content/aria.xml#aria-id");
-}
-
-.aria-string {
-  -moz-binding: url("chrome://aria/content/aria.xml#aria-string");
-}
-
-.aria-tokens {
-  -moz-binding: url("chrome://aria/content/aria.xml#aria-tokens");
-}
-
-.aria-token-list {
-  -moz-binding: url("chrome://aria/content/aria.xml#aria-token-list");
-}
-
-.aria-integer {
-  -moz-binding: url("chrome://aria/content/aria.xml#aria-integer");
-}

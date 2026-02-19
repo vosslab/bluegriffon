@@ -3,7 +3,10 @@
     "allow": [
       "Bash(bluegriffon:*)",
       "Bash(./build.sh:*)",
-      "Bash(git -C /Users/vosslab/nsh/bluegriffon ls-tree -r --full-tree 22d70ed3 bluegriffon/base/content/bluegriffon/js/)"
+		"Bash(reset_and_run.sh)",
+      "Bash(**/BlueGriffon.app/Contents/MacOS/bluegriffon *)",
+      "Bash(osascript:*)",
+      "Bash(pkill:*)"
     ]
   }
 }

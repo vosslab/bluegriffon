@@ -45,34 +45,18 @@
 @namespace svg url("http://www.w3.org/2000/svg");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
-tabeditor {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/tabeditor.xml#tabeditor');
-}
-
-tabeditor[visibility="hidden"]  tabs,
-tabeditor[visibility="hidden"]  tabpanels
+bg-tabeditor[visibility="hidden"]  tabs,
+bg-tabeditor[visibility="hidden"]  tabpanels
 {
   visibility: hidden;
 }
 
-tabeditor[visibility="hidden"] {
+bg-tabeditor[visibility="hidden"] {
   background-color: rgb(128,128,128);
 }
 
 sidebar {
   width: 200px;
-}
-
-sourceeditor {
-  -moz-binding: url('chrome://diavolo/content/sourceeditor.xml#sourceeditor');
-}
-
-hruler {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/rulers.xml#hruler');
-}
-
-vruler {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/rulers.xml#vruler');
 }
 
 .menuitem-iconic .menu-iconic-left {
@@ -318,7 +302,6 @@ grippy[disabled="true"] {
 /***** FLOATING PANELS *****/
 
 panel[floating="true"] {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/floatingpanel.xml#floatingpanel");
   -moz-appearance: none;
   background-color: #606060;
   color: white;
@@ -342,10 +325,6 @@ panel[floating="true"] {
   color: red;
 }
 
-tipoftheday {
-  -moz-binding: url("chrome://tipoftheday/content/tipoftheday.xml#tipoftheday");
-}
-
 /*********** menupopups *************/
 
 popup {
@@ -355,8 +334,7 @@ popup {
 
 /*********** decked panels *************/
 
-deckedPanelsTabs  {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/deckedPanelsTabs.xml#deckedPanelsTabs");
+bg-deckedpanelstabs  {
   overflow: hidden;
   -moz-box-orient: horizontal;
   background: url("chrome://bluegriffon/skin/tabeditor-tabs-bkgnd.png") repeat-x;
@@ -366,7 +344,7 @@ deckedPanelsTabs  {
   margin: 0px;
 }
 
-deckedPanelsTabs > label {
+bg-deckedpanelstabs > label {
   margin: 0px;
   margin-top: 4px;
   background-color: #b0b0b0;
@@ -383,16 +361,16 @@ deckedPanelsTabs > label {
               inset 0px -1px 1px gray;
 }
 
-deckedPanelsTabs > label:not([selected="true"]):hover {
+bg-deckedpanelstabs > label:not([selected="true"]):hover {
   background-color: transparent;
   background-image: linear-gradient(0deg, #ededed, #b0b0b0);
 }
 
-deckedPanelsTabs > label:not([selected="true"]):hover:active {
+bg-deckedpanelstabs > label:not([selected="true"]):hover:active {
   background: #ededed;
 }
 
-deckedPanelsTabs > label[selected="true"] {
+bg-deckedpanelstabs > label[selected="true"] {
   margin: 0px;
   margin-top: 4px;
   background-color: #ededed;
@@ -401,6 +379,3 @@ deckedPanelsTabs > label[selected="true"] {
 
 /* COLOR AND BGCOLOR PICKERS */
 
-ecolorpicker {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/ecolorpicker.xml#ecolorpicker");
-}

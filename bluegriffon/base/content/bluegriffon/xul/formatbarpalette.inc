@@ -41,7 +41,7 @@
 
     <toolbaritem id="ColorsBox">
       <stack>
-        <ecolorpicker id="BackgroundColorColorpicker" left="11" top="11"
+        <bg-ecolorpicker id="BackgroundColorColorpicker" left="11" top="11"
                       colorObjectId="BackgroundColor"
                       tooltiptext="&bgColor.label;"
                       windowTitle="Background color"
@@ -49,8 +49,8 @@
                       showTransparency="true">
           <observes element="cmd_renderedHTMLEnabler" attribute="disabled" onbroadcast="onColorDisableChange(this.parentNode, 'cmd_renderedHTMLEnabler')"/>
           <observes element="cmd_bgBackgroundColor"   attribute="state"    onbroadcast="onColorChange(this.parentNode, 'cmd_bgBackgroundColor')"/>
-        </ecolorpicker>
-        <ecolorpicker id="TextColorColorpicker" left="1" top="1"
+        </bg-ecolorpicker>
+        <bg-ecolorpicker id="TextColorColorpicker" left="1" top="1"
                       color="transparent"
                       tooltiptext="&color.label;"
                       colorObjectId="TextColor"
@@ -59,7 +59,7 @@
                       showTransparency="true">
           <observes element="cmd_renderedHTMLEnabler" attribute="disabled" onbroadcast="onColorDisableChange(this.parentNode, 'cmd_renderedHTMLEnabler')"/>
           <observes element="cmd_bgFontColor"         attribute="state"    onbroadcast="onColorChange(this.parentNode, 'cmd_bgFontColor')"/>
-        </ecolorpicker>
+        </bg-ecolorpicker>
       </stack>
     </toolbaritem>
 

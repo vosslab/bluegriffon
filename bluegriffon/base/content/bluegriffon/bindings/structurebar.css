@@ -37,20 +37,19 @@
 
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-structurebar {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/structurebar.xml#structurebar");
+bg-structurebar {
   overflow: -moz-hidden-unscrollable;
   min-width: 1px;
   margin-bottom: 1px;
   -moz-box-pack: end;
 }
 
-structurebar toolbarbutton {
+bg-structurebar toolbarbutton {
   padding: 0px;
   text-shadow: none;
 }
 
-structurebar .struct-textbox {
+bg-structurebar .struct-textbox {
   -moz-appearance: none !important;
   padding: 0px !important;
   margin: 0px !important;
@@ -59,65 +58,65 @@ structurebar .struct-textbox {
 
 /********* LTR *********/
 
-window[rtl="false"] structurebar {
+window[rtl="false"] bg-structurebar {
   margin-right: 10px;
   margin-left: 24px;
 }
 
-window[rtl="false"] structurebar .autorepeatbutton-up {
+window[rtl="false"] bg-structurebar .autorepeatbutton-up {
   list-style-image: url("chrome://bluegriffon/skin/structurebar/arrow-left.png");
   -moz-image-region: auto; /* cut off inheritance */
   filter: grayscale(100%);
 }
 
-window[rtl="false"] structurebar .autorepeatbutton-down {
+window[rtl="false"] bg-structurebar .autorepeatbutton-down {
   list-style-image: url("chrome://bluegriffon/skin/structurebar/arrow-right.png");
   -moz-image-region: auto; /* cut off inheritance */
   filter: grayscale(100%);
 }
 
-window[rtl="false"] structurebar autorepeatbutton:not([disabled]):hover {
+window[rtl="false"] bg-structurebar autorepeatbutton:not([disabled]):hover {
   filter: none;
 }
 
-window[rtl="false"] structurebar .autorepeatbutton-up:not([disabled="true"]) {
+window[rtl="false"] bg-structurebar .autorepeatbutton-up:not([disabled="true"]) {
   margin-right: 10px;
 }
 
-window[rtl="false"] structurebar .autorepeatbutton-down {
+window[rtl="false"] bg-structurebar .autorepeatbutton-down {
   margin-left: 10px;
 }
 
 /********* RTL *********/
 
-window[rtl="true"] structurebar {
+window[rtl="true"] bg-structurebar {
   margin-left: 10px;
   margin-right: 24px;
 }
 
-window[rtl="true"] structurebar .autorepeatbutton-up {
+window[rtl="true"] bg-structurebar .autorepeatbutton-up {
   list-style-image: url("chrome://bluegriffon/skin/structurebar/arrow-right.png");
   -moz-image-region: auto; /* cut off inheritance */
 }
 
-window[rtl="true"] structurebar .autorepeatbutton-down {
+window[rtl="true"] bg-structurebar .autorepeatbutton-down {
   list-style-image: url("chrome://bluegriffon/skin/structurebar/arrow-left.png");
   -moz-image-region: auto; /* cut off inheritance */
 }
 
-window[rtl="true"] structurebar autorepeatbutton[disabled="true"] {
+window[rtl="true"] bg-structurebar autorepeatbutton[disabled="true"] {
   filter: grayscale(100%);
 }
 
-window[rtl="true"] structurebar autorepeatbutton:not([disabled]):hover {
+window[rtl="true"] bg-structurebar autorepeatbutton:not([disabled]):hover {
   filter: grayscale(100%) contrast(600%);
 }
 
-window[rtl="true"] structurebar .autorepeatbutton-up:not([disabled="true"]) {
+window[rtl="true"] bg-structurebar .autorepeatbutton-up:not([disabled="true"]) {
   margin-left: 10px;
 }
 
-window[rtl="true"] structurebar .autorepeatbutton-down {
+window[rtl="true"] bg-structurebar .autorepeatbutton-down {
   margin-right: 10px;
 }
 

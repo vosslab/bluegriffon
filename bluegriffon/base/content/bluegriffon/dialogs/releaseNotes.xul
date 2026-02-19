@@ -5,14 +5,16 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
 
-<dialog title="Release Notes"
-        id="releaseNotesWindow"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml"
-        forcecleartheme = "true"
-        buttons="accept"
-        style="height: auto; width: 300px"
-        persist="screenX screenY">
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="releaseNotesWindow"
+      windowtype="dialog"
+      title="Release Notes"
+      style="height: auto; width: 300px"
+      persist="screenX screenY">
+<head/>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <hbox align="top">
     <image src="chrome://bluegriffon/skin/about-logo.png"
@@ -28,4 +30,10 @@
           </html:ul>
     </vbox>
   </hbox>
-</dialog>
+
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="OK" oncommand="window.close();"/>
+  </hbox>
+</html:body>
+</html>

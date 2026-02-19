@@ -1,4 +1,4 @@
-<?xml version="1.0"?> 
+<?xml version="1.0"?>
 
 <!-- ***** BEGIN LICENSE BLOCK *****
    - Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -39,25 +39,28 @@
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<!DOCTYPE dialog [
+<!DOCTYPE html [
   <!ENTITY % openDialogDTD SYSTEM "chrome://bluegriffon/locale/openLocation.dtd" >
   %openDialogDTD;
-]>            
- 
-<dialog id="openLocation"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        title="&window.title;"
-        forcecleartheme = "true"
-        onload="Startup()"
-        ondialogaccept="OpenFile()"
-        style="width: 40em;"
-        persist="screenX screenY">
+]>
 
-  <stringbundle id="openLocationBundle" src="chrome://bluegriffon/locale/openLocation.properties"/>
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="openLocation"
+      windowtype="dialog"
+      title="&window.title;"
+      style="width: 40em;"
+      persist="screenX screenY">
+<head>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/openLocation.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()">
+
+  <stringbundle id="openLocationBundle" src="chrome://bluegriffon/locale/openLocation.properties"/>
 
   <vbox>
     <hbox>
@@ -87,5 +90,11 @@
                value="window"/>
       </radiogroup>
     </hbox>
+    <separator class="thin"/>
+    <hbox pack="end">
+      <button label="OK" oncommand="OpenFile()"/>
+      <button label="Cancel" oncommand="window.close()"/>
+    </hbox>
   </vbox>
-</dialog>
+</html:body>
+</html>

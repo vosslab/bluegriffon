@@ -42,7 +42,7 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/listboxBg.css" type="text/css"?>
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 
-<!DOCTYPE window [
+<!DOCTYPE html [
   <!ENTITY % domexplorerDTD  SYSTEM "chrome://domexplorer/locale/domexplorer.dtd" >
   <!ENTITY % structurebarDTD SYSTEM "chrome://bluegriffon/locale/structurebar.dtd" >
   <!ENTITY % ariaDTD         SYSTEM "chrome://bluegriffon/locale/aria.dtd" >
@@ -51,22 +51,24 @@
   %ariaDTD;
 ]>            
 
-<page id         = "domexplorer"
-      windowtype = "BlueGriffon:DOMExplorer"
-      title      = "&window.title;"
-      xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-      xmlns:html = "http://www.w3.org/1999/xhtml"
-      onload     = "Startup()"
-      onunload   = "Shutdown()">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="domexplorer">
+<head>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/txns/diStyleAttrChangeTxn.js"/>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/txns/diNodeInsertionTxn.js"/>
   <script type="application/x-javascript"  src="chrome://domexplorer/content/domexplorer.js"/>
   <script type="application/x-javascript"  src="chrome://domexplorer/content/context.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           onunload="Shutdown()">
 
-  <menupopup id="structureBarContextMenu"
+
+<menupopup id="structureBarContextMenu"
          onpopupshowing="UpdateStructureBarContextMenu()">
     <menuitem label="&resetElementLanguage.label;"
               id="resetElementLanguageMenuitem"
@@ -260,4 +262,5 @@
       </tabpanels>
     </tabbox>
   </vbox>
-</page>
+</html:body>
+</html>

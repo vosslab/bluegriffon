@@ -1,9 +1,5 @@
 @import url("chrome://bluegriffon/skin/black.css");
 
-#optionalMetadataGridRows > row {
-  -moz-binding: url("chrome://epub/content/epub/metadata2.xml#metadataRow");
-}
-
 .metadata-delete-button {
   visibility: hidden;
   list-style-image: url("chrome://global/skin/icons/close.png");

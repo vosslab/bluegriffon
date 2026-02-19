@@ -178,10 +178,14 @@ export var EditorUtils = {
   
   newCommandParams: function newCommandParams()
   {
+    // XPCOM command-params removed in ESR 140; use pure JS replacement
+    // BGCommandParams is loaded via bg-command-controller.js in the chrome window
+    if (typeof BGCommandParams !== "undefined") {
+      return new BGCommandParams();
+    }
+    // Fallback for module contexts without the global
     try {
       const contractId = "@mozilla.org/embedcomp/command-params;1";
-      const nsICommandParams = Components.interfaces.nsICommandParams;
-
       return Components.classes[contractId].createInstance(Components.interfaces.nsICommandParams);
     }
     catch(e) { }

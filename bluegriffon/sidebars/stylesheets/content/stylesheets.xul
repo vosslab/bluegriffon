@@ -5,21 +5,23 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 <?xml-stylesheet href="chrome://stylesheets/skin/stylesheets.css" type="text/css"?>
 
-<!DOCTYPE window SYSTEM "chrome://stylesheets/locale/stylesheets.dtd">
+<!DOCTYPE html SYSTEM "chrome://stylesheets/locale/stylesheets.dtd">
 
-<window title="&window.title;"
-        id="insertStylesheetDialog"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml"
-        onload = "Startup()"
-        persist="screenX screenY width height">
-
-  <!-- Methods common to all editor dialogs -->
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="insertStylesheetDialog">
+<head>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://stylesheets/content/stylesheets.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()">
 
-  <keyset>
+
+  <!-- Methods common to all editor dialogs -->
+<keyset>
     <key keycode="VK_ESCAPE" oncommand="window.close()"/>
   </keyset>
 
@@ -101,4 +103,5 @@
                      oncommand="Up()"/>
     </hbox>
   </vbox>
-</window>
+</html:body>
+</html>

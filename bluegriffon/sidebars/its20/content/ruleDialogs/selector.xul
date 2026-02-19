@@ -38,17 +38,22 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % selectorDTD SYSTEM "chrome://its20/locale/selector.dtd">
   %selectorDTD;
 ]>
 
-<overlay id="selectorOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="selectorOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://its20/content/ruleDialogs/selector.js" />
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <groupbox id="selectorGroupbox">
+
+<groupbox id="selectorGroupbox">
     <caption label="&selector.label;"/>
     <hbox align="center">
       <label value="&cssSelector.label;" id="cssSelectorLabel"/>
@@ -65,4 +70,5 @@
       <label value="&prefixreport2.label;"/>
     </hbox>
   </groupbox>
-</overlay>
+</html:body>
+</html>

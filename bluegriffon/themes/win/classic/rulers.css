@@ -16,16 +16,16 @@ svg|text {
   fill: black;
 }
 
-hruler[disabled], vruler[disabled]  {
+bg-hruler[disabled], bg-vruler[disabled]  {
   visibility: hidden;
 }
 
-hruler, vruler {
+bg-hruler, bg-vruler {
   display: -moz-box;
   background-color: transparent;
 }
 
-hruler {
+bg-hruler {
   stroke-width: 4px;
   /*font-family: -moz-fixed;
   font-weight: bold;*/
@@ -38,7 +38,7 @@ hruler {
   position: absolute;
 }
 
-vruler {
+bg-vruler {
   stroke-width: 4px;
   /*font-family: -moz-fixed;
   font-weight: bold;*/
@@ -50,12 +50,12 @@ vruler {
   /*position: absolute;*/
 }
 
-hruler svg|rect, vruler svg|rect {
+bg-hruler svg|rect, bg-vruler svg|rect {
   fill: #454545;
 }
 
-:root[cleartheme="true"] hruler svg|rect,
-:root[cleartheme="true"] vruler svg|rect {
+:root[cleartheme="true"] bg-hruler svg|rect,
+:root[cleartheme="true"] bg-vruler svg|rect {
   fill: white;
 }
 

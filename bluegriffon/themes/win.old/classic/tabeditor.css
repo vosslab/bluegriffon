@@ -59,10 +59,6 @@
 }
 
 .tabeditor-tab {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/tab.xml#bluegriffon-editortab");
-}
-
-.tabeditor-tab {
   -moz-appearance: none;
   background-color: rgb(216, 213, 196);
   border-top-left-radius: 4px;
@@ -87,12 +83,12 @@ tabeditor-tab  .tab-text {
   width: 3px;
 }
 
-tabeditor[tabmode="left"] .tabs-left {
+bg-tabeditor[tabmode="left"] .tabs-left {
   width: 8px;
   -moz-box-flex: 0;
 }
 
-tabeditor[tabmode="right"] .tabs-right {
+bg-tabeditor[tabmode="right"] .tabs-right {
   max-width: 8px !important;
   -moz-box-flex: 0 ! important;
 }

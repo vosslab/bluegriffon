@@ -54,12 +54,7 @@
   background-color: transparent;
 }
 
-richlistitem.backgrounditem {
-  -moz-binding: url("chrome://cssproperties/content/backgrounditem.xml#backgrounditem");
-}
-
 richlistitem.colorstopitem {
-  -moz-binding: url("chrome://cssproperties/content/colorstopitem.xml#colorstopitem");
   border-bottom: gray thin solid;
 }
 

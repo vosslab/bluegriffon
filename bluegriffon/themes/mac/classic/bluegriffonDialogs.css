@@ -1,14 +1,6 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 @namespace html url("http://www.w3.org/1999/xhtml");
 
-ecolorpicker {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/ecolorpicker.xml#ecolorpicker");
-}
-
-filepickerbutton {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/filepickerbutton.xml#filepickerbutton');
-}
-
 .multibutton[checked],
 .multibutton:hover:active:not([disabled]) {
   color: #00abff;
@@ -73,14 +65,6 @@ hbox.listboxBg {
 
 .multibutton:not([label]) .toolbarbutton-text {
   display: none;
-}
-
-medium {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/media.xml#medium');
-}
-
-length {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/media.xml#length');
 }
 
 .medium-delete-button {

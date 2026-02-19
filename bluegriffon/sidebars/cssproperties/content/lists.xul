@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % csspropertiesDTD SYSTEM "chrome://cssproperties/locale/cssproperties.dtd">
   %csspropertiesDTD;
   <!ENTITY % backgrounditemDTD SYSTEM "chrome://cssproperties/locale/backgrounditem.dtd" >
   %backgrounditemDTD;
 ]>
 
-<overlay id="listsOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="listsOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://cssproperties/content/lists.js" />
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <vbox id="propertiesBox">
+
+<vbox id="propertiesBox">
       <hbox align="center"
             class="csspropertiesHeader"
             context="sectionHeaderContext"
@@ -119,7 +124,7 @@
               <hbox align="center">
                 <textbox flex="1" id="listStyleImageURLTextbox"
                          oninput="LoadListStyleImage()"/>
-                <filepickerbutton id="listStyleImageURLFilepickerbutton"
+                <bg-filepickerbutton id="listStyleImageURLFilepickerbutton"
                                   control="listStyleImageURLTextbox"
                                   mode="0"
                                   filters="filterImages"
@@ -131,4 +136,5 @@
         </grid>
       </vbox>
   </vbox>
-</overlay>
+</html:body>
+</html>

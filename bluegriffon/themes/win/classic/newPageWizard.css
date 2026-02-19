@@ -45,10 +45,6 @@
   font-size: larger;
 }
 
-filepickerbutton {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/filepickerbutton.xml#filepickerbutton');
-}
-
 #backgroundPositionBox {
   width: 99px;
   height: 99px;
@@ -74,6 +70,3 @@ stack {
   border: 2px groove #d0d0d0;
 }
 
-ecolorpicker {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/ecolorpicker.xml#ecolorpicker");
-}

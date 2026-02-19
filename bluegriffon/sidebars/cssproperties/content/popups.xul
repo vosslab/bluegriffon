@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % csspropertiesDTD SYSTEM "chrome://cssproperties/locale/cssproperties.dtd">
   %csspropertiesDTD;
   <!ENTITY % backgrounditemDTD SYSTEM "chrome://cssproperties/locale/backgrounditem.dtd" >
   %backgrounditemDTD;
 ]>
 
-<overlay id="popupsOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="popupsOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://cssproperties/content/bezier.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <panelset id="csspropertiesPanelset">
+
+<panelset id="csspropertiesPanelset">
     <panel level="top" noautohide="true" id="bezierPanel"
            alwaysontop="true">
       <hbox align="center">
@@ -135,7 +140,7 @@
         <hbox align="center">
           <textbox flex="1" id="imageURLTextbox"
                    oninput="LoadImage()"/>
-          <filepickerbutton id="filepickerbutton"
+          <bg-filepickerbutton id="filepickerbutton"
                             control="imageURLTextbox"
                             mode="0"
                             filters="filterImages"
@@ -287,7 +292,7 @@
               <hbox align="center">
                 <checkbox label="&angle.checkbox;" id="linearGradientAngleCheckbox"
                           oncommand="LinearAngleSelected(this)"/>
-                <rotator id="linearGradientAngleRotator"
+                <bg-rotator id="linearGradientAngleRotator"
                          onchange="gDialog.linearGradientAngleCheckbox.checked=true; LinearAngleSelected(gDialog.linearGradientAngleCheckbox)"
                          negated="true"/>
               </hbox>
@@ -333,4 +338,5 @@
     </panel>
   </panelset>
 
-</overlay>
+</html:body>
+</html>

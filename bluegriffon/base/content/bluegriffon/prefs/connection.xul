@@ -38,21 +38,28 @@
 #
 # ***** END LICENSE BLOCK *****
 
-<!DOCTYPE prefwindow SYSTEM "chrome://bluegriffon/locale/prefs/connection.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/prefs/connection.dtd">
 
 <?xml-stylesheet href="chrome://global/skin/"?>
 
-<prefwindow id="ConnectionsDialog" type="child"
-            xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-            title="&connectionsDialog.title;"
-            dlgbuttons="accept,cancel"
-            onbeforeaccept="return gConnectionsDialog.beforeAccept();"
-            onload="gConnectionsDialog.checkForSystemProxy();"
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="ConnectionsDialog"
+      type="child"
+      title="&connectionsDialog.title;"
+      dlgbuttons="accept,cancel"
+      onbeforeaccept="return gConnectionsDialog.beforeAccept();"
 #ifdef XP_MACOSX
-            style="width: &window.macWidth; !important;">
+      style="width: &window.macWidth; !important;">
 #else
-            style="width: &window.width; !important;">
+      style="width: &window.width; !important;">
 #endif
+<head>
+  <script type="application/javascript" src="chrome://bluegriffon/content/prefs/connection.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="gConnectionsDialog.checkForSystemProxy();">
 
   <prefpane id="ConnectionsDialogPane">
 
@@ -72,7 +79,7 @@
       <preference id="network.proxy.share_proxy_settings"
                   name="network.proxy.share_proxy_settings"
                   type="bool"/>
-      
+
       <preference id="pref.advanced.proxies.disable_button.reload"
                   name="pref.advanced.proxies.disable_button.reload"
                   type="bool"/>
@@ -84,8 +91,6 @@
       <preference id="network.proxy.backup.socks"        name="network.proxy.backup.socks"        type="string"/>
       <preference id="network.proxy.backup.socks_port"   name="network.proxy.backup.socks_port"   type="int"/>
     </preferences>
-    
-    <script type="application/javascript" src="chrome://bluegriffon/content/prefs/connection.js"/>
 
     <groupbox>
       <caption label="&proxyTitle.label;"/>
@@ -167,7 +172,7 @@
               </radiogroup>
             </row>
 
-            <row align="center"> 
+            <row align="center">
               <hbox align="center" pack="end">
                 <label value="&noproxy.label;" accesskey="&noproxy.accesskey;" control="networkProxyNone"/>
               </hbox>
@@ -185,11 +190,11 @@
                    oninput="gConnectionsDialog.updateReloadButton();"/>
           <button id="autoReload" icon="refresh"
                   label="&reload.label;" accesskey="&reload.accesskey;"
-                  oncommand="gConnectionsDialog.reloadPAC();" 
+                  oncommand="gConnectionsDialog.reloadPAC();"
                   preference="pref.advanced.proxies.disable_button.reload"/>
         </hbox>
       </radiogroup>
     </groupbox>
   </prefpane>
-</prefwindow>
-
+</html:body>
+</html>

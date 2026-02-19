@@ -40,24 +40,25 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 <?xml-stylesheet href="chrome://bluegriffon/skin/insertChars.css" type="text/css"?>
 
-<!DOCTYPE dialog SYSTEM "chrome://bluegriffon/locale/insertChars.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/insertChars.dtd">
 
-<dialog id="insertCharsDlg"
-        windowtype="BlueGriffon:insertCharsDlg"
-        title="&windowTitle.label;"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        onload = "Startup()"
-        onfocus="OnFocus()"
-        buttons="accept"
-        forcecleartheme = "true"
-        buttonlabelaccept="&insertButton.label;"
-        ondialogaccept = "return onAccept();"
-        persist="screenX screenY">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="insertCharsDlg"
+      windowtype="BlueGriffon:insertCharsDlg"
+      title="&windowTitle.label;"
+      persist="screenX screenY">
+<head>
   <!-- Methods common to all editor dialogs -->
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/insertChars.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           onfocus="OnFocus()"
+           ondialogaccept="return onAccept();">
 
   <listbox id="blocksListbox"
            onselect="BlockSelected()">
@@ -65,7 +66,7 @@
       <listheader label="&unicode.label;"/>
       <listheader label="&blockName.label;"/>
     </listhead>
-  
+
     <listcols>
       <listcol/>
       <listcol flex="1"/>
@@ -121,4 +122,10 @@
              type="autocomplete" autocompletesearch="bluegriffoncharunicode-autocomplete"/>
     </vbox>
   </hbox>
-</dialog>
+
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="&insertButton.label;" oncommand="if (typeof onAccept === 'function' &amp;&amp; !onAccept()) return; window.close();"/>
+  </hbox>
+</html:body>
+</html>

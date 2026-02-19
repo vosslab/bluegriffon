@@ -4,23 +4,25 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/listboxBg.css" type="text/css"?>
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 
-<!DOCTYPE dialog SYSTEM "chrome://bluegriffon/locale/insertSelect.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/insertSelect.dtd">
 
-<dialog title="&window.title;"
-        id="insertDatalistDialog"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml"
-        onload = "Startup()"
-        buttons="accept,cancel"
-        forcecleartheme = "true"
-        ondialogaccept="return onAccept();"
-        persist="screenX screenY width height">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="insertDatalistDialog"
+      windowtype="dialog"
+      title="&window.title;"
+      persist="screenX screenY width height">
+<head>
   <!-- Methods common to all editor dialogs -->
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/insertDatalist.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/form-common.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           ondialogaccept="return onAccept();">
 
   <panelset>
     <panel id="optionPanel" onpopupshown="gDialog.optionLabelTextbox.focus()"
@@ -105,5 +107,11 @@
                    id="UpButton"
                    oncommand="Up()"/>
   </hbox>
-  
-</dialog>
+
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="OK" oncommand="if (typeof onAccept === 'function' &amp;&amp; !onAccept()) return; window.close();"/>
+    <button dlgtype="cancel" label="Cancel" oncommand="window.close();"/>
+  </hbox>
+</html:body>
+</html>

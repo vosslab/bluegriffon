@@ -202,11 +202,11 @@ toolbaritem  menulist {
   max-width: 24px;
 }
 
-#ColorsBox ecolorpicker {
+#ColorsBox bg-ecolorpicker {
   -moz-box-ordinal-group: 1;
 }
 
-#ColorsBox ecolorpicker:hover {
+#ColorsBox bg-ecolorpicker:hover {
   -moz-box-ordinal-group: 2;
 }
 

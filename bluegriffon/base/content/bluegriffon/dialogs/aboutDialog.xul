@@ -1,4 +1,4 @@
-<?xml version="1.0"?> <!-- -*- Mode: HTML -*- --> 
+<?xml version="1.0"?> <!-- -*- Mode: HTML -*- -->
 
 # ***** BEGIN LICENSE BLOCK *****
 # Version: MPL 1.1/GPL 2.0/LGPL 2.1
@@ -39,34 +39,31 @@
 
 #filter substitution
 
-<?xml-stylesheet href="chrome://global/skin/" type="text/css"?> 
-<?xml-stylesheet href="chrome://bluegriffon/skin/aboutDialog.css" type="text/css"?> 
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="chrome://bluegriffon/skin/aboutDialog.css" type="text/css"?>
 
-<!DOCTYPE dialog [
+<!DOCTYPE html [
 <!ENTITY % brandDTD SYSTEM "chrome://branding/locale/brand.dtd" >
 %brandDTD;
 <!ENTITY % aboutDialogDTD SYSTEM "chrome://bluegriffon/locale/aboutDialog.dtd" >
 %aboutDialogDTD;
 ]>
 
-    
-<dialog xmlns:html="http://www.w3.org/1999/xhtml"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        id="aboutDialog"
-#ifdef XP_MACOSX
-        buttons="accept"
-#else
-        buttons=","
-#endif
-        windowtype="BlueGriffon:About"
-        title="&aboutDialog.title;"
-        onload="Startup()"
-        forcecleartheme="true"
-        persist="screenX screenY">
 
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="aboutDialog"
+      windowtype="BlueGriffon:About"
+      title="&aboutDialog.title;"
+      persist="screenX screenY">
+<head>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/aboutDialog.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()">
 
   <tabbox flex="1">
     <tabs>
@@ -84,25 +81,25 @@
                  style="border-radius: 15px;"/>
           <spacer flex="1"/>
         </hbox>
-  
+
         <hbox>
           <spacer flex="1"/>
           <label id="version" value="&aboutVersion; @APP_VERSION@"/>
           <spacer flex="1"/>
         </hbox>
-  
+
         <hbox>
           <spacer flex="1"/>
           <label id="build" value="Build @GRE_BUILDID@"/>
           <spacer flex="1"/>
         </hbox>
-  
+
         <hbox>
           <spacer flex="1"/>
           <label id="codename" value="&codeName; '@CODE_NAME@'"/>
           <spacer flex="1"/>
         </hbox>
-  
+
         <hbox>
           <spacer flex="1"/>
           <description id="copyright">&copyrightText;</description>
@@ -124,5 +121,12 @@
       <iframe flex="1" src="about:buildconfig"/>
     </tabpanels>
   </tabbox>
-</dialog>
 
+#ifdef XP_MACOSX
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="OK" oncommand="window.close();"/>
+  </hbox>
+#endif
+</html:body>
+</html>

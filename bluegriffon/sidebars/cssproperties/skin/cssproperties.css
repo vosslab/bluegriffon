@@ -160,17 +160,16 @@ menulist:not(#cssPolicyMenulist):not(#listStyleTypeMenulist) {
   /*-moz-box-align: center;*/
 }
 
-rotator {
+bg-rotator {
   margin-left: 1em;
   margin-bottom: 0.5em;
-  -moz-binding: url("chrome://bluegriffon/content/bindings/rotator.xml#rotator");
 }
 
 .multipane-menu menuitem {
   font-size: smaller;
 }
 
-ecolorpicker {
+bg-ecolorpicker {
   margin-right: 1em;
 }
 
@@ -202,22 +201,9 @@ ecolorpicker {
 }
 
 cssproperty {
-  -moz-binding: url("chrome://cssproperties/content/cssproperty.xml#cssPropertyBinding");
   display: -moz-grid-line;
   -moz-box-orient: horizontal;
   -moz-box-align: baseline;
-}
-
-csslength {
-  -moz-binding: url("chrome://cssproperties/content/cssproperty.xml#csslengthBinding");
-}
-
-cssident {
-  -moz-binding: url("chrome://cssproperties/content/cssproperty.xml#multibuttonBinding");
-}
-
-csscolor {
-  -moz-binding: url("chrome://cssproperties/content/cssproperty.xml#csscolorBinding");
 }
 
 l10n {

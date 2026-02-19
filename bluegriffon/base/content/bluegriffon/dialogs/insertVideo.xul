@@ -5,24 +5,26 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/insertVideo.css" type="text/css"?>
 
 
-<!DOCTYPE dialog SYSTEM "chrome://bluegriffon/locale/insertVideo.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/insertVideo.dtd">
 
-<dialog title="&window.title;"
-        id="insertVideoDialog"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml"
-        onload = "Startup()"
-        buttons="accept,cancel"
-        style="height: auto"
-        forcecleartheme = "true"
-        ondialogaccept="return onAccept();"
-        persist="screenX screenY">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="insertVideoDialog"
+      windowtype="dialog"
+      title="&window.title;"
+      style="height: auto"
+      persist="screenX screenY">
+<head>
   <!-- Methods common to all editor dialogs -->
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/javascript"   src="chrome://bluegriffon/content/txns/diNodeInsertionTxn.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/insertVideo.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           ondialogaccept="return onAccept();">
 
   <stringbundle id="bundleString"         src="chrome://bluegriffon/locale/insertVideo.properties"/>
 
@@ -38,7 +40,7 @@
             <textbox id="urlTextbox"
                      flex="1"
                      oninput="LoadVideoFile(); CheckURL('urlTextbox', 'relativeURLCheckbox')"/>
-            <filepickerbutton id="urlFilepickerbutton"
+            <bg-filepickerbutton id="urlFilepickerbutton"
                               control="urlTextbox"
                               mode="0"
                               filters="filterVideo"
@@ -110,7 +112,7 @@
           <label value="&posterFileLocation.label;"/>
           <hbox align="center">
             <textbox id="urlPosterTextbox" flex="1" oninput="LoadPosterFile(); CheckURL('urlPosterTextbox', 'relativeURLPosterCheckbox')"/>
-            <filepickerbutton id="urlPosterFilepickerbutton"
+            <bg-filepickerbutton id="urlPosterFilepickerbutton"
                               control="urlPosterTextbox"
                               mode="0"
                               filters="filterImages"
@@ -135,4 +137,11 @@
         </vbox>
       </tabpanels>
     </tabbox>
-</dialog>
+
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="OK" oncommand="if (typeof onAccept === 'function' &amp;&amp; !onAccept()) return; window.close();"/>
+    <button dlgtype="cancel" label="Cancel" oncommand="window.close();"/>
+  </hbox>
+</html:body>
+</html>

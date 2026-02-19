@@ -37,17 +37,22 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % composerOverlayDTD SYSTEM "chrome://domexplorer/locale/domexplorerOverlay.dtd">
   %composerOverlayDTD;
 ]>
 
-<overlay id="domexplorerOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="domexplorerOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://domexplorer/content/domexplorerOverlay.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <menupopup id="panelsMenuPopup">
+
+<menupopup id="panelsMenuPopup">
     <menuitem id="panel-domexplorer-menuitem"
               panel="panel-domexplorer"
               windowType="BlueGriffon:DOMExplorer"
@@ -68,5 +73,6 @@
               flex="1"/>
     </panel>
   </panelset>
-</overlay>         
+</html:body>
+</html>         
 

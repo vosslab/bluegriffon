@@ -7,18 +7,6 @@ dialog {
   color: var(--bg-main-foreground-color);
 }
 
-#optionalMetadataGridRows > row.metadata {
-  -moz-binding: url("chrome://epub/content/epub/metadata3.xml#optionalMetadataRow");
-}
-
-#mandatoryMetadataGridRows > row.metadata {
-  -moz-binding: url("chrome://epub/content/epub/metadata3.xml#mandatoryMetadataRow");
-}
-
-row.property {
-  -moz-binding: url("chrome://epub/content/epub/metadata3.xml#propertyRow");
-}
-
 .metadata-delete-button {
   visibility: hidden;
   list-style-image: url("chrome://global/skin/icons/close.png");

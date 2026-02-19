@@ -37,17 +37,22 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % composerOverlayDTD SYSTEM "chrome://stylesheets/locale/stylesheetsOverlay.dtd">
   %composerOverlayDTD;
 ]>
 
-<overlay id="stylesheetsOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="stylesheetsOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://stylesheets/content/stylesheetsOverlay.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <menupopup id="panelsMenuPopup">
+
+<menupopup id="panelsMenuPopup">
     <menuitem id="panel-stylesheets-menuitem"
               panel="panel-stylesheets"
               windowType="BlueGriffon:StyleSheets"
@@ -71,5 +76,6 @@
     <command id="cmd_stylesheets" oncommand="goDoCommand('cmd_stylesheets')"/>
   </commandset>
 
-</overlay>         
+</html:body>
+</html>         
 

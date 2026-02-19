@@ -38,18 +38,23 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % its20DTD SYSTEM "chrome://its20/locale/its20.dtd">
   %its20DTD;
 ]>
 
-<overlay id="globalOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="globalOverlay">
+<head>
   <script type="application/javascript"   src="chrome://bluegriffon/content/txns/diNodeInsertionTxn.js"/>
   <script type="application/x-javascript" src="chrome://its20/content/global.js" />
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <tabpanels id="tabpanels">
+
+<tabpanels id="tabpanels">
     <vbox id="globalBox">
       <listbox id="rulesetsBox"
                flex="1"
@@ -182,4 +187,5 @@
       </hbox>
     </vbox>
   </tabpanels>
-</overlay>
+</html:body>
+</html>

@@ -39,22 +39,25 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 
-<!DOCTYPE dialog SYSTEM "chrome://bluegriffon/locale/dictionary.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/dictionary.dtd">
 
-<dialog buttons="cancel"
-        title="&windowTitle.label;"
-        id="personalDictionary"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        persist="screenX screenY"
-        forcecleartheme = "true"
-        onload = "Startup()"
-        ondialogcancel="return onClose();">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="personalDictionary"
+      windowtype="dialog"
+      title="&windowTitle.label;"
+      persist="screenX screenY">
+<head>
   <!-- Methods common to all editor dialogs -->
   <script type="application/javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/dialogs/dictionary.js"/>
-  
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           ondialogcancel="return onClose();">
+
   <grid>
     <columns><column style="width: 15em" flex="1"/><column flex="1"/></columns>
     <rows>
@@ -85,11 +88,12 @@
                    accesskey="&RemoveButton.accessKey;"/>
           <spacer class="spacer"/>
           <spacer flex="1"/>
-          <button dlgtype="cancel" class="exit-dialog" id="close" label="&CloseButton.label;" 
+          <button dlgtype="cancel" class="exit-dialog" id="close" label="&CloseButton.label;"
                   default="true" oncommand="onClose();"
                   accesskey="&CloseButton.accessKey;"/>
         </vbox>
       </row>
     </rows>
   </grid>
-</dialog>
+</html:body>
+</html>

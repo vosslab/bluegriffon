@@ -43,7 +43,7 @@
 
 #include overlays.inc
 
-<!DOCTYPE window [
+<!DOCTYPE html [
   <!ENTITY % tabEditorDTD    SYSTEM "chrome://bluegriffon/locale/tabeditor.dtd" >
   %tabEditorDTD;
   <!ENTITY % bluegriffonDTD  SYSTEM "chrome://bluegriffon/locale/bluegriffon.dtd" >
@@ -58,9 +58,11 @@
   %brandDTD;
   <!ENTITY % pagePropertiesDTD SYSTEM "chrome://bluegriffon/locale/pageProperties.dtd" >
   %pagePropertiesDTD;
-]>            
+]>
 
-<window
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
   id         = "Bluegriffon"
   windowtype = "bluegriffon"
   fullscreenbutton="true"
@@ -68,10 +70,7 @@
   width      = "960"
   height     = "640"
   persist    = "screenX screenY width height"
-  onload     = "Startup()"
-  onunload   = "Shutdown()"
   iconsize   = "medium"
-  onclose    = "return onClose()"
 #ifdef CAN_DRAW_IN_TITLEBAR
 #ifdef XP_WIN
         chromemargin="0,2,2,2"
@@ -80,10 +79,14 @@
 #endif
         tabsintitlebar="true"
 #endif
-  xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-  xmlns:html = "http://www.w3.org/1999/xhtml">
-
+>
+<head>
 #include scripts.inc
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           onunload="Shutdown()"
+           onclose="return onClose()">
 
 #include sets.inc
 #include popups.inc
@@ -166,7 +169,7 @@
             <grippy/>
           </splitter>
           <vbox id="responsiveContainer" flex="1">
-            <tabeditor flex="1" id="tabeditor" visibility="hidden" persist="tabmode">
+            <bg-tabeditor flex="1" id="tabeditor" visibility="hidden" persist="tabmode">
                 <hbox id="modeTabbox" previousMode="wysiwyg">
                   <spacer flex="1"/>
                   <label class="multiButton"
@@ -212,10 +215,10 @@
                         <menuitem label="dummy"/>
                       </menupopup>
                     </menulist>
-          
+
                   </hbox>
                 </hbox>
-            </tabeditor>
+            </bg-tabeditor>
           </vbox>
           <splitter id="deckedPanelsSplitter"
                     collapse="after">
@@ -223,7 +226,7 @@
           </splitter>
           <vbox id="deckedPanels"
                 persist="width">
-            <deckedPanelsTabs id="deckedPanelsTabs"/>
+            <bg-deckedpanelstabs id="deckedPanelsTabs"/>
             <iframe id="deckPanelsIframe"
                     type="chrome"
                     flex="1"/>
@@ -232,9 +235,9 @@
 #include findbar.inc
         <iframe id="parserIframe" src="about:blank" hidden="true" type="content"/>
       </vbox>
-      <structurebar id="structurebar" orient="horizontal">
+      <bg-structurebar id="structurebar" orient="horizontal">
         <spacer id="structbarflexer" flex="1"/>
-      </structurebar>
+      </bg-structurebar>
     </vbox>
 </hbox>
 #ifdef TOOLBAR_CUSTOMIZATION_SHEET
@@ -262,4 +265,5 @@
       </hbox>
     </deck>
   </statusbar>
-</window>
+</html:body>
+</html>

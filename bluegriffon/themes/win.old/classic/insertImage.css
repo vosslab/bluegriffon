@@ -24,9 +24,8 @@ tabpanels {
   opacity: 0.5;
 }
 
-rotator {
+bg-rotator {
   margin-left: 1em;
-  -moz-binding: url("chrome://bluegriffon/content/bindings/rotator.xml#rotator");
 }
 
 #centerPicker[disabled="true"]  {

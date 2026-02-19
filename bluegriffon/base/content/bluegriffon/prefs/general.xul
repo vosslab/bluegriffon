@@ -3,11 +3,14 @@
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<!DOCTYPE overlay SYSTEM "chrome://bluegriffon/locale/prefs/general.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/prefs/general.dtd">
 
-<overlay
-  id     = "generalPrefsOverlay"
-  xmlns  = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="generalPrefsOverlay">
+<head/>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
   <prefpane id="generalPrefPane">
     <preferences>
@@ -102,4 +105,5 @@
     </groupbox>
   </prefpane>
 
-</overlay>
+</html:body>
+</html>

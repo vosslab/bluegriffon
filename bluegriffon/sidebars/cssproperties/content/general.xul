@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % csspropertiesDTD SYSTEM "chrome://cssproperties/locale/cssproperties.dtd">
   %csspropertiesDTD;
   <!ENTITY % backgrounditemDTD SYSTEM "chrome://cssproperties/locale/backgrounditem.dtd" >
   %backgrounditemDTD;
 ]>
 
-<overlay id="generalOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="generalOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://cssproperties/content/general.js" />
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <vbox id="propertiesBox">
+
+<vbox id="propertiesBox">
         <hbox align="center"
               class="csspropertiesHeader"
               context="sectionHeaderContext"
@@ -231,4 +236,5 @@
         </grid>
       </vbox>
   </vbox>
-</overlay>
+</html:body>
+</html>

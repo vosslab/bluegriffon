@@ -3,27 +3,29 @@
 
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 
-<!DOCTYPE dialog [
+<!DOCTYPE html [
   <!ENTITY % editGridTemplateDTD SYSTEM "chrome://cssproperties/locale/editGridTemplate.dtd">
   %editGridTemplateDTD;
 ]>
 
-<dialog id         = "editGridTemplate"
-        windowtype = "BlueGriffon:cssproperties:editGridTemplate"
-        title      = "&window.title;"
-        cleartheme = "true"
-        xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        persist    = "screenX screenY width height"
-        ondialogaccept = "Accept()"
-        onload     = "Startup()">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="editGridTemplate">
+<head>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript"  src="chrome://cssproperties/content/editGridTemplateEntry.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           ondialogaccept="Accept()"
+           onload="Startup()">
 
-  <radiogroup orient="vertical" onselect="onRadioSelected(this)" id="valueRadiogroup">
+
+<radiogroup orient="vertical" onselect="onRadioSelected(this)" id="valueRadiogroup">
     <radio id="noneRadio" label="&none.label;" value="none"/>
     <radio id="textentryRadio" label="&newEntry.label;" value="new" selected="true"/>
     <textbox id="textEntryTextbox" class="indent"/>
   </radiogroup>
-</dialog>
+</html:body>
+</html>

@@ -78,12 +78,9 @@ toolbar {
   -moz-appearance: none;
 }
 
-tabeditor {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/tabeditor.xml#tabeditor');
-}
 
-tabeditor[visibility="hidden"]  tabs,
-tabeditor[visibility="hidden"]  tabpanels
+bg-tabeditor[visibility="hidden"]  tabs,
+bg-tabeditor[visibility="hidden"]  tabpanels
 {
   visibility: hidden;
 }
@@ -97,17 +94,6 @@ tabeditor[visibility="hidden"]  tabpanels
   padding-top: 6px;
 }
 
-sourceeditor {
-  -moz-binding: url('chrome://diavolo/content/sourceeditor.xml#sourceeditor');
-}
-
-hruler {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/rulers.xml#hruler');
-}
-
-vruler {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/rulers.xml#vruler');
-}
 
 .menuitem-iconic .menu-iconic-left {
   display: -moz-box !important;
@@ -402,7 +388,6 @@ toolbox {
 /***** FLOATING PANELS *****/
 
 panel[floating="true"] {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/floatingpanel.xml#floatingpanel");
   -moz-appearance: none;
   background-color: rgba(96,96,96,0.9);
   color: var(--bg-main-foreground-color);
@@ -414,9 +399,6 @@ panel[floating="true"] {
   list-style-image: url("chrome://global/skin/icons/loading_16.png");
 }
 
-tipoftheday {
-  -moz-binding: url("chrome://tipoftheday/content/tipoftheday.xml#tipoftheday");
-}
 
 /*********** menupopups *************/
 
@@ -427,8 +409,7 @@ popup {
 
 /*********** decked panels *************/
 
-deckedPanelsTabs  {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/deckedPanelsTabs.xml#deckedPanelsTabs");
+bg-deckedpanelstabs  {
   overflow: hidden;
   -moz-box-orient: horizontal;
   height: 25px;
@@ -441,7 +422,7 @@ deckedPanelsTabs  {
   background-color: var(--bg-dark-gray);
 }
 
-deckedPanelsTabs > label {
+bg-deckedpanelstabs > label {
   -moz-box-align: center;
   -moz-appearance: none;
   border-radius: 4px 4px 0px 0px;
@@ -459,21 +440,17 @@ deckedPanelsTabs > label {
   background-color: var(--bg-dark-gray);
 }
 
-deckedPanelsTabs > label[selected="true"] {
+bg-deckedpanelstabs > label[selected="true"] {
   color: var(--bg-main-foreground-color);
   -moz-user-focus: normal;
   border-top: thin solid #6d7373;
 }
 
-deckedPanelsTabs > label:hover {
+bg-deckedpanelstabs > label:hover {
   color: var(--bg-main-foreground-color);
 }
 
 /* COLOR AND BGCOLOR PICKERS */
-
-ecolorpicker {
-  -moz-binding: url("chrome://bluegriffon/content/bindings/ecolorpicker.xml#ecolorpicker");
-}
 
 /* TOOLBARS and editing area*/
 
@@ -552,7 +529,6 @@ toolbarbutton:hover {
 
 deck[anonid="editorDeck"].liveview {
   display: -moz-box;
-  -moz-binding: none;
   -moz-box-flex: 1;
 }
 

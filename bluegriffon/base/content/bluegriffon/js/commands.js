@@ -39,11 +39,8 @@
 var { EditorUtils } = ChromeUtils.importESModule("resource://gre/modules/editorHelper.sys.mjs");
 var { UrlUtils } = ChromeUtils.importESModule("resource://gre/modules/urlHelper.sys.mjs");
 
-const kBASE_COMMAND_CONTROLLER_CID = "@mozilla.org/embedcomp/base-command-controller;1";
-
-const nsIControllerContext = interfaces.nsIControllerContext;
-const nsIInterfaceRequestor = interfaces.nsIInterfaceRequestor;
-const nsIControllerCommandTable = interfaces.nsIControllerCommandTable;
+// XPCOM base-command-controller removed in ESR 140; use pure JS replacement
+// const kBASE_COMMAND_CONTROLLER_CID = "@mozilla.org/embedcomp/base-command-controller;1";
 
 var ComposerCommands = {
 
@@ -64,22 +61,21 @@ var ComposerCommands = {
     }
     if (!controller)
     {
-      //create it
-      controller = Components.classes[kBASE_COMMAND_CONTROLLER_CID].createInstance();
-  
-      var editorController = controller.QueryInterface(nsIControllerContext);
-      editorController.init(null);
-      editorController.setCommandContext(null);
+      // Create pure JS command controller (XPCOM version removed in ESR 140)
+      controller = new BGCommandController();
+      controller.init(null);
+      controller.setCommandContext(null);
       window.controllers.insertControllerAt(0, controller);
-    
+
       // Store the controller ID so we can be sure to get the right one later
       this.mComposerJSCommandControllerID = window.controllers.getControllerId(controller);
     }
-  
+
     if (controller)
     {
-      var interfaceRequestor = controller.QueryInterface(nsIInterfaceRequestor);
-      return interfaceRequestor.getInterface(nsIControllerCommandTable);
+      // BGCommandController.getInterface returns the command table directly
+      var commandTable = controller.getInterface(null);
+      return commandTable;
     }
     return null;
   },
@@ -212,11 +208,8 @@ var ComposerCommands = {
 
   newCommandParams: function newCommandParams()
   {
-    try {
-      return Components.classes["@mozilla.org/embedcomp/command-params;1"].createInstance(Components.interfaces.nsICommandParams);
-    }
-    catch(e) {  }
-    return null;
+    // XPCOM command-params removed in ESR 140; use pure JS replacement
+    return new BGCommandParams();
   },
 
   pokeMultiStateUI: function pokeMultiStateUI(uiID, cmdParams)

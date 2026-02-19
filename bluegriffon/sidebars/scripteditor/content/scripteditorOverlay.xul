@@ -37,13 +37,19 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % scripteditorDTD SYSTEM "chrome://scripteditor/locale/scripteditorOverlay.dtd">
   %scripteditorDTD;
 ]>
 
-<overlay id="scripteditorOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="scripteditorOverlay">
+<head>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
 
   <menupopup id="panelsMenuPopup">
     <menuitem id="panel-scripteditor-menuitem"
@@ -65,5 +71,6 @@
     </panel>
   </panelset>
 
-</overlay>         
+</html:body>
+</html>         
 

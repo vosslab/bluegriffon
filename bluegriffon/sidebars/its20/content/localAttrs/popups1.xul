@@ -38,13 +38,19 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % its20DTD SYSTEM "chrome://its20/locale/its20.dtd">
   %its20DTD;
 ]>
 
-<overlay id="popups1Overlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="popups1Overlay">
+<head>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
 
   <popupset id="popupset">
     <menupopup id="sectionHeaderContext">
@@ -72,7 +78,7 @@
 	        <hbox align="center">
 	          <radio label="&existingITS.label;" id="existingITSRadio" value="existing"/>
 			      <textbox id="newRulesetUrlTextbox" flex="1"/>
-			      <filepickerbutton id="newRulesetUrlFilepickerbutton"
+			      <bg-filepickerbutton id="newRulesetUrlFilepickerbutton"
 			                        control="newRulesetUrlTextbox"
 			                        mode="0"
 			                        filters="*.xml"
@@ -179,4 +185,5 @@
                 
     </panel>
   </popupset>
-</overlay>
+</html:body>
+</html>

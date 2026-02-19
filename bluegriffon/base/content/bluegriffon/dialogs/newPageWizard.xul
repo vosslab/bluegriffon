@@ -42,7 +42,7 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/listboxBg.css" type="text/css"?>
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 
-<!DOCTYPE wizard [
+<!DOCTYPE html [
   <!ENTITY % pagePropertiesDTD SYSTEM "chrome://bluegriffon/locale/newPageWizard.dtd" >
   <!ENTITY % filePickingDTD SYSTEM "chrome://bluegriffon/locale/filePicking.dtd" >
   <!ENTITY % polyglotDTD SYSTEM "chrome://bluegriffon/locale/polyglot.dtd" >
@@ -51,16 +51,14 @@
   %polyglotDTD;
 ]>
 
-<wizard id="newPageWizard"
-        title="&window.title;"
-        onload="Startup()"
-        onunload="Shutdown()"
-        forcecleartheme = "true"
-        onwizardfinish="return CreateNewDocument();"
-        height="350" width="550"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        persist="screenX screenY">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="newPageWizard"
+      title="&window.title;"
+      height="350" width="550"
+      persist="screenX screenY">
+<head>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/editorUtils.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
@@ -70,6 +68,10 @@
   <script type="application/x-javascript" src="chrome://bluegriffon/content/js/colourPickerHelper.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/notifiers.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/newPageWizard.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           onunload="Shutdown()">
 
   <stringbundle id="bundle" src="chrome://global/locale/charsetTitles.properties"/>
 
@@ -84,7 +86,8 @@
             hidden="true"/>
   </panel>
 
-  <wizardpage label="&documentType.label;" flex="1">
+  <vbox flex="1">
+    <description>&documentType.label;</description>
     <description>&documentType.description;</description>
     <groupbox>
       <caption label="&language.label;"/>
@@ -121,9 +124,10 @@
                 oncommand="ToggleDoctype(gDialog.languageRadiogroup)"/>
       </radiogroup>
     </groupbox>
-  </wizardpage>
+  </vbox>
 
-  <wizardpage label="&generalTab.label;" flex="1">
+  <vbox flex="1">
+    <description>&generalTab.label;</description>
     <grid flex="1" style="overflow: hidden">
       <columns><column/><column flex="1"/></columns>
       <rows>
@@ -182,9 +186,10 @@
         </row>
       </rows>
     </grid>
-  </wizardpage>
+  </vbox>
 
-  <wizardpage label="&colorsTab.label;" flex="1">
+  <vbox flex="1">
+    <description>&colorsTab.label;</description>
     <checkbox id="userDefinedColors"
               label="&userDefinedColors.label;"
               oncommand="EnableUserDefinedColorsControls()"/>
@@ -198,7 +203,7 @@
                    accesskey="&backgroundColor.accesskey;"
                    id="backgroundColorColorpickerLabel"
                    control="backgroundColorColorpicker"/>
-            <ecolorpicker id="backgroundColorColorpicker"
+            <bg-ecolorpicker id="backgroundColorColorpicker"
                           color="transparent"
                           disabled="true"
                           colorObjectId="TextColor"
@@ -210,7 +215,7 @@
                    accesskey="&textColor.accesskey;"
                    id="textColorColorpickerLabel"
                    control="textColorColorpicker"/>
-            <ecolorpicker id="textColorColorpicker"
+            <bg-ecolorpicker id="textColorColorpicker"
                           color="transparent"
                           disabled="true"
                           colorObjectId="TextColor"
@@ -222,7 +227,7 @@
                    accesskey="&linksColor.accesskey;"
                    id="linksColorColorpickerLabel"
                    control="linksColorColorpicker"/>
-            <ecolorpicker id="linksColorColorpicker"
+            <bg-ecolorpicker id="linksColorColorpicker"
                           color="transparent"
                           disabled="true"
                           colorObjectId="TextColor"
@@ -234,7 +239,7 @@
                    accesskey="&activeLinksColor.accesskey;"
                    id="activeLinksColorColorpickerLabel"
                    control="activeLinksColorColorpicker"/>
-            <ecolorpicker id="activeLinksColorColorpicker"
+            <bg-ecolorpicker id="activeLinksColorColorpicker"
                           color="transparent"
                           disabled="true"
                           colorObjectId="TextColor"
@@ -246,7 +251,7 @@
                    accesskey="&visitedLinksColor.accesskey;"
                    id="visitedLinksColorColorpickerLabel"
                    control="visitedLinksColorColorpicker"/>
-            <ecolorpicker id="visitedLinksColorColorpicker"
+            <bg-ecolorpicker id="visitedLinksColorColorpicker"
                           color="transparent"
                           disabled="true"
                           colorObjectId="TextColor"
@@ -276,9 +281,10 @@
     <checkbox id="makeColorsDefault"
               label="&makeColorsDefault.label;"
               checked="true"/>
-  </wizardpage>
+  </vbox>
 
-  <wizardpage label="&bgTab.label;" flex="1">
+  <vbox flex="1">
+    <description>&bgTab.label;</description>
     <grid>
       <columns>
         <column/>
@@ -291,7 +297,7 @@
                  control="backgroundImage"
                  accesskey="&backgroundImage.accesskey;"/>
           <textbox id="backgroundImage" flex="1"/>
-          <filepickerbutton id="filepickerbutton"
+          <bg-filepickerbutton id="filepickerbutton"
                             control="backgroundImage"
                             mode="0"
                             title="&filepickerForBgImage.title;"/>
@@ -348,9 +354,10 @@
         </row>
       </rows>
     </grid>
-  </wizardpage>
+  </vbox>
 
-  <wizardpage label="&layoutsTab.label;" orient="vertical" flex="1">
+  <vbox orient="vertical" flex="1">
+    <description>&layoutsTab.label;</description>
     <checkbox id="usePageLayout"
               checked="true"
               oncommand="onUsePageLayoutChanged(this)"
@@ -460,8 +467,12 @@
                 checked="true"
                 accesskey="&loremIpsum.accesskey;" />
     </vbox>
-  </wizardpage>
-</wizard>
+  </vbox>
 
-
-
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button label="Finish" oncommand="if (typeof CreateNewDocument === 'function' &amp;&amp; !CreateNewDocument()) return; window.close();"/>
+    <button label="Cancel" oncommand="window.close();"/>
+  </hbox>
+</html:body>
+</html>

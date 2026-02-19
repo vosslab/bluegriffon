@@ -38,17 +38,22 @@
 	 -
 	 - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % composerOverlayDTD SYSTEM "chrome://its20/locale/its20Overlay.dtd">
   %composerOverlayDTD;
 ]>
 
-<overlay id="its20Overlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="its20Overlay">
+<head>
   <script type="application/x-javascript"  src="chrome://its20/content/its20Overlay.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <commandset id="composerMenuItems">
+
+<commandset id="composerMenuItems">
     <command id="cmd_its20"            oncommand="goDoCommand('cmd_its20')"/>
   </commandset>
 
@@ -73,5 +78,6 @@
               flex="1"/>
     </panel>
   </panelset>
-</overlay>         
+</html:body>
+</html>         
 

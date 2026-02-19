@@ -1,16 +1,16 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
-filepickerbutton  {
+bg-filepickerbutton  {
   margin: 0px;
   padding: 0px;
   list-style-image: url('chrome://bluegriffon/skin/icons/filePicking.png');
 }
 
-filepickerbutton:not([disabled]):hover  {
+bg-filepickerbutton:not([disabled]):hover  {
   list-style-image: url('chrome://bluegriffon/skin/icons/filePicking-hover.png');
 }
 
-filepickerbutton[disabled="true"]  {
+bg-filepickerbutton[disabled="true"]  {
   list-style-image: url('chrome://bluegriffon/skin/icons/filePicking-disabled.png');
 }
 

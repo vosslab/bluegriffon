@@ -45,7 +45,7 @@
 
 /* colorpicker button */
 
-ecolorpicker {
+bg-ecolorpicker {
   width: 24px;
   height: 24px;
   border-radius: 12px;
@@ -55,7 +55,7 @@ ecolorpicker {
   -moz-appearance: none;
 }
 
-ecolorpicker:hover:active {
+bg-ecolorpicker:hover:active {
   background-color: ThreeDLightShadow;
 }
 

@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % csspropertiesDTD SYSTEM "chrome://cssproperties/locale/cssproperties.dtd">
   %csspropertiesDTD;
   <!ENTITY % backgrounditemDTD SYSTEM "chrome://cssproperties/locale/backgrounditem.dtd" >
   %backgrounditemDTD;
 ]>
 
-<overlay id="bordersOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="bordersOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://cssproperties/content/borders.js" />
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <vbox id="propertiesBox">
+
+<vbox id="propertiesBox">
       <hbox align="center"
             class="csspropertiesHeader"
             context="sectionHeaderContext"
@@ -313,7 +318,7 @@
           <hbox align="center">
             <textbox flex="1" id="borderImageURLTextbox"
                      oninput="LoadBorderImage();ApplyBorderImage(false)"/>
-            <filepickerbutton id="borderImageURLFilepicker"
+            <bg-filepickerbutton id="borderImageURLFilepicker"
                               control="borderImageURLTextbox"
                               mode="0"
                               filters="filterImages"
@@ -462,4 +467,5 @@
         </vbox>
       </vbox>
   </vbox>
-</overlay>
+</html:body>
+</html>

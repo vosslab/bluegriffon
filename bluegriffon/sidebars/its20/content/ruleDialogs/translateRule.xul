@@ -44,29 +44,30 @@
 
 <?xul-overlay href="chrome://its20/content/ruleDialogs/selector.xul"?>
 
-<!DOCTYPE page [
+<!DOCTYPE html [
   <!ENTITY % translateRuleDTD SYSTEM "chrome://its20/locale/translateRule.dtd">
   %translateRuleDTD;
 ]>
 
-<dialog id         = "translateRuleDialog"
-        windowtype = "BlueGriffon:its20:translateRule"
-        title      = "&window.title;"
-        forcecleartheme = "true"
-        xmlns      = "http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        persist    = "screenX screenY width height"
-        ondialogaccept = "Accept()"
-        onload     = "Startup()"
-        onunload   = "Shutdown()">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="translateRuleDialog">
+<head>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript"  src="chrome://bluegriffon/content/utils/prompter.js"/>
   <script type="application/x-javascript"  src="chrome://its20/content/implemented.js"/>
   <script type="application/x-javascript"  src="chrome://its20/content/ruleDialogs/common.js"/>
   <script type="application/x-javascript"  src="chrome://its20/content/ruleDialogs/translateRule.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           ondialogaccept="Accept()"
+           onload="Startup()"
+           onunload="Shutdown()">
 
-  <groupbox id="selectorGroupbox"/>
+
+<groupbox id="selectorGroupbox"/>
 
   <groupbox>
     <hbox>
@@ -82,4 +83,5 @@
       <spacer flex="1"/>
     </hbox>
   </groupbox>
-</dialog>
+</html:body>
+</html>

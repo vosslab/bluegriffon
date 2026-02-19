@@ -38,17 +38,22 @@
    -
    - ***** END LICENSE BLOCK ***** -->
 
-<!DOCTYPE overlay [
+<!DOCTYPE html [
   <!ENTITY % its20DTD SYSTEM "chrome://its20/locale/its20.dtd">
   %its20DTD;
 ]>
 
-<overlay id="locNoteOverlay"
-         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="locNoteOverlay">
+<head>
   <script type="application/x-javascript"  src="chrome://its20/content/localAttrs/locNote.js" />
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
-  <vbox id="propertiesBox">
+
+<vbox id="propertiesBox">
     <hbox class="csspropertiesHeader" open="true" align="center"
           context="sectionHeaderContext"
           id="locNoteSectionHeader"
@@ -103,4 +108,5 @@
       </radiogroup>
     </vbox>
   </vbox>
-</overlay>
+</html:body>
+</html>

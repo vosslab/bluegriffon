@@ -98,7 +98,7 @@ function UpdateType()
 
 function AddMedium()
 {
-  var medium = document.createElement("medium");
+  var medium = document.createElement("bg-medium");
   gDialog.mediaGroupbox.insertBefore(medium, gDialog.mediaButtonHbox);
   window.sizeToContent();
 }
@@ -160,7 +160,7 @@ function onAccept()
   var editor = EditorUtils.getCurrentEditor();
 
   var mediaString = "";
-  var mediumElts = gDialog.mediaGroupbox.querySelectorAll("medium");
+  var mediumElts = gDialog.mediaGroupbox.querySelectorAll("bg-medium");
   for (var i = 0; i < mediumElts.length; i++) {
     var m = mediumElts[i];
     var amplifier = m.amplifier;
@@ -260,7 +260,7 @@ function UpdateDialog()
   for (var i = 0; i < mediaArray.length; i++) {
     var m = mediaArray[i];
     var parsed = CssInspector.parseMediaQuery(m);
-    var medium = document.createElement("medium")
+    var medium = document.createElement("bg-medium")
     gDialog.mediaGroupbox.insertBefore(medium, gDialog.mediaButtonHbox);
     medium.amplifier = parsed.amplifier;
     medium.media = parsed.medium;

@@ -39,16 +39,16 @@
   display: none;
 }
 
-structurebar {
+bg-structurebar {
   margin-bottom: 4px;
   margin-top: 4px;
 }
 
-:root:not([cleartheme="true"]) structurebar toolbarbutton {
+:root:not([cleartheme="true"]) bg-structurebar toolbarbutton {
   font-weight: bold;
 }
 
-window[rtl="false"] structurebar toolbarbutton {
+window[rtl="false"] bg-structurebar toolbarbutton {
   margin-left: 0px;
   margin-right: 0px;
 
@@ -58,8 +58,8 @@ window[rtl="false"] structurebar toolbarbutton {
 
   height: 20px;
 
-  background-image: url("chrome://bluegriffon/skin/structurebar/ltr/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureBorder.png")
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -69,24 +69,24 @@ window[rtl="false"] structurebar toolbarbutton {
   background-color: var(--bg-dark-gray);
 }
 
-structurebar toolbarbutton {
+bg-structurebar toolbarbutton {
   color: #c0c0c0;
   -moz-appearance: none;
 }
 
-structurebar toolbarbutton:hover {
+bg-structurebar toolbarbutton:hover {
   color: white;
 }
 
-structurebar toolbarbutton[checked="true"] {
+bg-structurebar toolbarbutton[checked="true"] {
   color: #00abff;
 }
 
-window[rtl="false"] structurebar toolbarbutton:first-of-type {
+window[rtl="false"] bg-structurebar toolbarbutton:first-of-type {
   margin-left: 12px;
   padding-left: 8px;
-  background-image: url("chrome://bluegriffon/skin/structurebar/ltr/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureBorder.png")
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -94,10 +94,10 @@ window[rtl="false"] structurebar toolbarbutton:first-of-type {
   background-repeat: no-repeat, repeat-x;
 }
 
-window[rtl="false"] structurebar toolbarbutton:last-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/ltr/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureBorder.png")
+window[rtl="false"] bg-structurebar toolbarbutton:last-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -107,10 +107,10 @@ window[rtl="false"] structurebar toolbarbutton:last-of-type {
   padding-right: 12px;
 }
 
-window[rtl="false"] structurebar toolbarbutton:only-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/ltr/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureBorder.png")
+window[rtl="false"] bg-structurebar toolbarbutton:only-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -120,20 +120,20 @@ window[rtl="false"] structurebar toolbarbutton:only-of-type {
   padding-right: 12px;
 }
 
-window[rtl="false"] structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
-  background-image: url("chrome://bluegriffon/skin/structurebar/ltr/structureArrowSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureBorder.png")
+window[rtl="false"] bg-structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrowSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
                     ;
 }
 
-window[rtl="false"] structurebar toolbarbutton[checked="true"]:first-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/ltr/structureBoxLeftSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/ltr/structureBorder.png")
+window[rtl="false"] bg-structurebar toolbarbutton[checked="true"]:first-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBoxLeftSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/ltr/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -144,7 +144,7 @@ window[rtl="false"] structurebar toolbarbutton[checked="true"]:first-of-type {
 
 /************* RTL *************/
 
-window[rtl="true"] structurebar toolbarbutton {
+window[rtl="true"] bg-structurebar toolbarbutton {
   margin-left: 0px;
   margin-right: 0px;
 
@@ -154,8 +154,8 @@ window[rtl="true"] structurebar toolbarbutton {
 
   height: 20px;
 
-  background-image: url("chrome://bluegriffon/skin/structurebar/rtl/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureBorder.png")
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -164,11 +164,11 @@ window[rtl="true"] structurebar toolbarbutton {
   background-position: top right;
 }
 
-window[rtl="true"] structurebar toolbarbutton:first-of-type {
+window[rtl="true"] bg-structurebar toolbarbutton:first-of-type {
   margin-right: 12px;
   padding-left: 8px;
-  background-image: url("chrome://bluegriffon/skin/structurebar/rtl/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureBorder.png")
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -177,10 +177,10 @@ window[rtl="true"] structurebar toolbarbutton:first-of-type {
   background-position: top right;
 }
 
-window[rtl="true"] structurebar toolbarbutton:last-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/rtl/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureBorder.png")
+window[rtl="true"] bg-structurebar toolbarbutton:last-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -191,10 +191,10 @@ window[rtl="true"] structurebar toolbarbutton:last-of-type {
   margin-left: 12px;
 }
 
-window[rtl="true"] structurebar toolbarbutton:only-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/rtl/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureBorder.png")
+window[rtl="true"] bg-structurebar toolbarbutton:only-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -204,20 +204,20 @@ window[rtl="true"] structurebar toolbarbutton:only-of-type {
   padding-left: 12px;
 }
 
-window[rtl="true"] structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
-  background-image: url("chrome://bluegriffon/skin/structurebar/rtl/structureArrowSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureBorder.png")
+window[rtl="true"] bg-structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrowSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
                     ;
 }
 
-window[rtl="true"] structurebar toolbarbutton[checked="true"]:first-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/rtl/structureBoxLeftSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/rtl/structureBorder.png")
+window[rtl="true"] bg-structurebar toolbarbutton[checked="true"]:first-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBoxLeftSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/rtl/structureBorder.png")
 %ifdef XP_UNIX
                     ! important
 %endif
@@ -228,7 +228,7 @@ window[rtl="true"] structurebar toolbarbutton[checked="true"]:first-of-type {
 
 /****** CLEAR THEME *****/
 
-window[rtl="false"][cleartheme="true"] structurebar toolbarbutton {
+window[rtl="false"][cleartheme="true"] bg-structurebar toolbarbutton {
   margin-left: 0px;
   margin-right: 0px;
 
@@ -240,8 +240,8 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton {
 
   color: black;
 
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBorder.png"),
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -252,15 +252,15 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton {
   background-color: transparent;
 }
 
-:root[cleartheme="true"] structurebar toolbarbutton:hover:not([checked="true"]) {
+:root[cleartheme="true"] bg-structurebar toolbarbutton:hover:not([checked="true"]) {
   color: #606060;
 }
 
-window[rtl="false"][cleartheme="true"] structurebar toolbarbutton:first-of-type {
+window[rtl="false"][cleartheme="true"] bg-structurebar toolbarbutton:first-of-type {
   margin-left: 12px;
   padding-left: 8px;
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBorder.png"),
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -269,10 +269,10 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton:first-of-type 
   background-repeat: no-repeat, repeat-x, repeat-x;
 }
 
-window[rtl="false"][cleartheme="true"] structurebar toolbarbutton:last-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBorder.png"),
+window[rtl="false"][cleartheme="true"] bg-structurebar toolbarbutton:last-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -283,10 +283,10 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton:last-of-type {
   padding-right: 12px;
 }
 
-window[rtl="false"][cleartheme="true"] structurebar toolbarbutton:only-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBorder.png"),
+window[rtl="false"][cleartheme="true"] bg-structurebar toolbarbutton:only-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -297,10 +297,10 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton:only-of-type {
   padding-right: 12px;
 }
 
-window[rtl="false"][cleartheme="true"] structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrowSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBorder.png"),
+window[rtl="false"][cleartheme="true"] bg-structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrowSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBorder.png"),
                     -moz-linear-gradient(#303030, #606060, #303030)
 %ifdef XP_UNIX
                     ! important
@@ -309,10 +309,10 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton[checked="true"
   color: white ! important;
 }
 
-window[rtl="false"][cleartheme="true"] structurebar toolbarbutton[checked="true"]:first-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBoxLeftSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/ltr/structureBorder.png"),
+window[rtl="false"][cleartheme="true"] bg-structurebar toolbarbutton[checked="true"]:first-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBoxLeftSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/ltr/structureBorder.png"),
                     -moz-linear-gradient(#303030, #606060, #303030)
 %ifdef XP_UNIX
                     ! important
@@ -325,7 +325,7 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton[checked="true"
 
 /************* RTL *************/
 
-:root[cleartheme="true"] structurebar[rtl="true"] toolbarbutton {
+:root[cleartheme="true"] bg-structurebar[rtl="true"] toolbarbutton {
   margin-left: 0px;
   margin-right: 0px;
 
@@ -337,19 +337,19 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton[checked="true"
 
   color: black;
 
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBorder.png"),
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
 %endif
                     ;
   background-repeat: no-repeat, repeat-x;
-  background-position: towindow[rtl="true"][cleartheme="true"] structurebar[rtl="true"] toolbarbutton:first-of-type {
+  background-position: towindow[rtl="true"][cleartheme="true"] bg-structurebar[rtl="true"] toolbarbutton:first-of-type {
   margin-right: 12px;
   padding-left: 8px;
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBorder.png"),
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -359,10 +359,10 @@ window[rtl="false"][cleartheme="true"] structurebar toolbarbutton[checked="true"
   background-position: top right;
 }
 
-window[rtl="true"][cleartheme="true"] structurebar toolbarbutton:last-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrow.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBorder.png"),
+window[rtl="true"][cleartheme="true"] bg-structurebar toolbarbutton:last-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrow.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -374,10 +374,10 @@ window[rtl="true"][cleartheme="true"] structurebar toolbarbutton:last-of-type {
   margin-left: 12px;
 }
 
-window[rtl="true"][cleartheme="true"] structurebar toolbarbutton:only-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBoxLeft.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBorder.png"),
+window[rtl="true"][cleartheme="true"] bg-structurebar toolbarbutton:only-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBoxLeft.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBorder.png"),
                     -moz-linear-gradient(rgb(255, 255, 255), rgb(192, 192, 192), rgb(204, 204, 204))
 %ifdef XP_UNIX
                     ! important
@@ -388,10 +388,10 @@ window[rtl="true"][cleartheme="true"] structurebar toolbarbutton:only-of-type {
   padding-left: 12px;
 }
 
-window[rtl="true"][cleartheme="true"] structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrowSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBorder.png"),
+window[rtl="true"][cleartheme="true"] bg-structurebar toolbarbutton[checked="true"]:not(:first-of-type) {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrowSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBorder.png"),
                     -moz-linear-gradient(#303030, #606060, #303030)
 %ifdef XP_UNIX
                     ! important
@@ -400,10 +400,10 @@ window[rtl="true"][cleartheme="true"] structurebar toolbarbutton[checked="true"]
   color: white ! important;
 }
 
-window[rtl="true"][cleartheme="true"] structurebar toolbarbutton[checked="true"]:first-of-type {
-  background-image: url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBoxLeftSelected.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureArrowRight.png"),
-                    url("chrome://bluegriffon/skin/structurebar/cleartheme/rtl/structureBorder.png"),
+window[rtl="true"][cleartheme="true"] bg-structurebar toolbarbutton[checked="true"]:first-of-type {
+  background-image: url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBoxLeftSelected.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureArrowRight.png"),
+                    url("chrome://bluegriffon/skin/bg-structurebar/cleartheme/rtl/structureBorder.png"),
                     -moz-linear-gradient(#303030, #606060, #303030)
 %ifdef XP_UNIX
                     ! important

@@ -4,7 +4,7 @@
 
 #include overlays.inc
 
-<!DOCTYPE window [
+<!DOCTYPE html [
 <!ENTITY % bluegriffonDTD  SYSTEM "chrome://bluegriffon/locale/bluegriffon.dtd" >
 <!ENTITY % findbarDTD      SYSTEM "chrome://bluegriffon/locale/findbar.dtd" >
 <!ENTITY % structurebarDTD SYSTEM "chrome://bluegriffon/locale/structurebar.dtd" >
@@ -15,13 +15,15 @@
 %structurebarDTD;
 %ariaDTD;
 %brandDTD;
-]>            
+]>
 
-<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        id="hidden-window" windowtype="hidden-main"
-        width="0" height="0" >
-
-  <script><![CDATA[ 
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="hidden-window" windowtype="hidden-main"
+      width="0" height="0" >
+<head>
+  <script><![CDATA[
     const PREFS_SERVICE_CONTRACTID = "@mozilla.org/preferences-service;1";
     const WNDMEDIATOR_SERVICE_CONTRACTID = "@mozilla.org/appshell/window-mediator;1";
     const CMDLINEHANDLER_SERVICE_CONTRACTID = "@disruptive-innovations.com/commandlinehandler/general-startup;1?type=bluegriffon";
@@ -31,7 +33,7 @@
     function selectMainWindowAndClose() {
       window.removeEventListener("load", selectMainWindowAndClose, false);
       GetUIElements();
-    
+
       ComposerCommands.setupMainCommands();
       window.updateCommands("style");
       // Setup the dock menu.
@@ -39,10 +41,10 @@
       if (dockMenuElement != null) {
         var nativeMenu = Cc["@mozilla.org/widget/standalonenativemenu;1"]
                          .createInstance(Ci.nsIStandaloneNativeMenu);
-  
+
         try {
           nativeMenu.init(dockMenuElement);
-  
+
           var dockSupport = Cc["@mozilla.org/widget/macdocksupport;1"]
                             .getService(Ci.nsIMacDockSupport);
           dockSupport.dockMenu = nativeMenu;
@@ -78,6 +80,8 @@
   ]]></script>
 
 #include scripts.inc
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
 
 #include sets.inc
 
@@ -91,5 +95,5 @@
               oncommand="OpenBlueGriffonWindow();" />
   </menupopup>
 </popupset>
-</window>
-
+</html:body>
+</html>

@@ -10,6 +10,23 @@
   <script type="application/javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/utils/notifiers.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/bg-command-controller.js"/>
+
+  <!-- Custom Elements (XBL replacement) -->
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/structurebar-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/tabeditor-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/tab-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/filepickerbutton-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/floatingpanel-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/deckedPanelsTabs-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/rulers-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/rotator-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/multistate-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/lengthbox-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/ecolorpicker-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/cssClassPicker-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/menulist-element.js"/>
+  <script type="application/javascript" src="chrome://bluegriffon/content/js/media-element.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/js/commands.js"/>
   <script type="application/javascript" src="chrome://aria/content/aria-roles.js"/>
   <script type="application/javascript" src="chrome://bluegriffon/content/js/bluegriffon.js"/>

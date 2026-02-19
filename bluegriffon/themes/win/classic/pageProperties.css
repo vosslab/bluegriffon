@@ -1,7 +1,3 @@
-filepickerbutton {
-  -moz-binding: url('chrome://bluegriffon/content/bindings/filepickerbutton.xml#filepickerbutton');
-}
-
 #removeBackground {
   list-style-image: url("chrome://bluegriffon/skin/icons/close-button.png");
   -moz-image-region: rect(0px 16px 16px 0px);

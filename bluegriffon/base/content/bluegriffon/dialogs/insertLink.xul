@@ -4,22 +4,24 @@
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 
 
-<!DOCTYPE dialog SYSTEM "chrome://bluegriffon/locale/insertLink.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/insertLink.dtd">
 
-<dialog title="&window.title;"
-        id="insertLinkDialog"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml"
-        onload = "Startup()"
-        buttons="accept,cancel"
-        forcecleartheme = "true"
-        ondialogaccept="return onAccept();"
-        persist="screenX screenY width height">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="insertLinkDialog"
+      windowtype="dialog"
+      title="&window.title;"
+      persist="screenX screenY width height">
+<head>
   <!-- Methods common to all editor dialogs -->
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/insertLink.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           ondialogaccept="return onAccept();">
 
   <stringbundle id="bundleString"         src="chrome://bluegriffon/locale/insertLink.properties"/>
 
@@ -39,7 +41,7 @@
                 oncommand="CheckURL()">
         <menupopup id="urlMenupopup"/>
       </menulist>
-      <filepickerbutton id="urlFilepickerbutton"
+      <bg-filepickerbutton id="urlFilepickerbutton"
                         control="urlMenulist"
                         mode="0"
                         filters="filterAll"
@@ -85,4 +87,11 @@
                disabled="true"/>
     </hbox>
   </groupbox>
-</dialog>
+
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="OK" oncommand="if (typeof onAccept === 'function' &amp;&amp; !onAccept()) return; window.close();"/>
+    <button dlgtype="cancel" label="Cancel" oncommand="window.close();"/>
+  </hbox>
+</html:body>
+</html>

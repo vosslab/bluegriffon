@@ -3,23 +3,25 @@
 <?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
 <?xml-stylesheet href="chrome://bluegriffon/skin/bluegriffonDialogs.css" type="text/css"?>
 
-<!DOCTYPE dialog SYSTEM "chrome://bluegriffon/locale/insertButton.dtd">
+<!DOCTYPE html SYSTEM "chrome://bluegriffon/locale/insertButton.dtd">
 
-<dialog title="&window.title;"
-        id="insertButtonDialog"
-        xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
-        xmlns:html="http://www.w3.org/1999/xhtml"
-        onload = "Startup()"
-        buttons="accept,cancel"
-        forcecleartheme = "true"
-        ondialogaccept="return onAccept();"
-        persist="screenX screenY">
-
+<html xmlns:html="http://www.w3.org/1999/xhtml"
+      xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+      xmlns="http://www.w3.org/1999/xhtml"
+      id="insertButtonDialog"
+      windowtype="dialog"
+      title="&window.title;"
+      persist="screenX screenY">
+<head>
   <!-- Methods common to all editor dialogs -->
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/dgid.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/utils/global.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/insertButton.js"/>
   <script type="application/x-javascript" src="chrome://bluegriffon/content/dialogs/form-common.js"/>
+</head>
+<html:body xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+           onload="Startup()"
+           ondialogaccept="return onAccept();">
 
   <grid id="mainGrid">
     <columns><column/><column flex="1"/><column/></columns>
@@ -103,8 +105,15 @@
             <menuitem label="_parent" value="_parent"/>
             <menuitem label="_top"    value="_top"/>
           </menupopup>
-        </menulist> 
+        </menulist>
       </row>
     </rows>
   </grid>
-</dialog>
+
+  <separator class="thin"/>
+  <hbox pack="end">
+    <button dlgtype="accept" label="OK" oncommand="if (typeof onAccept === 'function' &amp;&amp; !onAccept()) return; window.close();"/>
+    <button dlgtype="cancel" label="Cancel" oncommand="window.close();"/>
+  </hbox>
+</html:body>
+</html>

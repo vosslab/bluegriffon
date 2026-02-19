@@ -40,37 +40,31 @@
 }
 
 richlistitem.rotateTransform {
-  -moz-binding: url("chrome://cssproperties/content/transformationitem.xml#rotate");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.rotate3dTransform {
-  -moz-binding: url("chrome://cssproperties/content/transformationitem.xml#rotate3d");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.translate3dTransform {
-  -moz-binding: url("chrome://cssproperties/content/transformationitem.xml#translate3d");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.skewTransform {
-  -moz-binding: url("chrome://cssproperties/content/transformationitem.xml#skew");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.scale3dTransform {
-  -moz-binding: url("chrome://cssproperties/content/transformationitem.xml#scale3d");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
 
 richlistitem.perspectiveTransform {
-  -moz-binding: url("chrome://cssproperties/content/transformationitem.xml#perspective");
   border-bottom: gray thin solid;
   -moz-box-orient: vertical;
 }
